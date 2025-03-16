@@ -1,0 +1,20 @@
+# node & bower
+bower_components
+node_modules
+package-lock.json
+
+# dotenv
+.env
+
+# txt
+*.txt
+
+# test or temp
+test
+test.*
+tests
+temp
+src/temp
+
+# SublimeText workspace file
+*.sublime-workspace
