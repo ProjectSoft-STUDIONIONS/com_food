@@ -12,7 +12,7 @@
 	<scriptfile>install.php</scriptfile>
 	<namespace path="src/">ProjectSoft\Component\Food</namespace>
 	<administration>
-		<menu link="option=com_food">COM_FOOD</menu>
+		<menu img="class:folder-open" link="option=com_food">COM_FOOD</menu>
 		<files folder="admin">
 			<folder>assets</folder>
 			<folder>htaccess</folder>

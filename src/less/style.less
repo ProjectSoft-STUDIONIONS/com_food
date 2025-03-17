@@ -32,11 +32,16 @@ form[name="upload"] {
 	display: block;
 	float: right;
 	margin-bottom: 10px;
+	.text-right();
 	input[type="file"] {
 		display: none;
 	}
 	.btn {
-		display: block;
+		display: inline-block;
+		max-width: 200px;
+		width: 100%;
+		font-weight: 700;
+		.text-center();
 	}
 	#p_uploads {
 		margin-top: 15px;
@@ -49,4 +54,3 @@ form[name="upload"] {
 		}
 	}
 }
-

@@ -186,7 +186,7 @@ module.exports = function(grunt) {
 		compress: {
 			main: {
 				options: {
-					archive: 'com_food-5.x.zip'
+					archive: 'com_food-x.x.zip'
 				},
 				files: [
 					{

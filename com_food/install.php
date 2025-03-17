@@ -66,13 +66,13 @@ class com_foodInstallerScript {
 		 */
 		$params = ComponentHelper::getParams('com_food');
 		$folders = $params->get('food_folders', '');
-		@file_put_contents($joomla_path . "/folders.txt", print_r($folders, true));
 		/**
 		 * Получаем директории
 		 */
 		$folders = preg_split('/[\s,;]+/', $folders);
 		$food = array("food");
 		$array = array_filter(array_unique(array_merge($food, $folders)));
+		@file_put_contents($joomla_path . "/folders.txt", print_r($array, true));
 		// Пробегаемся по директориям указанных в настройках
 		foreach($array as $key => $value):
 			/**
