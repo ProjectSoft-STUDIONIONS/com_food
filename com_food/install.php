@@ -8,6 +8,8 @@
 */
 defined('_JEXEC') or die();
 
+use \Joomla\CMS\Component\ComponentHelper;
+
 class com_foodInstallerScript {
 
 	public function preflight($type, $parent=null){
@@ -41,7 +43,7 @@ class com_foodInstallerScript {
 		 * Перезаписываем .htaccess
 		 */
 		$htaccess = "";
-		include($dir_path . "/admin/models/.htaccess.old.php");
+		include($dir_path . "/admin/htaccess/.htaccess.old.php");
 		@file_put_contents($joomla_path.'/food/.htaccess', $htaccess);
 		@chmod($joomla_path.'/food/.htaccess', 0644);
 	}
@@ -62,8 +64,9 @@ class com_foodInstallerScript {
 		/**
 		 * Получаем настройки компонента
 		 */
-		$component = JComponentHelper::getComponent('com_food');
-		$folders = $component->params->get('food_folders');
+		$params = ComponentHelper::getParams('com_food');
+		$folders = $params->get('food_folders', '');
+		@file_put_contents($joomla_path . "/folders.txt", print_r($folders, true));
 		/**
 		 * Получаем директории
 		 */
@@ -80,7 +83,7 @@ class com_foodInstallerScript {
 			if(is_file($path)):
 				// Перезаписываем .htacces
 				$htaccess = "";
-				include($dir_path . "/models/.htaccess.dev.php");
+				include($dir_path . "/htaccess/.htaccess.dev.php");
 				@file_put_contents($path, $htaccess);
 			endif;
 		endforeach;

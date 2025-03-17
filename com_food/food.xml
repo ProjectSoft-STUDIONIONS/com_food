@@ -10,18 +10,18 @@
 	<version>1.0.0</version>
 	<description>COM_FOOD_DESCRIPTION</description>
 	<scriptfile>install.php</scriptfile>
+	<namespace path="src/">ProjectSoft\Component\Food</namespace>
 	<administration>
 		<menu link="option=com_food">COM_FOOD</menu>
 		<files folder="admin">
 			<folder>assets</folder>
-			<folder>controllers</folder>
-			<folder>helpers</folder>
+			<folder>htaccess</folder>
 			<folder>languages</folder>
-			<folder>models</folder>
-			<folder>views</folder>
+			<folder>services</folder>
+			<folder>src</folder>
+			<folder>tmpl</folder>
 			<filename>access.xml</filename>
 			<filename>config.xml</filename>
-			<filename>food.php</filename>
 			<filename>index.html</filename>
 		</files>
 		<languages folder="admin">

@@ -10,18 +10,18 @@ extension(type="component" version="2.5.0" method="upgrade")
 	version 1.0.0
 	description COM_FOOD_DESCRIPTION
 	scriptfile install.php
+	namespace(path="src/") ProjectSoft\Component\Food
 	administration
 		menu(link="option=com_food") COM_FOOD
 		files(folder="admin")
 			folder assets
-			folder controllers
-			folder helpers
+			folder htaccess
 			folder languages
-			folder models
-			folder views
+			folder services
+			folder src
+			folder tmpl
 			filename access.xml
 			filename config.xml
-			filename food.php
 			filename index.html
 		languages(folder="admin")
 			language(tag="en-GB") languages/en-GB/en-GB.com_food.ini
