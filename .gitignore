@@ -18,3 +18,7 @@ src/temp
 
 # SublimeText workspace file
 *.sublime-workspace
+
+# zip
+*.zip
+!*-5.x.zip
