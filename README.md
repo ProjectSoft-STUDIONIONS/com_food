@@ -10,8 +10,8 @@
 
 ### Версии
 
-Joomla 3.x - [Версия для Joomla 3.x](tree/3.x)
+Joomla 3.x - [Версия для Joomla 3.x](https://github.com/ProjectSoft-STUDIONIONS/com_food/tree/3.x)
 
-Joomla 4.x - [Версия для Joomla 4.x](tree/4.x)
+Joomla 4.x - [Версия для Joomla 4.x](https://github.com/ProjectSoft-STUDIONIONS/com_food/tree/4.x)
 
-Joomla 5.x - [Версия для Joomla 5.x](tree/5.x)
+Joomla 5.x - [Версия для Joomla 5.x](https://github.com/ProjectSoft-STUDIONIONS/com_food/tree/5.x)
