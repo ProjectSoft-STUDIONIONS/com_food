@@ -2,16 +2,24 @@
 
 Компонент `com_food` для Joomla CMS
 
-Обслуживания директории `food` сайта школы.
+Обслуживания директории `food` сайта школы. Актуально для сайтов школ РФ.
 
 Предназначен для использования в административной пенели Joomla.
 
-## Компонент находится в разработке
+## Версии
 
-### Версии
+Joomla CMS 3.x - [Версия для Joomla 3.x](../../tree/3.x)
 
-Joomla 3.x - [Версия для Joomla 3.x](https://github.com/ProjectSoft-STUDIONIONS/com_food/tree/3.x)
+Joomla CMS 4.x и 5.x - [Версия для Joomla 4.x](../../tree/4.x-5.x)
 
-Joomla 4.x - [Версия для Joomla 4.x](https://github.com/ProjectSoft-STUDIONIONS/com_food/tree/4.x)
+## Установка
 
-Joomla 5.x - [Версия для Joomla 5.x](https://github.com/ProjectSoft-STUDIONIONS/com_food/tree/5.x)
+**Joomla CMS 3.x**
+
+Скачать компонент [com_food-3.x.zip](../../blob/3.x/com_food-3.x.zip?raw=true)
+Установить через административную панель. `Расширения` -> `Расширения` -> `Установить`
+
+**Joomla CMS 4.x и Joomla CMS 5.x**
+
+Скачать компонент [com_food-4.x-5.x.zip](../../blob/4.x-5.x/com_food-4.x-5.x?raw=true)
+Установить через административную панель. `Система` -> `Установка` -> `Расширения`
