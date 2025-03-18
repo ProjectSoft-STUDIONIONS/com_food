@@ -171,7 +171,7 @@ class DisplayController extends BaseController {
 			endif;
 			// Сообщение о неудачной загрузке
 			if(count($msg_error)):
-				$msg_error = '<p>' . Text::sprintf('COM_FOOD_UPLOAD_FILES_ERROR', count($msg_error) . '</p>' . join("<br>", $msg_error);
+				$msg_error = '<p>' . Text::sprintf('COM_FOOD_UPLOAD_FILES_ERROR', count($msg_error)) . '</p>' . join("<br>", $msg_error);
 				$this->setMessage($msg_error, 'error');
 			endif;
 		else:

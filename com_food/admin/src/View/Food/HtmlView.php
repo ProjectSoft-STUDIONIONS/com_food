@@ -98,6 +98,7 @@ class HtmlView extends BaseHtmlView {
 		$toolbar = Toolbar::getInstance();
 		if ($ch->get('core.admin') || $ch->get('core.options')) {
 			$toolbar->preferences('com_food');
+			//ToolbarHelper::help('',  false,  'https://github.com/ProjectSoft-STUDIONIONS/com_food/blob/main/README.md',  'com_food');
 		}
 	}
 
