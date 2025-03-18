@@ -4,7 +4,7 @@
 
 Обслуживания директории `food` сайта школы. Актуально для сайтов школ РФ.
 
-Предназначен для использования в административной пенели Joomla.
+Предназначен для использования в административной панели Joomla.
 
 После установки создаётся пункт меню `Компоненты` -> `Питание`
 
@@ -42,8 +42,8 @@ Joomla CMS 4.x и 5.x - [Версия для Joomla 4.x](../../tree/4.x-5.x)
 
 **Joomla CMS 4.x**
 
-![Joomla CMS 3.x](../../blob/4.x-5.x/src/screen/com_food-4.x-5.x-0002.png?raw=true)
+![Joomla CMS 4.x](../../blob/4.x-5.x/src/screen/com_food-4.x-5.x-0002.png?raw=true)
 
 **Joomla CMS 5.x**
 
-![Joomla CMS 3.x](../../blob/4.x-5.x/src/screen/com_food-4.x-5.x-0001.png?raw=true)
+![Joomla CMS 5.x](../../blob/4.x-5.x/src/screen/com_food-4.x-5.x-0001.png?raw=true)
