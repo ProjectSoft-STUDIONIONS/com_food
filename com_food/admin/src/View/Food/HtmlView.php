@@ -16,6 +16,7 @@ use Joomla\CMS\Object\CMSObject;
 use Joomla\CMS\Toolbar\Button\DropdownButton;
 use Joomla\CMS\Toolbar\Toolbar;
 use Joomla\CMS\Toolbar\ToolbarHelper;
+
 /**
  * @package     Joomla.Administrator
  * @subpackage  com_food
@@ -30,27 +31,39 @@ use Joomla\CMS\Toolbar\ToolbarHelper;
 class HtmlView extends BaseHtmlView {
 	
 	public $stats = array();
+
+	/**
+	 * Разрещённые расширения
+	 */
+	public $exts = array("xlsx", "pdf");
 	/**
 	 * Отображение основного вида "Food" 
 	 *
 	 * @param   string  $tpl  Имя файла шаблона для анализа; автоматический поиск путей к шаблону.
 	 * @return  void
 	 */
+
+	private $dateTime;
+
+	private $timezone = 0;
+
 	public function display($tpl = null) {
+		$this->timezone = Factory::getUser()->getTimezone();
+		$this->dateTime = new \DateTime('now', $this->timezone);
 		$this->stats = $this->getStats();
 		$this->addToolbar();
 		$doc = Factory::getDocument();
-		$doc->addScript("/administrator/components/com_food/assets/js/jquery.min.js", array("version" => "auto"), array());
-		$doc->addScript("/administrator/components/com_food/assets/js/main.min.js", array("version" => "auto"), array());
+		// Добавляем стили
+		$doc->addStyleSheet("/viewer/app.min.css", array("version" => "auto"));
 		$doc->addStyleSheet("/administrator/components/com_food/assets/css/main.min.css", array("version" => "auto"));
 		parent::display($tpl);
 	}
 
 	public function getSize($file) {
 
-		$sizes = array('Tb' => 1099511627776, 'Gb' => 1073741824, 'Mb' => 1048576, 'Kb' => 1024, 'b' => 1);
+		$sizes      = array('Tb' => 1099511627776, 'Gb' => 1073741824, 'Mb' => 1048576, 'Kb' => 1024, 'b' => 1);
 		$precisions = count($sizes) - 1;
-		$size = filesize($file);
+		$size       = filesize($file);
 		foreach ($sizes as $unit => $bytes) {
 			if ($size >= $bytes) {
 				return number_format($size / $bytes, $precisions) . ' ' . $unit;
@@ -65,16 +78,23 @@ class HtmlView extends BaseHtmlView {
 	 */
 	public function toDateFormat( $timestamp = 0 )
 	{
-		$dateFormat = 'd-m-Y H:i:s';
-		$strTime = date($dateFormat, $timestamp);
-		return $strTime;
+		$this->dateTime->setTimestamp($timestamp);
+		return $this->dateTime->format('d-m-Y H:i:s');
+	}
+
+	/**
+	 * Получение пути файла в правильном формате
+	 */
+	public function realPath($path = "") {
+		$path = rtrim($path, "\\/");
+		return str_replace('\\', '/', $path);
 	}
 
 	/**
 	 * Кнопка настройки компонента
 	 */
 	protected function addToolbar() {
-		$ch   = ContentHelper::getActions('com_food');
+		$ch      = ContentHelper::getActions('com_food');
 		$toolbar = Toolbar::getInstance();
 		if ($ch->get('core.admin') || $ch->get('core.options')) {
 			$toolbar->preferences('com_food');
@@ -109,16 +129,46 @@ class HtmlView extends BaseHtmlView {
 			"files" => array()
 		);
 		if($dir):
-			// Собрать файлы
+			// Поиск файлов в директории
+			$files_path = join("/", array(
+				$this->realPath(JPATH_ROOT),
+				$dir
+			));
+			$iterators = new \DirectoryIterator($files_path);
+			foreach ($iterators as $fileinfo):
+				// Если это файл
+				if($fileinfo->isFile()):
+					$ext = strtolower($fileinfo->getExtension());
+					if(in_array($ext, $this->exts)):
+						// Проверить дату (год) в имени файла
+						$name = $fileinfo->getFilename();
+						$re = '/^(?:[\w]+)?(\d{4})/';
+						preg_match($re, $name, $matches);
+						// Если есть 4 цифры в имени файла
+						if($matches):
+							// Год сейчас
+							$year = intval(date("Y", time()));
+							// Год в имени файла
+							$file_year = intval($matches[1]);
+							// Если разница лет больше/равно 5 лет.
+							if($year - $file_year > 4):
+								// Удаляем файл
+								$file_absolute = path_join($startpath, $name);
+								@unlink($file_absolute);
+							else:
+								// Добавляем файл в отображение
+								$stats["files"][] = $name;
+							endif;
+						else:
+							// Добавляем файл в отображение
+							$stats["files"][] = $name;
+						endif;
+					endif;
+				endif;
+			endforeach;
+			natsort($stats["files"]);
+			$stats["files"] = array_reverse($stats["files"], false);
 		endif;
 		return $stats;
-	}
-
-	/**
-	 * Получение пути файла в правильном формате
-	 */
-	private function realPath($path = "") {
-		$path = rtrim($path, "\\/");
-		return str_replace('\\', '/', $path);
 	}
 }

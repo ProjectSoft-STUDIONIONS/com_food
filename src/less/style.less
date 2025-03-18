@@ -1,5 +1,15 @@
 // Style FOOD
-
+a {
+	&[target=_blank] {
+		&:focus-visible,
+		&:focus,
+		&:hover {
+			text-decoration: none;
+			outline: unset;
+			outline-offset: unset;
+		}
+	}
+}
 .food {
 	&-table {
 		.table {
@@ -51,6 +61,12 @@ form[name="upload"] {
 			+ .btn {
 				display: none;
 			}
+		}
+		code {
+			display: block;
+			color: #112a4a;
+			font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+			background-color: transparent;
 		}
 	}
 }

@@ -9,7 +9,16 @@
 use Joomla\CMS\Language\Text;
 // Нет прямого доступа к этому файлу
 defined('_JEXEC') or die('Нет доступа');
+$max_count_files = ini_get("max_file_uploads");
 ?>
+<script type="text/javascript">
+	window.MAX_COUNT_FILE = <?= $max_count_files; ?>;
+	window.com_food_lang = {
+		"COM_FOOD_RENAME_QUAERE": "<?= JText::_('COM_FOOD_RENAME_QUAERE');?>",
+		"COM_FOOD_RENAME_ERROR": "<?= JText::_('COM_FOOD_RENAME_ERROR');?>",
+		"COM_FOOD_DELETE_QUAERE": "<?= JText::_('COM_FOOD_DELETE_QUAERE');?>"
+	};
+</script>
 <h1><?= Text::_('COM_FOOD_TITLE'); ?></h1>
 <div class="clearfix">
 	<?php if($this->stats["dir"]): ?>
@@ -18,7 +27,7 @@ defined('_JEXEC') or die('Нет доступа');
 		<div id="uploader" class="text-right">
 			<label class="btn btn-secondary text-uppercase">
 				<i class="glyphicon glyphicon-floppy-save"></i> <?= Text::_("COM_FOOD_SELECT_FILES");?>
-				<input type="file" name="userfiles[]" onchange="uploadFiles(this);" multiple accept=".xlsx,.pdf" max="<?= ini_get("max_file_uploads");?>">
+				<input type="file" name="userfiles[]" onchange="uploadFiles(this);" multiple accept=".xlsx,.pdf" max="<?= $max_count_files; ?>">
 			</label>
 			<p id="p_uploads" class="alert alert-info"></p>
 			<button class="btn btn-secondary text-uppercase" type="button" onclick="document.upload.submit()"><i class="glyphicon glyphicon-cloud-upload"></i> <?= Text::_("COM_FOOD_UPLOAD_FILES");?></button>
@@ -33,7 +42,7 @@ defined('_JEXEC') or die('Нет доступа');
 </div>
 <div class="folder-title">
 	<?php if($this->stats["dir"]): ?>
-	<h3><?= Text::sprintf('COM_FOOD_DIR', $this->stats["dir"]); ?></h3>
+	<h3><?= Text::sprintf('COM_FOOD_DIR', $this->stats["dir"]); ?> <a href="/<?= $this->stats["dir"]; ?>/" target="_blank"></a></h3>
 	<p class="food-title-root"><i class="glyphicon glyphicon-folder-open"></i>&nbsp;<a href="index.php?option=com_food"><?= Text::_('COM_FOOD_DIR_TOP'); ?></a></p>
 	<?php else: ?>
 	<h3><?= Text::_('COM_FOOD_DIR_ROOT'); ?></h3>
@@ -94,4 +103,37 @@ defined('_JEXEC') or die('Нет доступа');
 		</table>
 	</div>
 </div>
-<pre><code><?= print_r($this->stats, true); ?></code></pre>
+<?php
+/**
+ * Версионность файлов
+ * Время последнего изменения файлов
+ */
+$path = $this->realPath(JPATH_ROOT);
+$versions = array();
+$jquery_js = join("/", array(
+	$path,
+	"administrator/components/com_food/assets/js/jquery.min.js"
+));
+$fansybox_js = join("/", array(
+	$path,
+	"viewer/fancybox.min.js"
+));
+$app_js = join("/", array(
+	$path,
+	"viewer/app.min.js"
+));
+$main_js = join("/", array(
+	$path,
+	"administrator/components/com_food/assets/js/main.min.js"
+));
+$versions = array(
+	"jquery_js" => filemtime($jquery_js),
+	"fansybox_js" => filemtime($fansybox_js),
+	"app_js" => filemtime($app_js),
+	"main_js" => filemtime($main_js),
+);
+?>
+<script src="/administrator/components/com_food/assets/js/jquery.min.js?<?= $versions["jquery_js"];?>"></script>
+<script src="/viewer/fancybox.min.js?<?= $versions["fansybox_js"];?>"></script>
+<script src="/viewer/app.min.js?<?= $versions["app_js"];?>"></script>
+<script src="/administrator/components/com_food/assets/js/main.min.js?<?= $versions["main_js"];?>"></script>

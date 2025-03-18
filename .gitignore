@@ -21,4 +21,4 @@ src/temp
 
 # zip
 *.zip
-!*-4.x.zip
+!com_food-4.x-5.x.zip

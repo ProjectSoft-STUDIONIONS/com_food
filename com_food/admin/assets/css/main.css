@@ -3120,6 +3120,13 @@ fieldset[disabled] #content .btn-danger.active {
   background-repeat: repeat-x;
   border-color: #dca7a7;
 }
+#content a[target=_blank]:focus-visible,
+#content a[target=_blank]:focus,
+#content a[target=_blank]:hover {
+  text-decoration: none;
+  outline: unset;
+  outline-offset: unset;
+}
 #content .food-table .table td,
 #content .food-table .table th {
   white-space: nowrap;
@@ -3172,4 +3179,10 @@ fieldset[disabled] #content .btn-danger.active {
 }
 #content form[name="upload"] #p_uploads:empty + .btn {
   display: none;
+}
+#content form[name="upload"] #p_uploads code {
+  display: block;
+  color: #112a4a;
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+  background-color: transparent;
 }

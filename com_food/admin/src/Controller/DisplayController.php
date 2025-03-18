@@ -32,15 +32,18 @@ class DisplayController extends BaseController {
 	 */
 	protected $default_view = 'food';
 
-	protected $root = "";
+	protected $root = JPATH_ROOT;
 
-	protected $ext = array("xlsx", "pdf");
+	// Разрешённые расширения
+	private $exts = array("xlsx", "pdf");
 
-	protected $folders = array("food");
+	private $folders = array("food");
 
 	public function display($cachable = false, $urlparams = array()) {
+		// Установка локали
+		setlocale(LC_NUMERIC, 'C');
 		// Корневая директория
-		$this->root     = $this->realPath(JPATH_ROOT);
+		$this->root = $this->realPath(JPATH_ROOT);
 		// Получаем параметры
 		$option   = $this->input->get('option',   'com_food');
 		$dir      = $this->input->get('dir',      '');
@@ -51,21 +54,24 @@ class DisplayController extends BaseController {
 		$params   = ComponentHelper::getParams('com_food');
 		$folders  = $params->get('food_folders', 'food');
 		$folders  = preg_split('/[\s,;]+/', $folders);
+
 		$food     = array("food");
-		$folders  = array_filter(array_unique(array_merge($food, $folders)));
-		sort($folders);
+
+		$this->folders  = array_filter(array_unique(array_merge($food, $folders)));
+		sort($this->folders);
 		// Пробег по директориям
-		$this->folders($folders);
+		$this->recursiveFolders();
 		// Определяем запрос
 		// Если параметр $dir существует и не верный - редирект
-		if($dir && !in_array($dir, $folders)):
+		if($dir && !in_array($dir, $this->folders)):
 			$this->setMessage(\JText::sprintf('COM_FOOD_DIR_ERROR', $dir), 'error');
 			$this->setRedirect('index.php?option=' . $option);
 			$this->redirect();
 			return;
 		endif;
+		// Если параметр $dir существует
 		if($dir):
-			// Проверяем тип
+			// Проверяем тип действия
 			switch ($mode) {
 				case 'upload':
 					// Загрузка файлов
@@ -82,10 +88,11 @@ class DisplayController extends BaseController {
 					$this->deleteFile($dir, $file);
 					return;
 					break;
+				default:
+					// Ничего не делаем
+					break;
 			}
 		endif;
-		//$print_r = array($option, $dir, $mode, $file, $new_file);
-		//@file_put_contents(JPATH_ROOT . "/uri.txt", print_r($folders, true));
 		return parent::display($cachable, $urlparams);
 	}
 
@@ -100,10 +107,10 @@ class DisplayController extends BaseController {
 	/**
 	 * Пробег по директориям
 	 */
-	private function folders(array $folders) {
+	private function recursiveFolders() {
 		$admin = $this->realPath(JPATH_COMPONENT_ADMINISTRATOR);
-		if(is_array($folders)):
-			foreach ($folders as $key => $value):
+		if(is_array($this->folders)):
+			foreach ($this->folders as $key => $value):
 				$folder = $this->root . "/" . $value;
 				// Если это не директория
 				if(!is_dir($folder)):
@@ -130,13 +137,9 @@ class DisplayController extends BaseController {
 			$this->root,
 			$dir
 		);
-		$success = false;
-		$error = false;
-		$count_success = 0;
-		$count_error = 0;
-		$msg_success = "";
-		$msg_error = "";
-		$startpath = join("/", $paths);
+		$msg_success   = array();
+		$msg_error     = array();
+		$startpath     = join("/", $paths);
 		if(isset($_FILES['userfiles'])):
 			foreach ($_FILES['userfiles']['name'] as $i => $name):
 				if (empty($_FILES['userfiles']['tmp_name'][$i])) continue;
@@ -150,43 +153,29 @@ class DisplayController extends BaseController {
 						if (strtoupper(substr(PHP_OS, 0, 3)) != 'WIN'):
 							@chmod($path, 0644);
 						endif;
-						if(!$success):
-							$success = true;
-							$msg_success .= '<dl class="dl-horizontal">';
-						endif;
-						++$count_success;
-						$msg_success .= '<dt>' . Text::_('COM_FOOD_UPLOAD_FILE_SUCCESS') . '</dt>';
-						$msg_success .= '<dd>' . $dir . "/" . $name . '</dd>';
+						// Файл загружен
+						$msg_success[] = Text::sprintf('COM_FOOD_UPLOAD_FILE_SUCCESS', $dir . "/" . $name);
 					else:
-						if(!$error):
-							$error = true;
-							$msg_error .= '<dl class="dl-horizontal">';
-						endif;
-						++$count_error;
-						$msg_error .= '<dt>' . Text::_('COM_FOOD_UPLOAD_FILE_ERROR') . '</dt>';
-						$msg_error .= '<dd>' . $dir . "/" . $name . '</dd>';
+						// Неудачная загрузка файла
+						$msg_error[] = Text::sprintf('COM_FOOD_UPLOAD_FILE_ERROR', $dir . "/" . $name);
 					endif;
 				else:
-					if(!$error):
-						$error = true;
-						$msg_error .= '<dl class="dl-horizontal">';
-					endif;
-					++$count_error;
-					$msg_error .= '<dt>' . Text::_('COM_FOOD_UPLOAD_FILE_ERROR') . '</dt>';
-					$msg_error .= '<dd>' . $dir . "/" . $name . '</dd>';
+					// Неудачная загрузка файла
+					$msg_error[] = Text::sprintf('COM_FOOD_UPLOAD_FILE_ERROR', $dir . "/" . $name);
 				endif;
 			endforeach;
-			if($success):
-				$msg_success .= '</dl>';
-				$msg_success = '<p><strong>' . Text::_('COM_FOOD_UPLOAD_FILES_SUCCESS') . '</strong> ' . $count_success . '</p>' . $msg_success;
+			// Сообщение о удачной загрузке
+			if(count($msg_success)):
+				$msg_success = '<p>' . Text::sprintf('COM_FOOD_UPLOAD_FILES_SUCCESS', count($msg_success)) . '</p>' . join("<br>", $msg_success);
 				$this->setMessage($msg_success, 'message');
 			endif;
-			if($error):
-				$msg_error .= '</dl>';
-				$msg_error = '<p><strong>' . Text::_('COM_FOOD_UPLOAD_FILES_ERROR') . '</strong> ' . $count_error . '</p>' . $msg_error;
+			// Сообщение о неудачной загрузке
+			if(count($msg_error)):
+				$msg_error = '<p>' . Text::sprintf('COM_FOOD_UPLOAD_FILES_ERROR', count($msg_error) . '</p>' . join("<br>", $msg_error);
 				$this->setMessage($msg_error, 'error');
 			endif;
 		else:
+			// Нет файлов для обработки
 			$this->setMessage(Text::_('COM_FOOD_UOLOAD_FILES_NOT_FOUND'), 'error');
 		endif;
 		$this->setRedirect('index.php?option=com_food&dir=' . $dir);
@@ -198,23 +187,59 @@ class DisplayController extends BaseController {
 	 * Переименование файла
 	 */
 	private function renameFile($dir, $file, $new_file) {
-		$paths = array(
+		// Проверка и переименование
+		// Путь к исходному файлу
+		$path = join('/', array(
 			$this->root,
 			$dir,
 			$file
-		);
-		$new_paths = array(
-			$this->root,
-			$dir,
-			$new_file
-		);
-		$path = join('/', $paths);
+		));
+		// Транслит имени нового файла
+		$new_file = $this->translitFile($new_file);
+		// Существует ли исходный файл
 		if(is_file($path)):
-			// Проверка и переименование
-			$this->setMessage(\JText::sprintf('COM_FOOD_RENEME_FILE', join('/', array($dir, $file)), join('/', array($dir, $new_file))), 'message');
+			// Расширение исходного файла
+			$extension_old = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+			// Входит ли исходный файл в тип разрешённых
+			if(in_array($extension_old, $this->exts)):
+				// Проверяем расширение нового файла
+				$extension_new = strtolower(pathinfo($new_file, PATHINFO_EXTENSION));
+				// Входит ли новый файл в тип разрешённых
+				if(in_array($extension_new, $this->exts)):
+					// Формируем путь к новому файлу
+					$new_path = join('/', array(
+						$this->root,
+						$dir,
+						$new_file
+					));
+					// Существует ли новый файл
+					if(is_file($new_path)):
+						// Cообщение, что файл существует (новый файл)
+						$this->setMessage(Text::sprintf('COM_FOOD_RENEME_FILE_ERROR', join('/', array($dir, $file)), join('/', array($dir, $new_file))), 'error');
+					else:
+						// Равны ли расширения
+						if($extension_old == $extension_new):
+							// Переименовываем исходный файл в новый файл
+							// @ Спрячем ошибки если они будут
+							@rename($path, $new_path);
+							// Сообщение, что файл переименован
+							$this->setMessage(Text::sprintf('COM_FOOD_RENEME_FILE', join('/', array($dir, $file)), join('/', array($dir, $new_file))), 'message');
+						else:
+							// Сообщение, что расширения не верные
+							$this->setMessage(Text::sprintf('COM_FOOD_RENEME_FILE_ERROR', join('/', array($dir, $file)), join('/', array($dir, $new_file))), 'error');
+						endif;
+					endif;
+				else:
+					// Сообщение, что расширениe не верное (новый файл)
+					$this->setMessage(Text::sprintf('COM_FOOD_RENEME_FILE_ERROR', join('/', array($dir, $file)), join('/', array($dir, $new_file))), 'error');
+				endif;
+			else:
+				// Сообщение, что расширениe не верное (исходный файл)
+				$this->setMessage(Text::sprintf('COM_FOOD_RENEME_FILE_ERROR', join('/', array($dir, $file)), join('/', array($dir, $new_file))), 'error');
+			endif;
 		else:
 			// Файл не существует
-			$this->setMessage(\JText::sprintf('COM_FOOD_FILE_NOT_FOUND', join('/', array($dir, $file))), 'error');
+			$this->setMessage(Text::sprintf('COM_FOOD_FILE_NOT_FOUND', join('/', array($dir, $file))), 'error');
 		endif;
 		$this->setRedirect('index.php?option=com_food&dir=' . $dir);
 		$this->redirect();
@@ -224,7 +249,7 @@ class DisplayController extends BaseController {
 	/**
 	 * Удаление файла
 	 */
-	private function deleteFile($dir, $file) {
+	private function deleteFile($dir, $file, $redirect = true) {
 		$paths = array(
 			$this->root,
 			$dir,
@@ -233,13 +258,24 @@ class DisplayController extends BaseController {
 		$path = join('/', $paths);
 		if(is_file($path)):
 			// Проверка и удаление
-			$this->setMessage(\JText::sprintf('COM_FOOD_FILE_DELETE', join('/', array($dir, $file))), 'message');
+			$extension = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+			if(in_array($extension, $this->exts)):
+				// Удаление
+				// @ Спрячем ошибки если они будут
+				@unlink($path);
+				$this->setMessage(Text::sprintf('COM_FOOD_FILE_DELETE', join('/', array($dir, $file))), 'message');
+			else:
+				// Запрещена работа с данным расширением
+				$this->setMessage(Text::sprintf('COM_FOOD_EXTENSION_ERROR', $extension), 'error');
+			endif;
 		else:
 			// Файл не существует
-			$this->setMessage(\JText::sprintf('COM_FOOD_FILE_NOT_FOUND', join('/', array($dir, $file))), 'error');
+			$this->setMessage(Text::sprintf('COM_FOOD_FILE_NOT_FOUND', join('/', array($dir, $file))), 'error');
 		endif;
-		$this->setRedirect('index.php?option=com_food&dir=' . $dir);
-		$this->redirect();
+		if($redirect):
+			$this->setRedirect('index.php?option=com_food&dir=' . $dir);
+			$this->redirect();
+		endif;
 		return;
 	}
 

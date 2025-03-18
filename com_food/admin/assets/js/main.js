@@ -261,7 +261,7 @@
 			if ((m = regex.exec(a.name)) !== null) {
 				let ex = m[0].toLowerCase();
 				if(ex == "xlsx" || ex == "pdf"){
-					out.push(a.name);
+					out.push(`<code>${a.name}</code>`);
 				}else{
 					p.html("");
 					alert(`Нельзя загрузить данный тип файла!\n${a.name} - ${a.type}`);
@@ -270,7 +270,7 @@
 				}
 			}
 		}
-		p.html(out.join("<br>"));
+		p.html(out.join(""));
 		return !1;
 	}
 
