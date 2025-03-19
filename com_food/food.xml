@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <extension type="component" version="2.5.0" method="upgrade">
 	<name>COM_FOOD</name>
-	<creationDate>2025-03-11</creationDate>
+	<creationDate>2025-03-19</creationDate>
 	<author>ProjectSoft</author>
 	<authorEmail>projectsoft2009@yandex.ru</authorEmail>
-	<authorUrl>https://t.me/ProjectSoft</authorUrl>
+	<authorUrl>https://github.com/ProjectSoft-STUDIONIONS</authorUrl>
 	<copyright>Copyright © 2008 - all right reserved</copyright>
 	<license>License MIT</license>
-	<version>1.0.0</version>
-	<description>COM_FOOD_DESCRIPTION</description>
+	<version>1.0.1</version>
+	<description><![CDATA[Компонент <code>com_food</code> для Joomla CMS 4.x и Joomla CMS 5.x. Обслуживания директории <code>food</code> сайта школы. Актуально для школ РФ. Предназначен для использования в административной панели Joomla CMS 4.x и Joomla CMS 5.x.]]></description>
 	<scriptfile>install.php</scriptfile>
 	<namespace path="src/">ProjectSoft\Component\Food</namespace>
 	<administration>

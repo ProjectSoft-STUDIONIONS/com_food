@@ -38,7 +38,7 @@ module.exports = function(grunt) {
 	require('time-grunt')(grunt);
 
 	var gc = {
-		versions: `${PACK.version}`,
+		version: `${PACK.version}`,
 		default: [
 			"less",
 			"autoprefixer",
@@ -54,6 +54,14 @@ module.exports = function(grunt) {
 	require('load-grunt-tasks')(grunt);
 	require('time-grunt')(grunt);
 
+	let arr = `${PACK.homepage}`.split('/'),
+		author = PACK.author.replace(/^(.*)(\s+<.*>)/, "$1"),
+		authorEmail = PACK.author.replace(/^(?:.*)\s+<(.*)>/, "$1"),
+		authorUrl = "";
+
+	arr.pop();
+	authorUrl = arr.join("/");
+	
 	grunt.initConfig({
 		globalConfig : gc,
 		pkg : PACK,
@@ -161,7 +169,15 @@ module.exports = function(grunt) {
 					pretty: '\t',
 					separator:  '\n',
 					data: function(dest, src) {
-						return {}
+						return {
+							"version": PACK.version,
+							"create": grunt.template.date((new Date()).getTime(), "yyyy-mm-dd"),
+							"description": PACK.description.replace(/(com_food|food)/g, "<code>$1</code>"),
+							"license": PACK.license,
+							"author": author,
+							"authorEmail": authorEmail,
+							"authorUrl": authorUrl
+						}
 					}
 				},
 				files: [
