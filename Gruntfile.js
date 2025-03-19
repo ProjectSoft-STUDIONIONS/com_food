@@ -194,6 +194,7 @@ module.exports = function(grunt) {
 						cwd: '.',
 						src: [
 							'com_food/**',
+							'com_food/**/.htacc*',
 						],
 						dest: '/'
 					},

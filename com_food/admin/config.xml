@@ -4,7 +4,4 @@
 		<field name="food_folders" type="text" default="" class="btn-group" label="COM_FOOD_OPTIONS_FOLDER" description="COM_FOOD_OPTIONS_FOLDER_DESC" style="width: 100%;">
 		</field>
 	</fieldset>
-	<fieldset name="permissions" description="JCONFIG_PERMISSIONS_DESC" label="JCONFIG_PERMISSIONS_LABEL">
-		<field name="rules" type="rules" component="com_food" filter="rules" validate="rules" label="JCONFIG_PERMISSIONS_LABEL" section="component"/>
-	</fieldset>
 </config>

@@ -22,7 +22,7 @@
 			<filename>access.xml</filename>
 			<filename>config.xml</filename>
 			<filename>food.php</filename>
-			<filename>index.html</filename>
+			<filename>.htaccess</filename>
 		</files>
 		<languages folder="admin">
 			<language tag="en-GB">languages/en-GB/en-GB.com_food.ini</language>
