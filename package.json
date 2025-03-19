@@ -1,7 +1,7 @@
 {
 	"name": "com_food",
-	"version": "1.0.0",
-	"description": "Компонент com_food для Joomla CMS",
+	"version": "1.0.1",
+	"description": "Компонент com_food для Joomla CMS 3.x. Обслуживания директории food сайта школы. Актуально для школ РФ. Предназначен для использования в административной панели Joomla CMS 3.x",
 	"homepage": "https://github.com/ProjectSoft-STUDIONIONS/com_food#readme",
 	"bugs": {
 		"url": "https://github.com/ProjectSoft-STUDIONIONS/com_food/issues"
