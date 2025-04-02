@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <extension type="component" version="2.5.0" method="upgrade">
 	<name>COM_FOOD</name>
-	<creationDate>2025-03-19</creationDate>
+	<creationDate>2025-04-02</creationDate>
 	<author>ProjectSoft</author>
 	<authorEmail>projectsoft2009@yandex.ru</authorEmail>
 	<authorUrl>https://github.com/ProjectSoft-STUDIONIONS</authorUrl>

@@ -109,6 +109,22 @@ module.exports = function(grunt) {
 			options: {
 				separator: "\n",
 			},
+			app: {
+				src: [
+					'bower_components/jquery/dist/jquery.js',
+					'bower_components/pdfmake/build/pdfmake.js',
+					'bower_components/jszip/dist/jszip.js',
+					'bower_components/pdfmake/build/vfs_fonts.js',
+					'bower_components/datatables.net/js/dataTables.js',
+					'bower_components/datatables.net-buttons/js/dataTables.buttons.js',
+					'bower_components/datatables.net-buttons/js/buttons.html5.js',
+					//'bower_components/datatables.net-select/js/dataTables.select.js',
+					'bower_components/datatables.net-bs/js/dataTables.bootstrap.js',
+					'bower_components/datatables.net-buttons-bs/js/buttons.bootstrap.js',
+					//'bower_components/datatables.net-select-bs/js/select.bootstrap.js'
+				],
+				dest: 'com_food/admin/assets/js/jquery.js'
+			},
 			emoji: {
 				src: [
 					'bower_components/sprintf/src/sprintf.js',
@@ -134,7 +150,7 @@ module.exports = function(grunt) {
 						flatten : true,
 						src: [
 							'com_food/admin/assets/js/main.js',
-							'bower_components/jquery/dist/jquery.js'
+							'com_food/admin/assets/js/jquery.js'
 						],
 						dest: 'com_food/admin/assets/js',
 						filter: 'isFile',

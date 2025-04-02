@@ -232,6 +232,12 @@
 
 !(function($){
 	const jq = $.noConflict(true);
+	let search = location.search.replace(/\?/g, '');
+	let search_api = search.split('&').map((item, index, array) => {
+		let param = item.split('=');
+		return param;
+	});
+	const searchAPI = Object.fromEntries(search_api);
 	// Добавить максимальное количество файлов
 	const maxCountFile = parseInt(window.MAX_COUNT_FILE),
 		// Reset формы модификации
@@ -244,8 +250,38 @@
 			input_file.value = "";
 			input_new_file.value = "";
 			form.reset();
-		};
+		},
+		getDateTime = function(timestamp = 0) {
+			let time = new Date(timestamp),
+				date = time.getDate(),
+				month = time.getMonth() + 1,
+				year = time.getFullYear(),
+				hour = time.getHours(),
+				minute = time.getMinutes(),
+				second = time.getSeconds(),
+				arrDate = [
+					leftPad(date,  2, '0'),
+					leftPad(month, 2, '0'),
+					String(year)
+				],
+				arrTime = [
+					leftPad(hour,   2, '0'),
+					leftPad(minute, 2, '0'),
+					leftPad(second, 2, '0')
+				];
+			return arrDate.join('-') + ' ' + arrTime.join(':');
 
+		},
+		leftPad = function (str, len, ch) {
+			str = String(str);
+			let i = -1;
+			if (!ch && ch !== 0) ch = ' ';
+			len = len - str.length;
+			while (++i < len) {
+				str = ch + str;
+			}
+			return str;
+		};
 	window.uploadFiles = function(el) {
 		let p = jq("#p_uploads"),
 			files = [...el.files],
@@ -316,6 +352,125 @@
 				break;
 		}
 	}
+	if(searchAPI.dir) {
+		let table = new DataTable('.food-table .table', {
+			//select: true,
+			columns: [
+				{ name: 'file' },
+				{ name: 'permission' },
+				{ name: 'date' },
+				{ name: 'size' },
+				{ name: 'actions' }
+			],
+			columnDefs : [
+				{ 
+				   'searchable'    : false, 
+				   'targets'       : [1,2,3,4] 
+				},
+			],
+			ordering: false,
+			stateSave: true,
+			stateSaveCallback: function (settings, data) {
+				localStorage.setItem(
+					'DataTables_' + settings.sInstance + '_' + searchAPI.dir,
+					JSON.stringify(data)
+				);
+			},
+			stateLoadCallback: function (settings) {
+				return JSON.parse(localStorage.getItem('DataTables_' + settings.sInstance + '_' + searchAPI.dir));
+			},
+			lengthMenu: [
+				[10, 25, 50, 100, -1],
+				['по 10', 'по 25', 'по 50', 'по 100', 'Все']
+			],
+			layout: {
+				topStart: [
+					'pageLength',
+					'search'
+				],
+				topEnd: {
+					buttons: [
+						{
+							extend: 'excel',
+							text: 'Экспорт в XLSX',
+							className: '',
+							customize: function (...args) {
+								console.log(args);
+							},
+							action: function (e, dt, node, config, cb) {
+								DataTable.ext.buttons.excelHtml5.action.call(
+									this,
+									e,
+									dt,
+									node,
+									config,
+									cb
+								);
+							}
+						},
+						{
+							extend: 'pdf',
+							text: 'Экспорт в PDF',
+							className: '',
+							download: '', //'open',
+							customize: function (doc) {
+								console.log(doc);
+								let title = [
+									`Меню ежедневного питания.`,
+									`Директория ${location.origin}/${searchAPI.dir}/`
+								];
+								doc.language = 'ru-RU';
+								doc.info = {
+									title: title.join(' '),
+									author: location.origin,
+									subject: title.join(' '),
+									keywords: title.join(' '),
+									creator: 'Компонент питания для Joomla CMS',
+								};
+								doc.header = {
+	   								columns: [
+	   									{
+	   										text: `${location.origin}/${searchAPI.dir}/`,
+	   										margin: [15, 15, 15, 15],
+	   										alignment: 'left'
+	    								},
+	    								{
+	    									text: getDateTime((new Date()).getTime()),
+	    									margin: [15, 15, 15, 15],
+	   										alignment: 'right'
+	   									}
+									]
+								};
 
+								doc.footer = function(currentPage, pageCount) {
+									return [
+										{
+	    									text: currentPage.toString() + ' из ' + pageCount,
+	    									margin: [15, 15, 15, 15],
+	    									alignment: 'center'
+	   									}
+									];
+								};
 
+								doc.content[0].text = title.join('\r\n');
+							},
+							action: function (e, dt, node, config, cb) {
+								DataTable.ext.buttons.pdfHtml5.action.call(
+									this,
+									e,
+									dt,
+									node,
+									config,
+									cb
+								);
+							}
+						}
+					]
+				}
+			},
+			language: {
+				url: '/administrator/components/com_food/assets/js/ru_RU.json',
+			}
+		});
+	}
 }(jQuery));

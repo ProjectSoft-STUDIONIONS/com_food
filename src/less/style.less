@@ -70,3 +70,47 @@ form[name="upload"] {
 		}
 	}
 }
+
+div.dt-container {
+	.dt-layout {
+		&-row {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			width: 100%;
+			margin: .75em 0;
+		}
+		&-cell {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			gap: 10px;
+			flex-wrap: wrap;
+		}
+		&-start {
+			justify-content: flex-start;
+			.dt-length,
+			.dt-search {
+				display: inline-flex;
+				justify-content: flex-start;
+				align-items: center;
+				gap: 10px;
+				flex-direction: row;
+				margin-bottom: 5px;
+				&,
+				* {
+					font-weight: 400;
+				}
+			}
+		}
+		&-end {
+			justify-content: flex-end;
+			margin-left: auto;
+			.dt-buttons {
+				display: inline-flex;
+				gap: 10px;
+				flex-wrap: wrap;
+			}
+		}
+	}
+}

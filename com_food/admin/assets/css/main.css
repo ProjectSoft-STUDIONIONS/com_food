@@ -2812,7 +2812,8 @@ select[multiple]#content .input-lg {
 #content .btn-success,
 #content .btn-info,
 #content .btn-warning,
-#content .btn-danger {
+#content .btn-danger,
+#content .btn-secondary {
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
 }
@@ -2822,12 +2823,14 @@ select[multiple]#content .input-lg {
 #content .btn-info:active,
 #content .btn-warning:active,
 #content .btn-danger:active,
+#content .btn-secondary:active,
 #content .btn-default.active,
 #content .btn-primary.active,
 #content .btn-success.active,
 #content .btn-info.active,
 #content .btn-warning.active,
-#content .btn-danger.active {
+#content .btn-danger.active,
+#content .btn-secondary.active {
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
 #content .btn-default.disabled,
@@ -2836,18 +2839,21 @@ select[multiple]#content .input-lg {
 #content .btn-info.disabled,
 #content .btn-warning.disabled,
 #content .btn-danger.disabled,
+#content .btn-secondary.disabled,
 #content .btn-default[disabled],
 #content .btn-primary[disabled],
 #content .btn-success[disabled],
 #content .btn-info[disabled],
 #content .btn-warning[disabled],
 #content .btn-danger[disabled],
+#content .btn-secondary[disabled],
 fieldset[disabled] #content .btn-default,
 fieldset[disabled] #content .btn-primary,
 fieldset[disabled] #content .btn-success,
 fieldset[disabled] #content .btn-info,
 fieldset[disabled] #content .btn-warning,
-fieldset[disabled] #content .btn-danger {
+fieldset[disabled] #content .btn-danger,
+fieldset[disabled] #content .btn-secondary {
   box-shadow: none;
 }
 #content .btn-default .badge,
@@ -2855,51 +2861,12 @@ fieldset[disabled] #content .btn-danger {
 #content .btn-success .badge,
 #content .btn-info .badge,
 #content .btn-warning .badge,
-#content .btn-danger .badge {
+#content .btn-danger .badge,
+#content .btn-secondary .badge {
   text-shadow: none;
 }
 #content .btn:active,
 #content .btn.active {
-  background-image: none;
-}
-#content .btn-default {
-  background-image: linear-gradient(to bottom, #fff 0%, #e0e0e0 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe0e0e0', GradientType=0);
-  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
-  background-repeat: repeat-x;
-  border-color: #dbdbdb;
-  text-shadow: 0 1px 0 #fff;
-  border-color: #ccc;
-}
-#content .btn-default:hover,
-#content .btn-default:focus {
-  background-color: #e0e0e0;
-  background-position: 0 -15px;
-}
-#content .btn-default:active,
-#content .btn-default.active {
-  background-color: #e0e0e0;
-  border-color: #dbdbdb;
-}
-#content .btn-default.disabled,
-#content .btn-default[disabled],
-fieldset[disabled] #content .btn-default,
-#content .btn-default.disabled:hover,
-#content .btn-default[disabled]:hover,
-fieldset[disabled] #content .btn-default:hover,
-#content .btn-default.disabled:focus,
-#content .btn-default[disabled]:focus,
-fieldset[disabled] #content .btn-default:focus,
-#content .btn-default.disabled.focus,
-#content .btn-default[disabled].focus,
-fieldset[disabled] #content .btn-default.focus,
-#content .btn-default.disabled:active,
-#content .btn-default[disabled]:active,
-fieldset[disabled] #content .btn-default:active,
-#content .btn-default.disabled.active,
-#content .btn-default[disabled].active,
-fieldset[disabled] #content .btn-default.active {
-  background-color: #e0e0e0;
   background-image: none;
 }
 #content .btn-primary {
@@ -3092,6 +3059,26 @@ fieldset[disabled] #content .btn-danger.active {
   background-color: #c12e2a;
   background-image: none;
 }
+#content .btn:focus-visible {
+  color: var(--btn-hover-color);
+  background-color: var(--btn-hover-bg);
+  border: var(--btn-secondary-border);
+  box-shadow: var(--btn-focus-box-shadow);
+  outline: 0;
+}
+#content .btn-default {
+  color: var(--btn-secondary-color);
+  background: var(--btn-secondary-bg);
+  border: var(--btn-secondary-border);
+}
+#content .btn-default:hover {
+  color: var(--btn-secondary-color-hvr);
+  background: var(--btn-secondary-bg-hvr);
+  border: var(--btn-secondary-border);
+}
+#content .btn-default:focus-visible {
+  border: var(--btn-secondary-border);
+}
 #content .alert {
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 1px 2px rgba(0, 0, 0, 0.05);
@@ -3185,4 +3172,60 @@ fieldset[disabled] #content .btn-danger.active {
   color: #112a4a;
   font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
   background-color: transparent;
+}
+#content div.dt-container .dt-layout-row {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  -ms-flex-align: center;
+      align-items: center;
+  width: 100%;
+  margin: 0.75em 0;
+}
+#content div.dt-container .dt-layout-cell {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  -ms-flex-align: center;
+      align-items: center;
+  gap: 10px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+#content div.dt-container .dt-layout-start {
+  -ms-flex-pack: start;
+      justify-content: flex-start;
+}
+#content div.dt-container .dt-layout-start .dt-length,
+#content div.dt-container .dt-layout-start .dt-search {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -ms-flex-pack: start;
+      justify-content: flex-start;
+  -ms-flex-align: center;
+      align-items: center;
+  gap: 10px;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  margin-bottom: 5px;
+}
+#content div.dt-container .dt-layout-start .dt-length,
+#content div.dt-container .dt-layout-start .dt-search,
+#content div.dt-container .dt-layout-start .dt-length *,
+#content div.dt-container .dt-layout-start .dt-search * {
+  font-weight: 400;
+}
+#content div.dt-container .dt-layout-end {
+  -ms-flex-pack: end;
+      justify-content: flex-end;
+  margin-left: auto;
+}
+#content div.dt-container .dt-layout-end .dt-buttons {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  gap: 10px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }

@@ -88,7 +88,11 @@ $max_count_files = ini_get("max_file_uploads");
 			<?php else: ?>
 				<?php if($this->stats["dir"]):?>
 				<tr>
-					<td class="nowrap" colspan="5"><?= Text::_('COM_FOOD_TABLE_NOT_FOUND'); ?></td>
+					<td class="nowrap"><?= Text::_('COM_FOOD_TABLE_NOT_FOUND'); ?></td>
+					<td class="nowrap">-</td>
+					<td class="nowrap">-</td>
+					<td class="nowrap">-</td>
+					<td class="nowrap">-</td>
 				</tr>
 				<?php else: ?>
 					<?php foreach($this->stats["folders"] as $key => $value): ?>
