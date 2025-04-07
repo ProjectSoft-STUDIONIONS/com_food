@@ -120,7 +120,7 @@ module.exports = function(grunt) {
 					'bower_components/datatables.net-buttons/js/buttons.html5.js',
 					//'bower_components/datatables.net-select/js/dataTables.select.js',
 					'bower_components/datatables.net-bs/js/dataTables.bootstrap.js',
-					'bower_components/datatables.net-buttons-bs/js/buttons.bootstrap.js',
+					//'bower_components/datatables.net-buttons-bs/js/buttons.bootstrap.js',
 					//'bower_components/datatables.net-select-bs/js/select.bootstrap.js'
 				],
 				dest: 'com_food/admin/assets/js/jquery.js'
@@ -200,8 +200,15 @@ module.exports = function(grunt) {
 					{
 						expand: true,
 						cwd: __dirname + '/src/pug/',
-						src: [ '*.pug' ],
+						src: [ 'food.pug' ],
 						dest: __dirname + '/com_food/',
+						ext: '.xml'
+					},
+					{
+						expand: true,
+						cwd: __dirname + '/src/pug/',
+						src: [ 'config.pug' ],
+						dest: __dirname + '/com_food/admin/',
 						ext: '.xml'
 					},
 				]

@@ -10,8 +10,12 @@ a {
 		}
 	}
 }
+
 .food {
 	&-table {
+		.btn {
+			font-weight: 700;
+		}
 		.table {
 			td,
 			th {
@@ -26,8 +30,19 @@ a {
 						flex-wrap: nowrap;
 						gap: 10px;
 					}
+					.btn {
+						font-weight: normal;
+					}
+					a[target=_blank]{
+						&::before {
+							padding-right: 10px;
+						}
+					}
 				}
 			}
+		}
+		.page-link {
+			font-weight: 700;
 		}
 	}
 	&-title {
@@ -37,6 +52,7 @@ a {
 	}
 }
 
+// Form Upload
 form[name="upload"] {
 	.clearfix();
 	display: block;
@@ -71,6 +87,15 @@ form[name="upload"] {
 	}
 }
 
+// Select, Input search
+select,
+[type=search] {
+	&.form-control {
+		appearance: auto;
+	}
+}
+
+// Container Buttons
 div.dt-container {
 	.dt-layout {
 		&-row {
@@ -110,6 +135,64 @@ div.dt-container {
 				display: inline-flex;
 				gap: 10px;
 				flex-wrap: wrap;
+				margin-bottom: 10px;
+			}
+		}
+	}
+}
+
+// Buttons Excel, PDF
+.buttons {
+	&-excel,
+	&-pdf {
+		//display: inline-flex;
+		//gap: 5px;
+		&::before {
+			.glyphicon();
+			content: "\e025";
+			margin-right: 5px;
+		}
+		*,
+		&:before {
+			pointer-events: none;
+		}
+	}
+}
+
+// Pagination Glyphicon
+.glyphicon {
+	&.glyphicon {
+		&-chevron {
+			&-before {
+				&::before {
+					content: "\e079\e079";
+				}
+			}
+			&-after {
+				&::before {
+					content: "\e080\e080";
+				}
+			}
+		}
+	}
+}
+
+// Pagination
+.pagination {
+	.page-item {
+		a.page-link {
+			&,
+			&:hover,
+			&:focus,
+			&:focus-visible {
+				text-decoration: none;
+				outline: unset;
+				outline-offset: unset;
+			}
+		}
+		&.active {
+			a.page-link {
+				color: white;
 			}
 		}
 	}
