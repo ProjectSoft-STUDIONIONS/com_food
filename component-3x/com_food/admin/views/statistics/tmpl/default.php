@@ -34,7 +34,7 @@
 				<?php endif;?>
 			</div>
 			<div class="folder-title">
-				<h4><?= $this->stats["food_title"] ? JText::_('COM_FOOD_DIR') . ' /' . $this->stats["food_title"] . '/' : JText::_('COM_FOOD_DIR_ROOT'); ?></h4>
+				<h4><?= $this->stats["food_title"] ? JText::_('COM_FOOD_DIR') . ' <code>/' . $this->stats["food_title"] . '/</code>' : JText::_('COM_FOOD_DIR_ROOT'); ?></h4>
 				<?= $this->stats["food_title"] ? '<p class="food-title-root"><i class="glyphicon glyphicon-folder-open"></i>&nbsp;<a href="index.php?option=com_food">' . JText::_('COM_FOOD_DIR_TOP') . '</a></p>' : ''; ?>
 			</div>
 			<div class="food-table">
