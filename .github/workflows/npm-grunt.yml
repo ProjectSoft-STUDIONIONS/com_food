@@ -1,18 +1,19 @@
 name: Build and publish 4.x-5.x
 on:
   push:
-    branches: ['main']
+    tags:
+      - '*'
   release:
     types: [ created ]
 jobs:
   build:
+    name: Publish binaries
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [22.x]
-
     steps:
+    - uses: actions/checkout@v3
+    - name: TEST
+      run: echo 3.x, 4.x, 4.x
     - name: Upload binaries to release 3.x
       uses: svenstaro/upload-release-action@v2
       with:
@@ -22,6 +23,7 @@ jobs:
         overwrite: true
         file_glob: true
     - name: Upload binaries to release 4.x-5.x
+      uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: com_food-4.x-5.x.zip
