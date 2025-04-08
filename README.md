@@ -1,3 +1,5 @@
+<span class="github"><a href="https://github.com/ProjectSoft-STUDIONIONS/com_food/releases/latest" target="_blank"><img src="https://img.shields.io/github/v/release/ProjectSoft-STUDIONIONS/com_food?style=for-the-badge" alt="Github Latest com_food"></a> <a href="https://github.com/ProjectSoft-STUDIONIONS/com_food/blob/master/LICENSE" target="_blank"><img src="https://img.shields.io/github/license/ProjectSoft-STUDIONIONS/com_food?style=for-the-badge" alt="Github LICENSE com_food"></a> <a href="https://github.com/ProjectSoft-STUDIONIONS/com_food/" target="_blank"><img src="https://img.shields.io/github/repo-size/ProjectSoft-STUDIONIONS/com_food?style=for-the-badge" alt="Github Repo"></a> <a href="https://github.com/ProjectSoft-STUDIONIONS/com_food/releases/latest" target="_blank"><img src="https://img.shields.io/github/downloads/ProjectSoft-STUDIONIONS/com_food/total?style=for-the-badge" alt="Github Download com_food"></a></span>
+
 # Компонент «ПИТАНИЕ» Joomla CMS
 
 Компонент `com_food` для Joomla CMS
