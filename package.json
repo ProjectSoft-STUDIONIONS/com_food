@@ -18,7 +18,7 @@
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"inst": "npm i && bower install",
 		"build": "grunt -v",
-		"preinstall": "npm i -g less grunt-cli bower"
+		"preinstall": "npm i -g less bower"
 	},
 	"devDependencies": {
 		"grunt": "^1.3.0",
