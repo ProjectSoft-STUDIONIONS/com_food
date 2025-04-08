@@ -1,0 +1,36 @@
+# node & bower
+bower_components
+node_modules
+package-lock.json
+
+# dotenv
+.env
+
+# txt
+*.txt
+
+# test or temp
+test
+test*
+test.*
+tests
+temp
+src/temp
+
+# SublimeText workspace file
+*.sublime-workspace
+
+# zip
+*.zip
+
+component-3x/com_food/admin/assets/fonts
+component-3x/com_food/admin/models/.htaccess.dev.php
+component-3x/com_food/admin/models/.htaccess.old.php
+component-3x/com_food/icons-full
+component-3x/com_food/viewer
+
+component-5x/com_food/admin/assets/fonts
+component-5x/com_food/admin/htaccess/.htaccess.dev.php
+component-5x/com_food/admin/htaccess/.htaccess.old.php
+component-5x/com_food/icons-full
+component-5x/com_food/viewer

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<extension type="component" version="2.5.0" method="upgrade">
+	<name>COM_FOOD</name>
+	<creationDate>2025-04-07</creationDate>
+	<author>ProjectSoft</author>
+	<authorEmail>projectsoft2009@yandex.ru</authorEmail>
+	<authorUrl>https://github.com/ProjectSoft-STUDIONIONS</authorUrl>
+	<copyright>Copyright © 2008 - all right reserved</copyright>
+	<license>License MIT</license>
+	<version>1.0.1</version>
+	<description><![CDATA[Компонент <code>com_food</code> для Joomla CMS 3.x. Обслуживания директории <code>food</code> сайта школы. Актуально для школ РФ. Предназначен для использования в административной панели Joomla CMS 3.x]]></description>
+	<scriptfile>install.php</scriptfile>
+	<administration>
+		<menu link="option=com_food">COM_FOOD</menu>
+		<files folder="admin">
+			<folder>assets</folder>
+			<folder>controllers</folder>
+			<folder>helpers</folder>
+			<folder>languages</folder>
+			<folder>models</folder>
+			<folder>views</folder>
+			<filename>access.xml</filename>
+			<filename>config.xml</filename>
+			<filename>food.php</filename>
+			<filename>.htaccess</filename>
+		</files>
+		<languages folder="admin">
+			<language tag="en-GB">languages/en-GB/en-GB.com_food.ini</language>
+			<language tag="en-GB">languages/en-GB/en-GB.com_food.sys.ini</language>
+			<language tag="en-US">languages/en-US/en-US.com_food.ini</language>
+			<language tag="en-US">languages/en-US/en-US.com_food.sys.ini</language>
+			<language tag="ru-RU">languages/ru-RU/ru-RU.com_food.ini</language>
+			<language tag="ru-RU">languages/ru-RU/ru-RU.com_food.sys.ini</language>
+		</languages>
+	</administration>
+</extension>

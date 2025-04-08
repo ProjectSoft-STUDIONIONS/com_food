@@ -1,0 +1,16 @@
+
+AddDefaultCharset utf-8
+
+RewriteEngine On
+
+# Запрет индексирования
+Options All -Indexes
+
+# Назначим индексный файл
+DirectoryIndex index.php
+
+# Закроем доступ к файлам html, php, ini
+<FilesMatch "\.(html|php|ini)">
+	Order Deny,Allow
+	Deny from all
+</FilesMatch>
