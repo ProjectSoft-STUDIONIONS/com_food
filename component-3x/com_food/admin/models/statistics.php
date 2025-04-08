@@ -36,6 +36,10 @@ class FoodModelsStatistics extends JModelBase
 		// Выбираем директории из настроек
 		$component = \JComponentHelper::getComponent($option);
 		$folders = $component->params->get('food_folders');
+
+		$autodelete = intval($component->params->get('food_auto_delete'));
+		$autodelete_year = intval($component->params->get('food_auto_year'));
+
 		$folders = preg_split('/[\s,;]+/', $folders);
 		$food = array("food");
 		$array = array_filter(array_unique(array_merge($food, $folders)));
@@ -104,17 +108,18 @@ class FoodModelsStatistics extends JModelBase
 						$name = $fileinfo->getFilename();
 						$re = '/^(?:[\w]+)?(\d{4})/';
 						preg_match($re, $name, $matches);
-						// Если есть 4 цифры в имени файла
-						if($matches):
+						// Если есть 4 цифры в имени файла и включено автоудаление
+						if($matches && $autodelete == 1):
 							// Год сейчас
 							$year = intval(date("Y", time()));
 							// Год в имени файла
 							$file_year = intval($matches[1]);
-							// Если разница лет больше/равно 5 лет.
-							if($year - $file_year > 4):
+							// Если разница лет больше autodelete_year
+							if($year - $file_year > $autodelete_year):
 								// Удаляем файл
-								$file_absolute = path_join($startpath, $name);
+								$file_absolute = $this->path_join($files_path, $name);
 								@unlink($file_absolute);
+								$application->enqueueMessage(\JText::sprintf('COM_FOOD_AUTODELETE_FILE', $name), 'message');
 							else:
 								// Добавляем файл в отображение
 								$stats["files"][] = $name;
@@ -301,6 +306,15 @@ class FoodModelsStatistics extends JModelBase
 			$application->enqueueMessage(\JText::_("COM_FOOD_DIR_NOT"), 'error');
 		endif;
 		$application->redirect('index.php?option=' . $stats["option"] . "&dir=" . $stats["dir"]);
+	}
+
+	// Объединение директорий
+	private function path_join() {
+		$paths = array();
+		foreach (func_get_args() as $arg) {
+			if ($arg !== '') { $paths[] = $arg; }
+		}
+		return preg_replace('#/+#','/', join('/', $paths));
 	}
 
 	/**

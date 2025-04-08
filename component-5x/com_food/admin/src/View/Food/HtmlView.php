@@ -103,11 +103,21 @@ class HtmlView extends BaseHtmlView {
 		}
 	}
 
+	// Объединение директорий
+	private function path_join() {
+		$paths = array();
+		foreach (func_get_args() as $arg) {
+			if ($arg !== '') { $paths[] = $arg; }
+		}
+		return preg_replace('#/+#','/', join('/', $paths));
+	}
+
 	/**
 	 * Настройки
 	 */
 	private function getStats() {
-		$input = Factory::getApplication()->getInput();
+		$application = Factory::getApplication();
+		$input = $application->getInput();
 		// Получаем параметры
 		$option   = $input->get('option',   'com_food');
 		$dir      = $input->get('dir',      '');
@@ -116,6 +126,10 @@ class HtmlView extends BaseHtmlView {
 		$new_file = $input->get('new_file', '');
 		// Параметры директорий
 		$params   = ComponentHelper::getParams('com_food');
+
+		$autodelete  = intval($params->get('food_auto_delete', '0'));
+		$autodelete_year  = intval($params->get('food_auto_year', '5'));
+
 		$folders  = $params->get('food_folders', 'food');
 		$folders  = preg_split('/[\s,;]+/', $folders);
 		$food     = array("food");
@@ -146,17 +160,18 @@ class HtmlView extends BaseHtmlView {
 						$name = $fileinfo->getFilename();
 						$re = '/^(?:[\w]+)?(\d{4})/';
 						preg_match($re, $name, $matches);
-						// Если есть 4 цифры в имени файла
-						if($matches):
+						// Если есть 4 цифры в имени файла и включено автоудаление
+						if($matches && $autodelete == 1):
 							// Год сейчас
 							$year = intval(date("Y", time()));
 							// Год в имени файла
 							$file_year = intval($matches[1]);
-							// Если разница лет больше/равно 5 лет.
-							if($year - $file_year > 4):
+							// Если разница лет больше autodelete_year.
+							if($year - $file_year > $autodelete_year):
 								// Удаляем файл
-								$file_absolute = path_join($startpath, $name);
+								$file_absolute = $this->path_join($files_path, $name);
 								@unlink($file_absolute);
+								$application->enqueueMessage(Text::sprintf('COM_FOOD_AUTODELETE_FILE', $name), 'message');
 							else:
 								// Добавляем файл в отображение
 								$stats["files"][] = $name;
