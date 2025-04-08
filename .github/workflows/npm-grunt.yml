@@ -12,18 +12,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
-
-    - name: NPM Install
-      run: |
-        npm run inst
-    - name: NPM Build 4.x-5.x
-      run: |
-        npm run build
     - name: Upload binaries to release 3.x
       uses: svenstaro/upload-release-action@v2
       with:
