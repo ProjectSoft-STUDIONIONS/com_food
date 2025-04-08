@@ -1,15 +1,45 @@
-# Компонент «ПИТАНИЕ» Joomla CMS 4.x и 5.x
+# Компонент «ПИТАНИЕ» Joomla CMS
 
-Компонент `com_food` для <ins>**Joomla CMS 4.x и 5.x**</ins>
+Компонент `com_food` для Joomla CMS
 
-Обслуживания директории `food` сайта школы. Актуально для школ РФ.
+Обслуживания директории `food` сайта школы. Актуально для сайтов школ РФ.
 
-Предназначен для использования в административной панели Joomla CMS 4.x и 5.x.
+Предназначен для использования в административной панели Joomla.
 
-Скачать [com_food-4.x-5.x.zip](com_food-4.x-5.x.zip?raw=true). Установить `Система` -> `Установка Расширения`
+После установки создаётся пункт меню `Компоненты` -> `Питание`
 
-Либо скачать из реализа [com_food-4.x-5.x.zip](../../releases/latest/download/com_food-4.x-5.x.zip) и установить.
+В настройках компонента есть возможность добавить дополнительные директории `food-*`. Основная директория `food` присутствует всегда вне зависимости от настроек.
 
-![Компонент «ПИТАНИЕ» Joomla CMS 4.x и 5.x](src/screen/com_food-4.x-5.x-0001.png "Компонент «ПИТАНИЕ» Joomla CMS 4.x и 5.x")
+## Версии
 
-![Компонент «ПИТАНИЕ» Joomla CMS 4.x и 5.x](src/screen/com_food-4.x-5.x-0002.png "Компонент «ПИТАНИЕ» Joomla CMS 4.x и 5.x")
+Joomla CMS 3.x - [Версия для Joomla 3.x](../../tree/3.x)
+
+Joomla CMS 4.x и 5.x - [Версия для Joomla 4.x](../../tree/4.x-5.x)
+
+## Установка
+
+**Joomla CMS 3.x**
+
+Скачать компонент из реализа [com_food-3.x.zip](../../releases/latest/download/com_food-3.x.zip).
+
+Установить через административную панель. `Расширения` -> `Расширения` -> `Установить`
+
+**Joomla CMS 4.x и Joomla CMS 5.x**
+
+Скачать компонент из реализа [com_food-4.x-5.x.zip](../../releases/latest/download/com_food-4.x-5.x.zip).
+
+Установить через административную панель. `Система` -> `Установка` -> `Расширения`
+
+## Скриншоты
+
+**Joomla CMS 3.x**
+
+![Joomla CMS 3.x](../../src-3/screen/com_food-3.x-0001.png?raw=true)
+
+**Joomla CMS 4.x**
+
+![Joomla CMS 4.x](../../src-4-5/screen/com_food-4.x-5.x-0002.png?raw=true)
+
+**Joomla CMS 5.x**
+
+![Joomla CMS 5.x](../../src-4-5/screen/com_food-4.x-5.x-0001.png?raw=true)
