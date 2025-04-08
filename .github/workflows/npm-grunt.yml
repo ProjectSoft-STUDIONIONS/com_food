@@ -5,13 +5,23 @@ on:
       - '*'
 jobs:
   build:
-    name: Publish binaries
+    name: Сборка проекта
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        node: [20]
     steps:
     - uses: actions/checkout@v3
     - name: TEST
-      run: echo 3.x, 4.x, 4.x
+      run: echo 3.x, 4.x-5.x
+    - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+    - name: Build 3.x, 4.x-5.x
+        run: |
+          npm run inst
+          npm run build
     - name: Upload binaries to release 3.x
       uses: svenstaro/upload-release-action@v2
       with:
