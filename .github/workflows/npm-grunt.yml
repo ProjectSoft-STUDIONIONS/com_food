@@ -15,9 +15,9 @@ jobs:
     - name: TEST
       run: echo 3.x, 4.x-5.x
     - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
     - name: Build 3.x, 4.x-5.x
         run: |
           npm run inst
