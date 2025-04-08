@@ -7,8 +7,8 @@
 	<authorUrl>https://github.com/ProjectSoft-STUDIONIONS</authorUrl>
 	<copyright>Copyright © 2008 - all right reserved</copyright>
 	<license>License MIT</license>
-	<version>1.0.1</version>
-	<description><![CDATA[Компонент <code>com_food</code> для Joomla CMS 3.x, 4.x и 5.x. Обслуживания директории <code>food</code> сайта школы. Актуально для школ РФ. Предназначен для использования в административной панели Joomla CMS 4.x и Joomla CMS 5.x.]]></description>
+	<version>1.1.0</version>
+	<description><![CDATA[ Компонент <code>com_food</code> для Joomla CMS 4.x-5.x. Обслуживания директории food сайта школы. Актуально для школ РФ. Предназначен для использования в административной панели Joomla CMS 4.x-5.x. ]]></description>
 	<scriptfile>install.php</scriptfile>
 	<namespace path="src/">ProjectSoft\Component\Food</namespace>
 	<administration>

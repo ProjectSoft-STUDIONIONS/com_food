@@ -1,5 +1,7 @@
 !(function($){
-	const jq = $.noConflict(true);
+	const jq = $.noConflict(true),
+		componentName = `Компонент питания для Joomla CMS 3.x`,
+		userName = `ProjectSoft`;
 	let search = location.search.replace(/\?/g, '');
 	let search_api = search.split('&').map((item, index, array) => {
 		let param = item.split('=');

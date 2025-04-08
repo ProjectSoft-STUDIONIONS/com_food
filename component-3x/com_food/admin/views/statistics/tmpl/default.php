@@ -68,8 +68,8 @@
 								<td><?= $size; ?></td>
 								<td><!-- Переименовать, Удалить -->
 									<div class="flex">
-										<i class="btn btn-secondary glyphicon glyphicon-edit" data-mode="rename" data-file="<?= $value; ?>" title="<?= \JText::sprintf(COM_FOOD_RENAME, $value);?>" onclick="modeFile(this);"></i>
-										<i class="btn btn-secondary glyphicon glyphicon-trash" data-mode="delete" data-file="<?= $value; ?>" title="<?= \JText::sprintf(COM_FOOD_DELETE, $value);?>" onclick="modeFile(this);"></i>
+										<i class="btn btn-secondary glyphicon glyphicon-edit" data-mode="rename" data-file="<?= $value; ?>" title="<?= \JText::sprintf('COM_FOOD_RENAME', $value);?>" onclick="modeFile(this);"></i>
+										<i class="btn btn-secondary glyphicon glyphicon-trash" data-mode="delete" data-file="<?= $value; ?>" title="<?= \JText::sprintf('COM_FOOD_DELETE', $value);?>" onclick="modeFile(this);"></i>
 									</div>
 								</td>
 							</tr>
@@ -77,7 +77,11 @@
 						<?php else: ?>
 							<?php if($this->stats["dir"]):?>
 							<tr>
-								<td class="nowrap" colspan="5"><?= JText::_('COM_FOOD_TABLE_NOT_FOUND'); ?></td>
+								<td><?= JText::_('COM_FOOD_TABLE_NOT_FOUND'); ?></td>
+								<td style="width: 1%;" class="nowrap">-</td>
+								<td style="width: 1%;" class="nowrap">-</td>
+								<td style="width: 1%;" class="nowrap">-</td>
+								<td style="width: 1%;" class="nowrap">-</td>
 							</tr>
 							<?php else: ?>
 								<?php foreach($this->stats["com_food_params"] as $key => $value): ?>

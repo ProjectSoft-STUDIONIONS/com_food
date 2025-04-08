@@ -30,10 +30,22 @@
 
 ![Joomla CMS 3.x](../../blob/main/src-3/screen/com_food-3.x-0001.png?raw=true)
 
+![Joomla CMS 3.x](../../blob/main/src-3/screen/com_food-3.x-0002.png?raw=true)
+
+![Joomla CMS 3.x](../../blob/main/src-3/screen/com_food-3.x-0003.png?raw=true)
+
 **Joomla CMS 4.x**
 
-![Joomla CMS 4.x](../../blob/main/src-4-5/screen/com_food-4.x-5.x-0002.png?raw=true)
+![Joomla CMS 5.x](../../blob/main/src-4-5/screen/com_food-4.x-0001.png?raw=true)
+
+![Joomla CMS 5.x](../../blob/main/src-4-5/screen/com_food-4.x-0002.png?raw=true)
+
+![Joomla CMS 5.x](../../blob/main/src-4-5/screen/com_food-4.x-0003.png?raw=true)
 
 **Joomla CMS 5.x**
 
-![Joomla CMS 5.x](../../blob/main/src-4-5/screen/com_food-4.x-5.x-0001.png?raw=true)
+![Joomla CMS 4.x](../../blob/main/src-4-5/screen/com_food-5.x-0001.png?raw=true)
+
+![Joomla CMS 4.x](../../blob/main/src-4-5/screen/com_food-5.x-0002.png?raw=true)
+
+![Joomla CMS 4.x](../../blob/main/src-4-5/screen/com_food-5.x-0003.png?raw=true)

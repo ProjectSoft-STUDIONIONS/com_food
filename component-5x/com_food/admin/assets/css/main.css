@@ -3731,6 +3731,18 @@ fieldset[disabled] #content .btn-danger.active {
   font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
   background-color: transparent;
 }
+#content .dt-layout-cell.dt-layout-full {
+  padding-left: unset !important;
+  padding-right: unset !important;
+}
+#content .dt-layout-cell.dt-layout-start.col-sm-6:first-child,
+#content .dt-layout-cell.dt-layout-end.col-sm-6:first-child {
+  padding-left: unset;
+}
+#content .dt-layout-cell.dt-layout-start.col-sm-6:last-child,
+#content .dt-layout-cell.dt-layout-end.col-sm-6:last-child {
+  padding-right: unset;
+}
 #content select.form-control,
 #content [type=search].form-control {
   appearance: auto;

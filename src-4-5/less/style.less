@@ -87,6 +87,26 @@ form[name="upload"] {
 	}
 }
 
+.dt-layout-cell.dt-layout-full {
+	padding-left: unset !important;
+	padding-right: unset !important;
+}
+
+.dt-layout-cell.dt-layout{
+	&-start,
+	&-end {
+		&.col-sm-6 {
+			&:first-child {
+				padding-left: unset;
+			}
+			&:last-child {
+				padding-right: unset;
+			}
+			
+		}
+	}
+}
+
 // Select, Input search
 select,
 [type=search] {
