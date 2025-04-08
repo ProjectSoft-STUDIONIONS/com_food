@@ -11,7 +11,7 @@
 		<div class="container-fluid clearfix">
 			<h2>
 				<span class="label label-info pull-right"><?= $this->stats['total_books']; ?></span>
-				<?= JText::_('COM_FOOD_TITLE_BLOCK'); ?>
+				<?= JText::_('COM_FOOD_TITLE'); ?>
 			</h2>
 			<div class="clearfix">
 				<?php if($this->stats["dir"]):?>
