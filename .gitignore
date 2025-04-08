@@ -21,7 +21,7 @@ src/temp
 *.sublime-workspace
 
 # zip
-*.zip
+# *.zip
 
 component-3x/com_food/admin/assets/fonts
 component-3x/com_food/admin/models/.htaccess.dev.php
