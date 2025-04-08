@@ -8,6 +8,7 @@ package-lock.json
 
 # txt
 *.txt
+.Grunt*
 
 # test or temp
 test

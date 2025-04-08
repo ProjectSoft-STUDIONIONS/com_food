@@ -134,7 +134,6 @@
 				}
 			}
 		});
-		const __title = $('title').text();
 		let table = new DataTable('.food-table .table', {
 			// Колонки
 			columns: [

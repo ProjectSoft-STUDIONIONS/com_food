@@ -17,9 +17,7 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"inst": "npm i && bower install",
-		"build": "npm run build3 && npm run build4",
-		"build3": "grunt --gruntfile=Gruntfile-3x.js",
-		"build4": "grunt --gruntfile=Gruntfile-4x-5x.js",
+		"build": "grunt -v",
 		"preinstall": "npm i -g less grunt-cli bower"
 	},
 	"devDependencies": {
