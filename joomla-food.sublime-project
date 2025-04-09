@@ -19,9 +19,8 @@
 			"cmd": [
 				"start",
 				"/wait",
-				"npm",
-				"run", 
-				"build"
+				"grunt",
+				"-v"
 			],
 			"shell": true
 		}
