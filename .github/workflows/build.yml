@@ -13,6 +13,8 @@ jobs:
     steps:
     - name: Checkout code
     - uses: actions/checkout@v4.2.2
+      run: |
+        echo Checkout code
     - name: Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
