@@ -11,15 +11,14 @@ jobs:
       matrix:
         node: [20]
     steps:
-    - name: Checkout code
-    - uses: actions/checkout@v4.2.2
-      run: |
-        echo Checkout code
-    - name: Node.js ${{ matrix.node-version }}
+    - uses: actions/checkout@v3
+    - name: TEST
+      run: echo 3.x, 4.x-5.x
+    - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-    - name: Установка
+    - name: NPM install
       run: |
         npm i
         bower install
