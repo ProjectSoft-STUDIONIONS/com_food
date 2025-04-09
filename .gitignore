@@ -9,6 +9,7 @@ package-lock.json
 # txt
 *.txt
 .Grunt*
+**/**/food.xml
 
 # test or temp
 test
