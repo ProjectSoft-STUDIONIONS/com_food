@@ -24,7 +24,7 @@ jobs:
         bower install
     - name: Сборка компонента
       run: |
-        npm run build
+        grunt
     - name: Загрузка реализа для Joomla CMS 3.x
       uses: svenstaro/upload-release-action@v2
       with:
