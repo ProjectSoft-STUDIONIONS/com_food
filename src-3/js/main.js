@@ -1,7 +1,5 @@
 !(function($){
-	const jq = $.noConflict(true),
-		componentName = `Компонент питания для Joomla CMS 3.x`,
-		userName = `ProjectSoft`;
+	const jq = $.noConflict(true);
 	let search = location.search.replace(/\?/g, '');
 	let search_api = search.split('&').map((item, index, array) => {
 		let param = item.split('=');
@@ -68,7 +66,7 @@
 			if ((m = regex.exec(a.name)) !== null) {
 				let ex = m[0].toLowerCase();
 				if(ex == "xlsx" || ex == "pdf"){
-					out.push(a.name);
+					out.push(`<code>${a.name}</code>`);
 				}else{
 					p.html("");
 					alert(`Нельзя загрузить данный тип файла!\n${a.name} - ${a.type}`);
@@ -139,11 +137,21 @@
 		let table = new DataTable('.food-table .table', {
 			// Колонки
 			columns: [
-				{ name: 'file' },
-				{ name: 'permission' },
-				{ name: 'date' },
-				{ name: 'size' },
-				{ name: 'actions' }
+				{
+					name: 'file'
+				},
+				{
+					name: 'permission'
+				},
+				{
+					name: 'date'
+				},
+				{
+					name: 'size'
+				},
+				{
+					name: 'actions'
+				}
 			],
 			// Настройки по колонкам
 			columnDefs : [
@@ -162,6 +170,11 @@
 			],
 			// Разрешена сортировка
 			ordering: !0,
+			// Фиксируем сортировку (по умолчанию)
+			order: {
+				name: "file",
+				dir: ""
+			},
 			// Разрешаем запоминание всех свойств
 			stateSave: !0,
 			// Сохранение свойств определённой таблицы директории

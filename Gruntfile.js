@@ -32,7 +32,13 @@ module.exports = function(grunt) {
 			arr.push(result);
 			grunt.log.oklns([chalk.cyan("Generate hash:") + "\n" + chalk.yellow(arr.join("\n"))]);
 			return result;
-		};
+		},
+		cName = 'Компонент ПИТАНИЕ для Joomla CMS'.replace(
+			/[\u0080-\uFFFF]/g,
+			function (s) {
+				return "\\u" + ('000' + s.charCodeAt(0).toString(16)).substr(-4);
+			}
+		);
 
 	require('load-grunt-tasks')(grunt);
 	require('time-grunt')(grunt);
@@ -40,13 +46,31 @@ module.exports = function(grunt) {
 	var gc = {
 		version: `${PACK.version}`,
 		default: [
-			"copy",
+			// Копирование основных файлов
+			"copy:main3",
+			"copy:food3",
+			"copy:viewer3",
+			"copy:htacces3",
+			"copy:main4",
+			"copy:food4",
+			"copy:viewer4",
+			"copy:htacces4",
+			// Копирование языка DataTable
+			"copy:json3",
+			"copy:json4",
+			// Компиляция CSS
 			"less",
 			"autoprefixer",
 			"cssmin",
+			// Компиляция JS
 			"concat",
 			"uglify",
+			// Копирование JS
+			"copy:test3",
+			"copy:test4",
+			// Компиляция XML
 			"pug",
+			// Архивирование
 			"compress"
 		]
 	};
@@ -126,8 +150,7 @@ module.exports = function(grunt) {
 			options: {
 				separator: "\n",
 			},
-			// component-3x
-			app3: {
+			app: {
 				src: [
 					'bower_components/jquery/dist/jquery.js',
 					'bower_components/pdfmake/build/pdfmake.js',
@@ -136,44 +159,25 @@ module.exports = function(grunt) {
 					'bower_components/datatables.net/js/dataTables.js',
 					'bower_components/datatables.net-buttons/js/dataTables.buttons.js',
 					'bower_components/datatables.net-buttons/js/buttons.html5.js',
-					//'bower_components/datatables.net-select/js/dataTables.select.js',
 					'bower_components/datatables.net-bs/js/dataTables.bootstrap.js',
-					//'bower_components/datatables.net-buttons-bs/js/buttons.bootstrap.js',
-					//'bower_components/datatables.net-select-bs/js/select.bootstrap.js',
 					'bower_components/sprintf/src/sprintf.js',
 				],
-				dest: 'component-3x/com_food/admin/assets/js/jquery.js'
+				dest: 'test/js/jquery.min.js'
 			},
+			// component-3x
 			main3: {
 				src: [
 					'src-3/js/main.js'
 				],
-				dest: 'component-3x/com_food/admin/assets/js/main.js'
+				dest: 'component-3x/com_food/admin/assets/js/main.min.js'
 			},
 			// component-5x
-			app4: {
-				src: [
-					'bower_components/jquery/dist/jquery.js',
-					'bower_components/pdfmake/build/pdfmake.js',
-					'bower_components/jszip/dist/jszip.js',
-					'bower_components/pdfmake/build/vfs_fonts.js',
-					'bower_components/datatables.net/js/dataTables.js',
-					'bower_components/datatables.net-buttons/js/dataTables.buttons.js',
-					'bower_components/datatables.net-buttons/js/buttons.html5.js',
-					//'bower_components/datatables.net-select/js/dataTables.select.js',
-					'bower_components/datatables.net-bs/js/dataTables.bootstrap.js',
-					//'bower_components/datatables.net-buttons-bs/js/buttons.bootstrap.js',
-					//'bower_components/datatables.net-select-bs/js/select.bootstrap.js',
-					'bower_components/sprintf/src/sprintf.js',
-				],
-				dest: 'component-5x/com_food/admin/assets/js/jquery.js'
-			},
 			main4: {
 				src: [
 					'src-4-5/js/main.js'
 				],
-				dest: 'component-5x/com_food/admin/assets/js/main.js'
-			}
+				dest: 'component-5x/com_food/admin/assets/js/main.min.js'
+			},
 		},
 		uglify: {
 			options: {
@@ -186,20 +190,32 @@ module.exports = function(grunt) {
 				}
 			},
 			// component-3x
-			app3: {
+			app: {
 				files: [
 					{
 						expand: true,
 						flatten : true,
 						src: [
-							'component-3x/com_food/admin/assets/js/main.js',
-							'component-3x/com_food/admin/assets/js/jquery.js'
+							'test/js/jquery.min.js'
+						],
+						dest: 'test/js',
+						filter: 'isFile',
+					}
+				]
+			},
+			main3: {
+				options : {
+					banner : "const componentName = `" + cName + " 3.x`, userName = `ProjectSoft`;"
+				},
+				files: [
+					{
+						expand: true,
+						flatten : true,
+						src: [
+							'component-3x/com_food/admin/assets/js/main.min.js'
 						],
 						dest: 'component-3x/com_food/admin/assets/js',
 						filter: 'isFile',
-						rename: function (dst, src) {
-							return dst + '/' + src.replace('.js', '.min.js');
-						}
 					}
 				]
 			},
@@ -220,20 +236,19 @@ module.exports = function(grunt) {
 				]
 			},
 			// component-5x
-			app4: {
+			main4: {
+				options : {
+					banner : "const componentName = `" + cName + " Joomla CMS 4.x-5.x`, userName = `ProjectSoft`;"
+				},
 				files: [
 					{
 						expand: true,
 						flatten : true,
 						src: [
-							'component-5x/com_food/admin/assets/js/main.js',
-							'component-5x/com_food/admin/assets/js/jquery.js'
+							'component-5x/com_food/admin/assets/js/main.min.js'
 						],
 						dest: 'component-5x/com_food/admin/assets/js',
 						filter: 'isFile',
-						rename: function (dst, src) {
-							return dst + '/' + src.replace('.js', '.min.js');
-						}
 					}
 				]
 			},
@@ -322,37 +337,25 @@ module.exports = function(grunt) {
 			},
 		},
 		copy: {
-			// component-3x
+			// Fonts
 			main3: {
 				expand: true,
 				cwd: 'bower_components/bootstrap/dist/fonts',
 				src: '**',
 				dest: 'component-3x/com_food/admin/assets/fonts/',
 			},
-			food3: {
-				expand: true,
-				cwd: 'bower_components/food/icons-full',
-				src: '**',
-				dest: 'component-3x/com_food/icons-full/',
-			},
-			viewer3: {
-				expand: true,
-				cwd: 'bower_components/food/viewer',
-				src: '**',
-				dest: 'component-3x/com_food/viewer/',
-			},
-			htacces3: {
-				expand: true,
-				cwd: 'htacces',
-				src: '.*',
-				dest: 'component-3x/com_food/admin/models/',
-			},
-			// component-5x
 			main4: {
 				expand: true,
 				cwd: 'bower_components/bootstrap/dist/fonts',
 				src: '**',
 				dest: 'component-5x/com_food/admin/assets/fonts/',
+			},
+			// food
+			food3: {
+				expand: true,
+				cwd: 'bower_components/food/icons-full',
+				src: '**',
+				dest: 'component-3x/com_food/icons-full/',
 			},
 			food4: {
 				expand: true,
@@ -360,17 +363,57 @@ module.exports = function(grunt) {
 				src: '**',
 				dest: 'component-5x/com_food/icons-full/',
 			},
+			// viewer
+			viewer3: {
+				expand: true,
+				cwd: 'bower_components/food/viewer',
+				src: '**',
+				dest: 'component-3x/com_food/viewer/',
+			},
 			viewer4: {
 				expand: true,
 				cwd: 'bower_components/food/viewer',
 				src: '**',
 				dest: 'component-5x/com_food/viewer/',
 			},
+			// htaccess
+			htacces3: {
+				expand: true,
+				cwd: 'htacces',
+				src: '.*',
+				dest: 'component-3x/com_food/admin/models/',
+			},
 			htacces4: {
 				expand: true,
 				cwd: 'htacces',
 				src: '.*',
 				dest: 'component-5x/com_food/admin/htaccess/',
+			},
+			// JSON lang
+			json3: {
+				expand: true,
+				cwd: 'lang_data',
+				src: '**',
+				dest: 'component-3x/com_food/admin/assets/js/',
+			},
+			json4: {
+				expand: true,
+				cwd: 'lang_data',
+				src: '**',
+				dest: 'component-5x/com_food/admin/assets/js/',
+			},
+			// jquery
+			test3: {
+				expand: true,
+				cwd: 'test/js',
+				src: '**',
+				dest: 'component-3x/com_food/admin/assets/js/',
+			},
+			test4: {
+				expand: true,
+				cwd: 'test/js',
+				src: '**',
+				dest: 'component-5x/com_food/admin/assets/js/',
 			}
 		},
 		compress: {
