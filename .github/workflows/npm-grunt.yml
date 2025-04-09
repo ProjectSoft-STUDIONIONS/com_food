@@ -1,4 +1,4 @@
-name: Build and publish 3.x, 4.x-5.x
+name: Сборка и публикация компонента для Joomla CMS 3.x, 4.x, 5.x
 on:
   push:
     tags:
@@ -18,14 +18,14 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-    - name: NPM install
+    - name: NPM установка пакетов
       run: |
         npm i
         bower install
-    - name: Build 3.x, 4.x-5.x
+    - name: Сборка компонента
       run: |
         npm run build
-    - name: Upload binaries to release 3.x
+    - name: Загрузка реализа для Joomla CMS 3.x
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
@@ -33,7 +33,7 @@ jobs:
         tag: ${{ github.ref }}
         overwrite: true
         file_glob: true
-    - name: Upload binaries to release 4.x-5.x
+    - name: Загрузка реализа для Joomla CMS 4.x-5.x
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
