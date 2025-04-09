@@ -1,4 +1,4 @@
-name: Build and publish 4.x-5.x
+name: Build and publish 3.x, 4.x-5.x
 on:
   push:
     tags:
