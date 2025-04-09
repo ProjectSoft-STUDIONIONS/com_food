@@ -290,9 +290,9 @@
 											`</vt:vector>` +
 										`</TitlesOfParts>` +
 										// Руководитель - автор компонента
-										`<Manager>${userName}</Manager>` +
+										`<Manager>${Developer}</Manager>` +
 										// Организация - автор компонента
-										`<Company>${userName}</Company>` +
+										`<Company>${Developer}</Company>` +
 										`<LinksUpToDate>false</LinksUpToDate>` +
 										`<SharedDoc>false</SharedDoc>` +
 										`<HyperlinkBase>${url}</HyperlinkBase>` +
@@ -352,7 +352,7 @@
 									subject: title.join(' '),
 									keywords: title.join(' '),
 									creator: `${componentName}`,
-									producer: `${userName}`,
+									producer: `${Developer}`,
 									modDate: `${dateISO}`
 								};
 								// Колонтитулы

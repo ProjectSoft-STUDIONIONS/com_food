@@ -33,7 +33,7 @@ module.exports = function(grunt) {
 			grunt.log.oklns([chalk.cyan("Generate hash:") + "\n" + chalk.yellow(arr.join("\n"))]);
 			return result;
 		},
-		cName = 'Компонент ПИТАНИЕ для Joomla CMS'.replace(
+		cName = 'Компонент «ПИТАНИЕ» для Joomla CMS'.replace(
 			/[\u0080-\uFFFF]/g,
 			function (s) {
 				return "\\u" + ('000' + s.charCodeAt(0).toString(16)).substr(-4);
@@ -205,7 +205,7 @@ module.exports = function(grunt) {
 			},
 			main3: {
 				options : {
-					banner : "const componentName = `" + cName + " 3.x`, userName = `ProjectSoft`;"
+					banner : "const componentName = `" + cName + " 3.x`, Developer = `ProjectSoft`;"
 				},
 				files: [
 					{
