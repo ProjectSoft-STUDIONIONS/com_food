@@ -25,8 +25,8 @@ jobs:
       run: |
         npm run build
     - name: Upload Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: com_food
-          path: com_food*.zip
-          overwrite: true
+      uses: actions/upload-artifact@v4
+      with:
+        name: com_food
+        path: com_food*.zip
+        overwrite: true
