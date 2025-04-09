@@ -1,0 +1,32 @@
+name: Сборка и публикация проекта
+on:
+  push:
+    tags:
+      - '*'
+jobs:
+  build:
+    name: Сборка проекта
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [20]
+    steps:
+    - name: Checkout code
+    - uses: actions/checkout@v4.2.2
+    - name: Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Установка
+      run: |
+        npm i
+        bower install
+    - name: Build 3.x, 4.x-5.x
+      run: |
+        npm run build
+    - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: com_food
+          path: com_food*.zip
+          overwrite: true
