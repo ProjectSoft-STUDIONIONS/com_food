@@ -167,14 +167,14 @@ module.exports = function(grunt) {
 			// component-3x
 			main3: {
 				src: [
-					'src-3/js/main.js'
+					'src/js/main.js'
 				],
 				dest: 'component-3x/com_food/admin/assets/js/main.min.js'
 			},
 			// component-5x
 			main4: {
 				src: [
-					'src-4-5/js/main.js'
+					'src/js/main.js'
 				],
 				dest: 'component-5x/com_food/admin/assets/js/main.min.js'
 			},

@@ -25,6 +25,8 @@ src/temp
 # zip
 *.zip
 
+component*/**/assets/js
+
 component-3x/com_food/admin/assets/fonts
 component-3x/com_food/admin/models/.htaccess.dev.php
 component-3x/com_food/admin/models/.htaccess.old.php
