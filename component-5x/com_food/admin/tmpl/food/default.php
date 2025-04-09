@@ -81,6 +81,7 @@ $max_count_files = ini_get("max_file_uploads");
 						<div class="flex">
 							<i class="btn btn-secondary glyphicon glyphicon-edit" data-mode="rename" data-file="<?= $value; ?>" title="<?= Text::sprintf('COM_FOOD_RENAME', $value);?>" onclick="modeFile(this);"></i>
 							<i class="btn btn-secondary glyphicon glyphicon-trash" data-mode="delete" data-file="<?= $value; ?>" title="<?= Text::sprintf('COM_FOOD_DELETE', $value);?>" onclick="modeFile(this);"></i>
+							<span>-</span>
 						</div>
 					</td>
 				</tr>

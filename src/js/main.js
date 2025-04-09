@@ -196,20 +196,17 @@
 			},
 			// Загружаем свойства для определённой таблицы
 			stateLoadCallback: function (settings) {
+				let tempData = {
+					time: (new Date()).getTime(),
+					start: 0,
+					length: 10,
+					childRows: []
+				};
 				let data = JSON.parse(localStorage.getItem('DataTables_' + settings.sInstance + '_' + searchAPI.dir));
 				let length = parseInt(localStorage.getItem('DataTablesLength'));
 				length = isNaN(length) ? 10 : length;
-				if(data != null) {
-					data["length"] = length;
-				} else {
-					data = {
-						time: (new Date()).getTime(),
-						start: 0,
-						length: length,
-						childRows: []
-					};
-				}
-				console.log(data);
+				tempData.length = length;
+				data = $.extend({}, data, tempData);
 				return data;
 			},
 			// Меню вывода кол-ва файлов

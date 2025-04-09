@@ -4125,6 +4125,9 @@ fieldset[disabled] .btn-danger.active {
       flex-wrap: nowrap;
   gap: 10px;
 }
+.food-table .table tbody td .flex span {
+  display: none;
+}
 .food-title-root {
   font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
 }

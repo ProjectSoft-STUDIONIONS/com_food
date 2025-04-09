@@ -3679,6 +3679,9 @@ fieldset[disabled] #content .btn-danger.active {
       flex-wrap: nowrap;
   gap: 10px;
 }
+#content .food-table .table tbody td .flex span {
+  display: none;
+}
 #content .food-table .table tbody td .btn {
   font-weight: normal;
 }

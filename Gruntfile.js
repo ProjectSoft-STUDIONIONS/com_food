@@ -238,7 +238,7 @@ module.exports = function(grunt) {
 			// component-5x
 			main4: {
 				options : {
-					banner : "const componentName = `" + cName + " Joomla CMS 4.x-5.x`, userName = `ProjectSoft`;"
+					banner : "const componentName = `" + cName + " Joomla CMS 4.x-5.x`, Developer = `ProjectSoft`;"
 				},
 				files: [
 					{
