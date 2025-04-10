@@ -11,6 +11,7 @@ package-lock.json
 .Grunt*
 **/**/food.xml
 **/**/config.xml
+**/**/access.xml
 
 # test or temp
 test
