@@ -293,8 +293,15 @@ module.exports = function(grunt) {
 					{
 						expand: true,
 						cwd: __dirname + '/src-3/pug/',
-						src: [ '*.pug' ],
+						src: [ 'food.pug' ],
 						dest: __dirname + '/component-3x/com_food/',
+						ext: '.xml'
+					},
+					{
+						expand: true,
+						cwd: __dirname + '/src-3/pug/',
+						src: [ 'config.pug' ],
+						dest: __dirname + '/component-3x/com_food/admin/',
 						ext: '.xml'
 					},
 				]

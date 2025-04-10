@@ -1,3 +1,10 @@
+/**
+ * 
+ * ОБЯЗАТЕЛЬНО!!!
+ * 
+ * window.com_food_lang - глобальная переменная. содержит язык переводов компонента
+ * 
+ */
 !(function($){
 	const jq = $.noConflict(true);
 	let search = location.search.replace(/\?/g, '');
@@ -11,9 +18,9 @@
 		// Reset формы модификации
 		modeFormReset = function() {
 			let form = document.form_mode,
-				input_mode = $('input[name=mode]', form)[0],
-				input_file = $('input[name=file]', form)[0],
-				input_new_file = $('input[name=new_file]', form)[0];
+				input_mode = jq('input[name=mode]', form)[0],
+				input_file = jq('input[name=file]', form)[0],
+				input_new_file = jq('input[name=new_file]', form)[0];
 			input_mode.value = "";
 			input_file.value = "";
 			input_new_file.value = "";
@@ -50,7 +57,7 @@
 			}
 			return str;
 		};
-
+	// Загрузка файлов
 	window.uploadFiles = function(el) {
 		let p = jq("#p_uploads"),
 			files = [...el.files],
@@ -78,14 +85,14 @@
 		p.html(out.join("<br>"));
 		return !1;
 	}
-
+	// Переименование файла. Удаление файла.
 	window.modeFile = function(el) {
-		let mode = $(el).data('mode'),
-			file = $(el).data('file'),
+		let mode = jq(el).data('mode'),
+			file = jq(el).data('file'),
 			form = document.form_mode,
-			input_mode = $('input[name=mode]', form)[0],
-			input_file = $('input[name=file]', form)[0],
-			input_new_file = $('input[name=new_file]', form)[0];
+			input_mode = jq('input[name=mode]', form)[0],
+			input_file = jq('input[name=file]', form)[0],
+			input_new_file = jq('input[name=new_file]', form)[0];
 		switch(mode) {
 			case 'rename':
 				// На переименование вывести только имя файла
@@ -121,10 +128,10 @@
 				break;
 		}
 	}
-
+	// Если находимся в директории.
 	if(searchAPI.dir) {
 		const url = `${location.origin}/${searchAPI.dir}/`;
-		$.extend(true, DataTable.Buttons.defaults, {
+		jq.extend(true, DataTable.Buttons.defaults, {
 			dom: {
 				container: {
 					className: 'dt-buttons btn-group flex-wrap'
@@ -185,10 +192,12 @@
 				delete data.columns;
 				// Удаляем данные о поиске
 				delete data.search;
-				// Запоминаем данные об отражении файлов
+				// Запоминаем данные о кол-ве отражения файлов
 				let length = data.length;
-
+				// Данные о кол-ве отражения файлов
 				localStorage.setItem('DataTablesLength', length);
+				// Данные о состоянии данной таблице
+				// Вид имени таблицы - 'DataTables_сштые_food' - таблица директории food
 				localStorage.setItem(
 					'DataTables_' + settings.sInstance + '_' + searchAPI.dir,
 					JSON.stringify(data)
@@ -196,17 +205,24 @@
 			},
 			// Загружаем свойства для определённой таблицы
 			stateLoadCallback: function (settings) {
+				// Данные по дефолту
 				let tempData = {
 					time: (new Date()).getTime(),
 					start: 0,
 					length: 10,
 					childRows: []
 				};
+				// Получаем данные таблицы директории даже если она null
 				let data = JSON.parse(localStorage.getItem('DataTables_' + settings.sInstance + '_' + searchAPI.dir));
+				// Получаем данные о кол-ве отражения файлов
 				let length = parseInt(localStorage.getItem('DataTablesLength'));
+				// Если null присваиваем дефолтное 10
 				length = isNaN(length) ? 10 : length;
+				// Указываем дефолтному объекту настроек кол-во отражения файлов
 				tempData.length = length;
-				data = $.extend({}, data, tempData);
+				// Объединяем полученные данные таблицы с дефолтными данными с перезаписью.
+				data = jq.extend({}, data, tempData);
+				// Теперь вид таблиц не будет отличаться.
 				return data;
 			},
 			// Меню вывода кол-ва файлов
@@ -237,14 +253,15 @@
 								let dateISO = date.toISOString();
 								// Создаём xml файлы для свойств документа (метатеги)
 								xlsx["_rels"] = {};
-								xlsx["_rels"][".rels"] = $.parseXML(`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>` +
+								xlsx["_rels"][".rels"] = jq.parseXML(`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>` +
 									`<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">` +
 										`<Relationship Id="rId3" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/extended-properties" Target="docProps/app.xml"/>` +
 										`<Relationship Id="rId2" Type="http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties" Target="docProps/core.xml"/>` +
 										`<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/>` +
 									`</Relationships>`);
 								xlsx["docProps"] = {};
-								xlsx["docProps"]["core.xml"] = $.parseXML(`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>` +
+								// Общая конфигурация
+								xlsx["docProps"]["core.xml"] = jq.parseXML(`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>` +
 									`<cp:coreProperties xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:dcmitype="http://purl.org/dc/dcmitype/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">` +
 										// Заголовок
 										`<dc:title>Директория ${url}</dc:title>` +
@@ -265,7 +282,8 @@
 										// Категория
 										`<cp:category>${searchAPI.dir}</cp:category>` +
 									`</cp:coreProperties>`);
-								xlsx["docProps"]["app.xml"] = $.parseXML(
+								// Конфигурация приложения
+								xlsx["docProps"]["app.xml"] = jq.parseXML(
 									`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>` +
 									`<Properties xmlns="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties" xmlns:vt="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes">` +
 										`<Application>Microsoft Excel</Application>` +
@@ -297,24 +315,23 @@
 										`<AppVersion>16.0300</AppVersion>` +
 									`</Properties>`
 								);
+								// Вставляем данные в Content_Types
 								let contentType = xlsx["[Content_Types].xml"];
 								let Types = contentType.querySelector('Types');
-
+								// Общая конфигурация
 								let Core = contentType.createElement('Override');
 								Core.setAttribute("PartName", "/docProps/core.xml");
 								Core.setAttribute("ContentType", "application/vnd.openxmlformats-package.core-properties+xml");
 								Types.append(Core);
-
+								// Конфигурация приложения
 								let App = contentType.createElement('Override');
 								App.setAttribute("PartName", "/docProps/app.xml");
 								App.setAttribute("ContentType", "application/vnd.openxmlformats-officedocument.extended-properties+xml");
 								Types.append(App);
-
+								// Присваиваем
 								xlsx["[Content_Types].xml"] = contentType;
-								//console.log(contentType);
 							},
 							action: function (e, dt, node, config, cb) {
-								//console.log(e, dt, node, config, cb);
 								DataTable.ext.buttons.excelHtml5.action.call(
 									this,
 									e,
@@ -396,6 +413,7 @@
 				}
 			},
 			// Загружаем язык
+			// Нужно сделать определение и загрузка нужного языка панели.
 			language: {
 				url: '/administrator/components/com_food/assets/js/ru_RU.json',
 			}
