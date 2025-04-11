@@ -286,43 +286,37 @@ class FoodModelsStatistics extends JModelBase
 					endif;
 					if(!$success):
 						$success = true;
-						$msg_success .= '<dl class="dl-horizontal">';
 					endif;
 					++$count_success;
-					$msg_success .= '<dt>Файл загружен</dt>';
-					$msg_success .= '<dd>' . $userfile['name'] . '</dd>';
+					$msg_success .= \JText::sprintf('COM_FOOD_UPLOAD_FILE_SUCCESS', $userfile['name']) . "<br>";
 				else:
 					if(!$error):
 						$error = true;
-						$msg_error .= '<dl class="dl-horizontal">';
 					endif;
 					++$count_error;
-					$msg_error .= '<dt>Файл не загружен</dt>';
-					$msg_error .= '<dd>' . $userfile['name'] . '</dd>';
+					$msg_error .= \JText::sprintf('COM_FOOD_UPLOAD_FILE_ERROR', $userfile['name']) . "<br>";
 				endif;
 			else:
 				if(!$error):
 					$error = true;
-					$msg_error .= '<dl class="dl-horizontal">';
 				endif;
 				++$count_error;
-				$msg_error .= '<dt>Файл не загружен</dt>';
-				$msg_error .= '<dd>' . $userfile['name'] . '</dd>';
+				$msg_error .= \JText::sprintf('COM_FOOD_UPLOAD_FILE_ERROR', $userfile['name']) . "<br>";
 			endif;
 		endforeach;
 		if($success):
-			$msg_success .= '</dl>';
+			$msg_success .= '';
 		endif;
 		if($error):
-			$msg_error .= '</dl>';
+			$msg_error .= '';
 		endif;
 		$application = \JFactory::getApplication();
 		if($error):
-			$msg_error = '<p><strong>Неудачно загруженных файлов:</strong> ' . $count_error . '</p>' . $msg_error;
+			$msg_error = \JText::sprintf('COM_FOOD_UPLOAD_FILES_ERROR', $count_error) . '<br>' . $msg_error;
 			$application->enqueueMessage($msg_error, 'error');
 		endif;
 		if($success):
-			$msg_success = '<p><strong>Удачно загруженных файлов:</strong> ' . $count_success . '</p>' . $msg_success;
+			$msg_success = \JText::sprintf('COM_FOOD_UPLOAD_FILES_SUCCESS', $count_success) . '<br>' . $msg_success;
 			$application->enqueueMessage($msg_success, 'message');
 		endif;
 		$application->redirect('index.php?option=' . $stats["option"] . "&dir=" . $stats["dir"]);
@@ -357,10 +351,16 @@ class FoodModelsStatistics extends JModelBase
 							$new_file = $this->translitFile($new_file);
 							// Путь нового файла
 							$new_file_name = $startpath . "/" . $new_file;
-							// Переименовываем исходный файл в новый файл
-							@rename($old_file, $new_file_name);
-							// Файл переименован
-							$application->enqueueMessage(\JText::sprintf("COM_FOOD_RENEME_FILE", $file, $new_file));
+							// Если новый файл существует - выводим ошибку
+							if(is_file($new_file_name)):
+								// Запрещено переименовывать в существующий файл
+								$application->enqueueMessage(\JText::sprintf("COM_FOOD_RENEME_FILE_ERROR", $file, $new_file), 'error');
+							else:
+								// Переименовываем исходный файл в новый файл
+								@rename($old_file, $new_file_name);
+								// Файл переименован
+								$application->enqueueMessage(\JText::sprintf("COM_FOOD_RENEME_FILE", $file, $new_file));
+							endif;
 						else:
 							// Запрещённое расширение файла
 							$application->enqueueMessage(\JText::sprintf("COM_FOOD_EXTENSION_ERROR", $extension), 'error');

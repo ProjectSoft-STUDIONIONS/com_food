@@ -34,7 +34,7 @@ class FoodViewsStatisticsHtml extends JViewHtml
 			// Если $this->stats->update не false
 			if($this->stats["update"]):
 				$bar = JToolbar::getInstance('toolbar');
-				$html = '<button onclick="window.open(\'' . $this->stats["update"] . '\'); return false;" class="btn btn-small"><span class="icon-options" aria-hidden="true"></span>Скачать обновление</button>';
+				$html = '<button onclick="window.open(\'' . $this->stats["update"] . '\'); return false;" class="btn btn-small"><span class="icon-options" aria-hidden="true"></span>' . JText::_('COM_FOOD_UPDATE') . '</button>';
   				$toolbar->appendButton('Custom', $html);
 			endif;
 		}
