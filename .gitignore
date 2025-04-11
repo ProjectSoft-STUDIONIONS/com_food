@@ -9,6 +9,7 @@ package-lock.json
 # txt
 *.txt
 .Grunt*
+**/**/assets
 **/**/food.xml
 **/**/config.xml
 **/**/access.xml
@@ -20,6 +21,9 @@ test.*
 tests
 temp
 src/temp
+**/**/assets
+**/**/icons-full
+**/**/viewer
 
 # SublimeText workspace file
 *.sublime-workspace
@@ -27,16 +31,8 @@ src/temp
 # zip
 *.zip
 
-component*/**/assets/js
-
-component-3x/com_food/admin/assets/fonts
 component-3x/com_food/admin/models/.htaccess.dev.php
 component-3x/com_food/admin/models/.htaccess.old.php
-component-3x/com_food/icons-full
-component-3x/com_food/viewer
 
-component-5x/com_food/admin/assets/fonts
 component-5x/com_food/admin/htaccess/.htaccess.dev.php
 component-5x/com_food/admin/htaccess/.htaccess.old.php
-component-5x/com_food/icons-full
-component-5x/com_food/viewer

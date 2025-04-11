@@ -4,24 +4,54 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 
 class FoodViewsStatisticsHtml extends JViewHtml
 {
-	function render()
+	public function render()
 	{
-		$app = JFactory::getApplication();
 		$model = new FoodModelsStatistics();
 		$this->stats = $model->getStats();
+		$this->addScripts();
 		$this->addToolbar();
 		return parent::render();
 	} 
 
 	protected function addToolbar()
 	{
+		$app = JFactory::getApplication();
 		$canDo  = FoodHelpersFood::getActions();
 		$bar = JToolBar::getInstance('toolbar');
 		JToolbarHelper::title(JText::_('COM_FOOD_TITLE'), 'folder-open food');
 		if ($canDo->get('core.admin'))
 		{
+			JToolbarHelper::custom(
+				'food.github',
+				'link',
+				'link',
+				'GitHub',
+				false
+			);
+			JToolbarHelper::custom(
+				'food.cancel',
+				'cancel',
+				'cancel',
+				'Выход',
+				false
+			);
+			JToolbarHelper::divider();
 			JToolbarHelper::preferences('com_food');
 		}
+	}
+
+	// Добавляем свои переменные языка для JS
+	private function addScripts(){
+		JText::script('COM_FOOD_TITLE');
+		JText::script('COM_FOOD_ERROR_MAX_UPLOAD');
+		JText::script('COM_FOOD_ERROR_TYPE_UPLOAD');
+		JText::script('COM_FOOD_RENAME_QUAERE');
+		JText::script('COM_FOOD_RENAME_ERROR');
+		JText::script('COM_FOOD_DELETE_QUAERE');
+		JText::script('COM_FOOD_EXPORT_XLSX');
+		JText::script('COM_FOOD_EXPORT_TO_XLSX');
+		JText::script('COM_FOOD_EXPORT_PDF');
+		JText::script('COM_FOOD_EXPORT_TO_PDF');
 	}
 
 	public function getSize($file) {

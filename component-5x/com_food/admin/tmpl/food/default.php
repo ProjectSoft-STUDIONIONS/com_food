@@ -12,12 +12,7 @@ defined('_JEXEC') or die('Нет доступа');
 $max_count_files = ini_get("max_file_uploads");
 ?>
 <script type="text/javascript">
-	window.MAX_COUNT_FILE = <?= $max_count_files; ?>;
-	window.com_food_lang = {
-		"COM_FOOD_RENAME_QUAERE": "<?= JText::_('COM_FOOD_RENAME_QUAERE');?>",
-		"COM_FOOD_RENAME_ERROR": "<?= JText::_('COM_FOOD_RENAME_ERROR');?>",
-		"COM_FOOD_DELETE_QUAERE": "<?= JText::_('COM_FOOD_DELETE_QUAERE');?>"
-	};
+	window.MAX_COUNT_FILE = <?= ini_get("max_file_uploads");?>;
 </script>
 <h1><?= Text::_('COM_FOOD_TITLE'); ?></h1>
 <div class="clearfix">
@@ -108,6 +103,7 @@ $max_count_files = ini_get("max_file_uploads");
 		</table>
 	</div>
 </div>
+<form id="adminForm" action="index.php"></form>
 <?php
 /**
  * Версионность файлов

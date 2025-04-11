@@ -1,16 +1,10 @@
-<div class="clearfix">
+<div id="food_content" class="clearfix">
 	<script type="text/javascript">
 		window.MAX_COUNT_FILE = <?= ini_get("max_file_uploads");?>;
-		window.com_food_lang = {
-			"COM_FOOD_RENAME_QUAERE": "<?= JText::_('COM_FOOD_RENAME_QUAERE');?>",
-			"COM_FOOD_RENAME_ERROR": "<?= JText::_('COM_FOOD_RENAME_ERROR');?>",
-			"COM_FOOD_DELETE_QUAERE": "<?= JText::_('COM_FOOD_DELETE_QUAERE');?>"
-		};
 	</script>
 	<div class="row clearfix">
 		<div class="container-fluid clearfix">
-			<h2>
-				<span class="label label-info pull-right"><?= $this->stats['total_books']; ?></span>
+			<h2 class="com-food-title">
 				<?= JText::_('COM_FOOD_TITLE'); ?>
 			</h2>
 			<div class="clearfix">
@@ -34,7 +28,7 @@
 				<?php endif;?>
 			</div>
 			<div class="folder-title">
-				<h4><?= $this->stats["food_title"] ? JText::_('COM_FOOD_DIR') . ' <code>/' . $this->stats["food_title"] . '/</code>' : JText::_('COM_FOOD_DIR_ROOT'); ?></h4>
+				<h4><?= $this->stats["food_title"] ? JText::sprintf('COM_FOOD_DIR', $this->stats["food_title"]) : JText::_('COM_FOOD_DIR_ROOT'); ?></h4>
 				<?= $this->stats["food_title"] ? '<p class="food-title-root"><i class="glyphicon glyphicon-folder-open"></i>&nbsp;<a href="index.php?option=com_food">' . JText::_('COM_FOOD_DIR_TOP') . '</a></p>' : ''; ?>
 			</div>
 			<div class="food-table">

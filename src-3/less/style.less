@@ -1,4 +1,12 @@
 // Style FOOD
+.com-food-title {
+	font-size: 34px;
+	font-weight: 700;
+}
+.folder-title h4 {
+	font-size: 22px;
+	// font-weight: 700;
+}
 
 .food {
 	&-table {
@@ -6,6 +14,7 @@
 			td,
 			th {
 				white-space: nowrap;
+				font-size: 16px;
 			}
 			tbody {
 				td {
@@ -26,8 +35,13 @@
 	&-title {
 		&-root {
 			font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+			font-size: 17px;
 		}
 	}
+}
+
+.pagination .page-item a.page-link {
+	font-weight: 900;
 }
 
 form[name="upload"] {
@@ -44,11 +58,17 @@ form[name="upload"] {
 	#p_uploads {
 		margin-top: 15px;
 		margin-bottom: 15px;
+		padding-right: 9px;
+		padding-left: 9px;
 		&:empty {
 			display: none;
 			+ .btn {
 				display: none;
 			}
+		}
+		code {
+			display: block;
+			text-align: right;
 		}
 	}
 }
@@ -76,6 +96,14 @@ form[name="upload"] {
 div.dt-container div.dt-search input {
 	height: auto;
 }
+
+.dt-layout-table + .dt-layout-row {
+	padding-top: 15px;
+	@media screen and (max-width: 767px) {
+		padding-top: unset;
+	}
+}
+
 input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-cancel-button {
 	appearance: auto;
@@ -130,6 +158,9 @@ div.dt-container {
 				gap: 10px;
 				flex-wrap: wrap;
 				margin-bottom: 10px;
+				.btn {
+					font-weight: 700;
+				}
 			}
 		}
 	}

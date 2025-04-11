@@ -46,25 +46,26 @@ module.exports = function(grunt) {
 	var gc = {
 		version: `${PACK.version}`,
 		default: [
-			// Копирование основных файлов
-			"copy:main3",
-			"copy:food3",
+			// Копирование вьювера
 			"copy:viewer3",
-			"copy:htacces3",
-			"copy:main4",
-			"copy:food4",
 			"copy:viewer4",
-			"copy:htacces4",
-			// Копирование языка DataTable
-			"copy:json3",
-			"copy:json4",
+			// Компиляция JS
+			"concat",
+			"uglify",
 			// Компиляция CSS
 			"less",
 			"autoprefixer",
 			"cssmin",
-			// Компиляция JS
-			"concat",
-			"uglify",
+			// Копирование основных файлов
+			"copy:main3",
+			"copy:food3",
+			"copy:htacces3",
+			"copy:main4",
+			"copy:food4",
+			"copy:htacces4",
+			// Копирование языка DataTable
+			"copy:json3",
+			"copy:json4",
 			// Копирование JS
 			"copy:test3",
 			"copy:test4",
@@ -159,8 +160,7 @@ module.exports = function(grunt) {
 					'bower_components/datatables.net/js/dataTables.js',
 					'bower_components/datatables.net-buttons/js/dataTables.buttons.js',
 					'bower_components/datatables.net-buttons/js/buttons.html5.js',
-					'bower_components/datatables.net-bs/js/dataTables.bootstrap.js',
-					'bower_components/sprintf/src/sprintf.js',
+					'bower_components/datatables.net-bs/js/dataTables.bootstrap.js'
 				],
 				dest: 'test/js/jquery.min.js'
 			},

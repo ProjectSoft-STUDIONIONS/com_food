@@ -1,10 +1,19 @@
 /**
  * 
- * ОБЯЗАТЕЛЬНО!!!
+ * COM_FOOD_ERROR_MAX_UPLOAD
+ * COM_FOOD_ERROR_TYPE_UPLOAD
+ * COM_FOOD_RENAME_QUAERE
+ * COM_FOOD_RENAME_ERROR
+ * COM_FOOD_DELETE_QUAERE
+ * COM_FOOD_EXPORT_XLSX
+ * COM_FOOD_EXPORT_TO_XLSX
+ * COM_FOOD_EXPORT_PDF
+ * COM_FOOD_EXPORT_TO_PDF
+ * COM_FOOD_DIRECTORY
+ * COM_FOOD_TITLE
  * 
- * window.com_food_lang - глобальная переменная. содержит язык переводов компонента
  * 
- */
+ **/
 !(function($){
 	const jq = $.noConflict(true);
 	let search = location.search.replace(/\?/g, '');
@@ -13,6 +22,25 @@
 		return param;
 	});
 	const searchAPI = Object.fromEntries(search_api);
+	// Translate from Joomla text
+	const Translate = {
+		translate: (key) => Joomla.Text._(key, key),
+		sprintf: (string, ...args) => {
+			const newString = Translate.translate(string);
+			let i = 0;
+			return newString.replace(/%((%)|s|d)/g, (m) => {
+				let val = args[i];
+				if (m === '%d') {
+					val = parseFloat(val);
+					if (Number.isNaN(val)) {
+						val = 0;
+					}
+				}
+				i += 1;
+				return val;
+			});
+		}
+	};
 	// Добавить максимальное количество файлов
 	const maxCountFile = parseInt(window.MAX_COUNT_FILE),
 		// Reset формы модификации
@@ -57,13 +85,31 @@
 			}
 			return str;
 		};
+
+	// Обрабатываем таски
+	Joomla.submitbutton = function(task) {
+		console.log(task);
+		switch(task) {
+			case "food.cancel":
+				// Закрыть
+				// Переход на главную страницу админки
+				window.location.href = window.location.origin + window.location.pathname;
+				break;
+			case "food.github":
+				// Открываем последний реализ плагина
+				window.open("https://github.com/ProjectSoft-STUDIONIONS/com_food/releases/latest");
+				break;
+			default:
+				break;
+		}
+	}
 	// Загрузка файлов
 	window.uploadFiles = function(el) {
 		let p = jq("#p_uploads"),
 			files = [...el.files],
 			out = [], str = "";
 		if(files.length > maxCountFile) {
-			alert(`Нельзя загрузить больше ${maxCountFile} файлов`);
+			alert(Translate.sprintf('COM_FOOD_ERROR_MAX_UPLOAD',  maxCountFile));
 			document.upload.reset();
 			return !1;
 		}
@@ -76,13 +122,13 @@
 					out.push(`<code>${a.name}</code>`);
 				}else{
 					p.html("");
-					alert(`Нельзя загрузить данный тип файла!\n${a.name} - ${a.type}`);
+					alert(Translate.sprintf('COM_FOOD_ERROR_TYPE_UPLOAD', a.name, a.type));
 					document.upload.reset();
 					return !1;
 				}
 			}
 		}
-		p.html(out.join("<br>"));
+		p.html(out.join(""));
 		return !1;
 	}
 	// Переименование файла. Удаление файла.
@@ -99,14 +145,14 @@
 				const [...segments] = file.split('.');
 				const fileExtension = segments.pop();
 				let fileName = segments.join('.');
-				let nwfile = prompt(sprintf(window.com_food_lang.COM_FOOD_RENAME_QUAERE, file), fileName);
+				let nwfile = prompt(Translate.sprintf('COM_FOOD_RENAME_QUAERE', file), fileName);
 				if(!nwfile) {
 					modeFormReset();
 					return !1
 				}
 				const regex = /[^A-z0-9-._]+/;
 				if(regex.test(nwfile)){
-					alert(window.com_food_lang.COM_FOOD_RENAME_ERROR + `!`);
+					alert(Translate.sprintf('COM_FOOD_RENAME_ERROR') + `!`);
 					modeFormReset();
 					return !1;
 				}
@@ -120,7 +166,7 @@
 				}
 				break;
 			case 'delete':
-				if(confirm(sprintf(window.com_food_lang.COM_FOOD_DELETE_QUAERE, file))){
+				if(confirm(Translate.sprintf('COM_FOOD_DELETE_QUAERE', file))){
 					input_mode.value = mode;
 					input_file.value = file;
 					form.submit();
@@ -243,10 +289,10 @@
 						// Кнопка экспорта XLSX
 						{
 							extend: 'excel',
-							text: 'Экспорт в XLSX',
+							text: Translate.sprintf('COM_FOOD_EXPORT_XLSX'),
 							download: '',
-							filename: `Экспорт ${searchAPI.dir} в XLSX`,
-							title: `Директория ${url}`,
+							filename: Translate.sprintf('COM_FOOD_EXPORT_TO_XLSX', searchAPI.dir),
+							title: Translate.sprintf('COM_FOOD_DIRECTORY', url),
 							sheetName: `${searchAPI.dir}`,
 							customize: function (xlsx) {
 								let date = new Date();
@@ -264,9 +310,9 @@
 								xlsx["docProps"]["core.xml"] = jq.parseXML(`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>` +
 									`<cp:coreProperties xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:dcmitype="http://purl.org/dc/dcmitype/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">` +
 										// Заголовок
-										`<dc:title>Директория ${url}</dc:title>` +
+										`<dc:title>` + Translate.sprintf('COM_FOOD_DIRECTORY', url) + `</dc:title>` +
 										// Тема
-										`<dc:subject>Директория ${url}</dc:subject>` +
+										`<dc:subject>` + Translate.sprintf('COM_FOOD_DIRECTORY', url) + `</dc:subject>` +
 										// Создатель
 										`<dc:creator>${componentName}</dc:creator>` +
 										// Теги
@@ -345,17 +391,17 @@
 						// Кнопка экспорта PDF
 						{
 							extend: 'pdf',
-							text: 'Экспорт в PDF',
+							text: Translate.sprintf('COM_FOOD_EXPORT_PDF'),
 							download: '',
-							filename: `Экспорт ${searchAPI.dir} в PDF`,
-							title: `Директория ${url}`,
+							filename: Translate.sprintf('COM_FOOD_EXPORT_TO_PDF', searchAPI.dir),
+							title: Translate.sprintf('COM_FOOD_DIRECTORY', url),
 							// Кастомизируем вывод
 							customize: function (doc) {
 								let date = new Date();
 								let dateISO = date.toISOString();
 								let title = [
-									`Меню ежедневного питания.`,
-									`Директория ${url}`
+									Translate.sprintf('COM_FOOD_TITLE'),
+									Translate.sprintf('COM_FOOD_DIRECTORY', url)
 								];
 								// Используемый язык экспорта
 								doc.language = 'ru-RU';

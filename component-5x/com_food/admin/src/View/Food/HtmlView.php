@@ -8,6 +8,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Helper\ContentHelper;
 use Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\Language\LanguageHelper;
 use Joomla\CMS\Language\Text;
 
 use Joomla\CMS\MVC\View\HtmlView as BaseHtmlView;
@@ -56,6 +57,8 @@ class HtmlView extends BaseHtmlView {
 		// Добавляем стили
 		$doc->addStyleSheet("/viewer/app.min.css", array("version" => "auto"));
 		$doc->addStyleSheet("/administrator/components/com_food/assets/css/main.min.css", array("version" => "auto"));
+		// Добавляем JS
+		$this->addScripts();
 		parent::display($tpl);
 	}
 
@@ -94,13 +97,42 @@ class HtmlView extends BaseHtmlView {
 	 * Кнопка настройки компонента
 	 */
 	protected function addToolbar() {
+		Factory::getApplication()->getInput()->set('hidemainmenu', true);
 		$ch      = ContentHelper::getActions('com_food');
 		$toolbar = Toolbar::getInstance();
 		if ($ch->get('core.admin') || $ch->get('core.options')) {
+			ToolbarHelper::custom(
+				'food.cancel',
+				'cancel',
+				'cancel',
+				'Выход',
+				false
+			);
+			//$toolbar->cancel('food.cancel');
+			$toolbar->divider();
 			$toolbar->preferences('com_food');
-			ToolbarHelper::help( Text::_('COM_FOOD_GITHUB'), false, 'https://github.com/ProjectSoft-STUDIONIONS/com_food' );
-			//$toolbar->link('GitHub', 'https://github.com/ProjectSoft-STUDIONIONS/com_food');
+			ToolbarHelper::custom(
+				'food.github',
+				'github fa fa-github',
+				'github',
+				'GitHub',
+				false
+			);
 		}
+	}
+
+	// Добавляем свои переменные языка для JS
+	private function addScripts(){
+		Text::script('COM_FOOD_TITLE');
+		Text::script('COM_FOOD_ERROR_MAX_UPLOAD');
+		Text::script('COM_FOOD_ERROR_TYPE_UPLOAD');
+		Text::script('COM_FOOD_RENAME_QUAERE');
+		Text::script('COM_FOOD_RENAME_ERROR');
+		Text::script('COM_FOOD_DELETE_QUAERE');
+		Text::script('COM_FOOD_EXPORT_XLSX');
+		Text::script('COM_FOOD_EXPORT_TO_XLSX');
+		Text::script('COM_FOOD_EXPORT_PDF');
+		Text::script('COM_FOOD_EXPORT_TO_PDF');
 	}
 
 	// Объединение директорий
