@@ -16,18 +16,12 @@ class FoodViewsStatisticsHtml extends JViewHtml
 	protected function addToolbar()
 	{
 		$app = JFactory::getApplication();
+		$app->input->set('hidemainmenu', true);
 		$canDo  = FoodHelpersFood::getActions();
-		$bar = JToolBar::getInstance('toolbar');
+		$toolbar = JToolBar::getInstance('toolbar');
 		JToolbarHelper::title(JText::_('COM_FOOD_TITLE'), 'folder-open food');
 		if ($canDo->get('core.admin'))
 		{
-			JToolbarHelper::custom(
-				'food.github',
-				'link',
-				'link',
-				'GitHub',
-				false
-			);
 			JToolbarHelper::custom(
 				'food.cancel',
 				'cancel',
@@ -37,11 +31,21 @@ class FoodViewsStatisticsHtml extends JViewHtml
 			);
 			JToolbarHelper::divider();
 			JToolbarHelper::preferences('com_food');
+			// Если $this->stats->update не false
+			if($this->stats["update"]):
+				$bar = JToolbar::getInstance('toolbar');
+				$html = '<button onclick="window.open(\'' . $this->stats["update"] . '\'); return false;" class="btn btn-small"><span class="icon-options" aria-hidden="true"></span>Скачать обновление</button>';
+  				$toolbar->appendButton('Custom', $html);
+			endif;
 		}
 	}
 
 	// Добавляем свои переменные языка для JS
 	private function addScripts(){
+		// Добавляем стили
+		$doc = JFactory::getDocument();
+		$doc->addStyleSheet("/viewer/app.min.css", array("version" => "auto"));
+		$doc->addStyleSheet("/administrator/components/com_food/assets/css/main.min.css", array("version" => "auto"));
 		JText::script('COM_FOOD_TITLE');
 		JText::script('COM_FOOD_ERROR_MAX_UPLOAD');
 		JText::script('COM_FOOD_ERROR_TYPE_UPLOAD');

@@ -20,7 +20,7 @@ test*
 test.*
 tests
 temp
-src/temp
+
 **/**/assets
 **/**/icons-full
 **/**/viewer
@@ -31,8 +31,5 @@ src/temp
 # zip
 *.zip
 
-component-3x/com_food/admin/models/.htaccess.dev.php
-component-3x/com_food/admin/models/.htaccess.old.php
-
-component-5x/com_food/admin/htaccess/.htaccess.dev.php
-component-5x/com_food/admin/htaccess/.htaccess.old.php
+# htaccess php
+component*/**/.htaccess.*.*

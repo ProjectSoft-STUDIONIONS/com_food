@@ -1,12 +1,13 @@
+<?php
+$path = $this->realPath(JPATH_ROOT);
+?>
+<script type="text/javascript">
+	window.MAX_COUNT_FILE = <?= ini_get("max_file_uploads");?>;
+</script>
 <div id="food_content" class="clearfix">
-	<script type="text/javascript">
-		window.MAX_COUNT_FILE = <?= ini_get("max_file_uploads");?>;
-	</script>
 	<div class="row clearfix">
 		<div class="container-fluid clearfix">
-			<h2 class="com-food-title">
-				<?= JText::_('COM_FOOD_TITLE'); ?>
-			</h2>
+			<h1 class="com-food-title"><?= JText::_('COM_FOOD_TITLE'); ?></h1>
 			<div class="clearfix">
 				<?php if($this->stats["dir"]):?>
 				<form class="text-right" name="upload" method="post" action="index.php?option=com_food&dir=<?= $this->stats["dir"];?>" enctype="multipart/form-data">
@@ -28,7 +29,7 @@
 				<?php endif;?>
 			</div>
 			<div class="folder-title">
-				<h4><?= $this->stats["food_title"] ? JText::sprintf('COM_FOOD_DIR', $this->stats["food_title"]) : JText::_('COM_FOOD_DIR_ROOT'); ?></h4>
+				<h3><?= $this->stats["food_title"] ? JText::sprintf('COM_FOOD_DIR', $this->stats["food_title"]) : JText::_('COM_FOOD_DIR_ROOT'); ?></h3>
 				<?= $this->stats["food_title"] ? '<p class="food-title-root"><i class="glyphicon glyphicon-folder-open"></i>&nbsp;<a href="index.php?option=com_food">' . JText::_('COM_FOOD_DIR_TOP') . '</a></p>' : ''; ?>
 			</div>
 			<div class="food-table">
@@ -91,13 +92,40 @@
 					</table>
 				</div>
 			</div>
-			<!--pre><code><?= print_r($this->stats, true);?></code></pre-->
 		</div>
 	</div>
 </div>
-<link rel="stylesheet" type="text/css" href="/viewer/app.min.css?<?= filemtime($this->realPath(JPATH_ROOT) . "/viewer/app.min.css");?>">
-<link rel="stylesheet" type="text/css" href="<?= $this->stats["com_food_path"]; ?>assets/css/main.min.css?<?= filemtime($this->realPath(JPATH_COMPONENT_ADMINISTRATOR) . "/assets/css/main.min.css");?>">
-<script type="text/javascript" src="<?= $this->stats["com_food_path"]; ?>assets/js/jquery.min.js?<?= filemtime($this->realPath(JPATH_COMPONENT_ADMINISTRATOR) . "/assets/js/jquery.min.js");?>"></script>
-<script type="text/javascript" src="/viewer/fancybox.min.js?<?= filemtime($this->realPath(JPATH_ROOT) . "/viewer/fancybox.min.js");?>"></script>
-<script type="text/javascript" src="/viewer/app.min.js?<?= filemtime($this->realPath(JPATH_ROOT) . "/viewer/app.min.js");?>"></script>
-<script type="text/javascript" src="<?= $this->stats["com_food_path"]; ?>assets/js/main.min.js?<?= filemtime($this->realPath(JPATH_COMPONENT_ADMINISTRATOR) . "/assets/js/main.min.js");?>"></script>
+<?php
+/**
+ * Версионность файлов
+ * Время последнего изменения файлов
+ */
+$path = $this->realPath(JPATH_ROOT);
+$versions = array();
+$jquery_js = join("/", array(
+	$path,
+	"administrator/components/com_food/assets/js/jquery.min.js"
+));
+$fansybox_js = join("/", array(
+	$path,
+	"viewer/fancybox.min.js"
+));
+$app_js = join("/", array(
+	$path,
+	"viewer/app.min.js"
+));
+$main_js = join("/", array(
+	$path,
+	"administrator/components/com_food/assets/js/main.min.js"
+));
+$versions = array(
+	"jquery_js" => filemtime($jquery_js),
+	"fansybox_js" => filemtime($fansybox_js),
+	"app_js" => filemtime($app_js),
+	"main_js" => filemtime($main_js),
+);
+?>
+<script src="/administrator/components/com_food/assets/js/jquery.min.js?<?= $versions["jquery_js"];?>"></script>
+<script src="/viewer/fancybox.min.js?<?= $versions["fansybox_js"];?>"></script>
+<script src="/viewer/app.min.js?<?= $versions["app_js"];?>"></script>
+<script src="/administrator/components/com_food/assets/js/main.min.js?<?= $versions["main_js"];?>"></script>

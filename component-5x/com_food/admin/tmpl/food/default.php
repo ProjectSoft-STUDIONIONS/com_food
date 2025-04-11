@@ -6,6 +6,7 @@
  * @copyright   Copyright (C) 2008 ProjectSoft. All rights reserved.
  * @license     MIT Lecense; see LICENSE
  */
+
 use Joomla\CMS\Language\Text;
 // Нет прямого доступа к этому файлу
 defined('_JEXEC') or die('Нет доступа');
@@ -103,7 +104,6 @@ $max_count_files = ini_get("max_file_uploads");
 		</table>
 	</div>
 </div>
-<form id="adminForm" action="index.php"></form>
 <?php
 /**
  * Версионность файлов
