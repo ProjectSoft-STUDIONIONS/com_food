@@ -13,6 +13,8 @@ jobs:
     steps:
     - name: Checkout
     - uses: actions/checkout@v3
+      run: |
+        echo Checkout
     - name: Установка Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
