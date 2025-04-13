@@ -14,6 +14,7 @@ $max_count_files = ini_get("max_file_uploads");
 ?>
 <script type="text/javascript">
 	window.MAX_COUNT_FILE = <?= ini_get("max_file_uploads");?>;
+	window.J_LANG = "<?= $this->stats['lang']?>";
 </script>
 <h1><?= Text::_('COM_FOOD_TITLE'); ?></h1>
 <div class="clearfix">

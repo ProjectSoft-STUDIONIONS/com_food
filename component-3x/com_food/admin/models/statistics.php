@@ -137,6 +137,11 @@ class FoodModelsStatistics extends JModelBase
 		natsort($stats["files"]);
 		$stats["files"] = array_reverse($stats["files"], false);
 		$stats["update"] = $this->getUpdate();
+		$lang = JFactory::getLanguage();
+		$re = '/-/';
+		$str = $lang->get('tag');
+		$subst = "_";
+		$stats['lang'] = preg_replace($re, $subst, $str);
 		return $stats;
 	}
 

@@ -3,6 +3,7 @@ $path = $this->realPath(JPATH_ROOT);
 ?>
 <script type="text/javascript">
 	window.MAX_COUNT_FILE = <?= ini_get("max_file_uploads");?>;
+	window.J_LANG = "<?= $this->stats['lang']?>";
 </script>
 <div id="food_content" class="clearfix">
 	<div class="row clearfix">

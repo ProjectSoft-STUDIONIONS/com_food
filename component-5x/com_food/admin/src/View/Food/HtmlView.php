@@ -137,6 +137,7 @@ class HtmlView extends BaseHtmlView {
 
 	// Добавляем свои переменные языка для JS
 	private function addScripts(){
+		//Factory::getLanguage();
 		Text::script('COM_FOOD_TITLE');
 		Text::script('COM_FOOD_ERROR_MAX_UPLOAD');
 		Text::script('COM_FOOD_ERROR_TYPE_UPLOAD');
@@ -181,6 +182,12 @@ class HtmlView extends BaseHtmlView {
 		$food     = array("food");
 		$folders  = array_filter(array_unique(array_merge($food, $folders)));
 		sort($folders);
+		// Language
+		$lang = Factory::getLanguage();
+		$re = '/-/';
+		$str = $lang->get('tag');
+		$subst = "_";
+		// Tabs
 		$stats    = array(
 			"option" => $option,
 			"dir" => $dir,
@@ -189,8 +196,10 @@ class HtmlView extends BaseHtmlView {
 			"new_file" => $new_file,
 			"folders" => $folders,
 			"files" => array(),
-			"update" => $this->getUpdate()
+			"update" => $this->getUpdate(),
+			"lang" => preg_replace($re, $subst, $str)
 		);
+
 		if($dir):
 			// Поиск файлов в директории
 			$files_path = join("/", array(

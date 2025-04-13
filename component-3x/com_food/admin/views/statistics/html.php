@@ -42,6 +42,7 @@ class FoodViewsStatisticsHtml extends JViewHtml
 
 	// Добавляем свои переменные языка для JS
 	private function addScripts(){
+		//$lang = JFactory::getLanguage();
 		// Добавляем стили
 		$doc = JFactory::getDocument();
 		$doc->addStyleSheet("/viewer/app.min.css", array("version" => "auto"));

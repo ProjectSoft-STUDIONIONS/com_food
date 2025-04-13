@@ -1,21 +1,19 @@
 /**
  * 
- * COM_FOOD_ERROR_MAX_UPLOAD
- * COM_FOOD_ERROR_TYPE_UPLOAD
- * COM_FOOD_RENAME_QUAERE
- * COM_FOOD_RENAME_ERROR
- * COM_FOOD_DELETE_QUAERE
- * COM_FOOD_EXPORT_XLSX
- * COM_FOOD_EXPORT_TO_XLSX
- * COM_FOOD_EXPORT_PDF
- * COM_FOOD_EXPORT_TO_PDF
- * COM_FOOD_DIRECTORY
- * COM_FOOD_TITLE
+ * window.J_LANG
  * 
- * 
- **/
+ */
 !(function($){
 	const jq = $.noConflict(true);
+	// Доступные языковые пакеты DataTable
+	const Langs = [
+		"ru_RU",
+		"en_GB",
+		"en_US"
+	];
+	// Если в массиве нет нужного языка, то ставим ru_RU
+	const Lang = Langs.includes(window.J_LANG) ? window.J_LANG : 'ru_RU';
+
 	let search = location.search.replace(/\?/g, '');
 	let search_api = search.split('&').map((item, index, array) => {
 		let param = item.split('=');
@@ -461,7 +459,7 @@
 			// Загружаем язык
 			// Нужно сделать определение и загрузка нужного языка панели.
 			language: {
-				url: '/administrator/components/com_food/assets/js/ru_RU.json',
+				url: '/administrator/components/com_food/assets/js/' + Lang + '.json',
 			}
 		});
 	}
