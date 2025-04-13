@@ -1,7 +1,7 @@
 name: Сборка и публикация компонента для Joomla CMS 3.x, 4.x, 5.x
 on:
   push:
-    tags:
+    tags: 
       - '*'
 jobs:
   build:
@@ -11,10 +11,7 @@ jobs:
       matrix:
         node: [20]
     steps:
-    - name: Checkout
     - uses: actions/checkout@v3
-      run: |
-        echo Checkout
     - name: Установка Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
