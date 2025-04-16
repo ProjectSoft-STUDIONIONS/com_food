@@ -16,13 +16,13 @@
 
 **Joomla CMS 3.x**
 
-Скачать компонент из реализа [com_food-3.x.zip](../../releases/latest/download/com_food-3.x.zip).
+Скачать компонент из реализа <a href="https://github.com/ProjectSoft-STUDIONIONS/com_food/releases/latest/download/com_food-3.x.zip" target="_blank"><img src="https://img.shields.io/github/downloads/ProjectSoft-STUDIONIONS/com_food/com_food-3.x.zip?style=for-the-badge&label=DOWNLOAD%203.x&color=%23007ec6"></a>.
 
 Установить через административную панель. `Расширения` -> `Расширения` -> `Установить`
 
 **Joomla CMS 4.x и Joomla CMS 5.x**
 
-Скачать компонент из реализа [com_food-4.x-5.x.zip](../../releases/latest/download/com_food-4.x-5.x.zip).
+Скачать компонент из реализа <a href="https://github.com/ProjectSoft-STUDIONIONS/com_food/releases/latest/download/com_food-4.x-5.x.zip" target="_blank"><img src="https://img.shields.io/github/downloads/ProjectSoft-STUDIONIONS/com_food/com_food-4.x-5.x.zip?style=for-the-badge&label=DOWNLOAD%204.x-5.x&color=%23007ec6"></a>.
 
 Установить через административную панель. `Система` -> `Установка` -> `Расширения`
 
