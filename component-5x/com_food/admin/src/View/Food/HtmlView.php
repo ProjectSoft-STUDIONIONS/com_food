@@ -148,6 +148,7 @@ class HtmlView extends BaseHtmlView {
 		Text::script('COM_FOOD_EXPORT_TO_XLSX');
 		Text::script('COM_FOOD_EXPORT_PDF');
 		Text::script('COM_FOOD_EXPORT_TO_PDF');
+		Text::script('COM_FOOD_DIRECTORY');
 	}
 
 	// Объединение директорий
