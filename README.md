@@ -2,6 +2,9 @@
 
 # Компонент «ПИТАНИЕ» Joomla CMS
 
+[![DOWNLOADS LATEST Joomla 3.x](https://img.shields.io/github/downloads/ProjectSoft-STUDIONIONS/com_food/com_food-3.x.zip?style=for-the-badge&label=DOWNLOADS%20LATEST&cacheSeconds=160)](https://github.com/ProjectSoft-STUDIONIONS/com_food/releases/latest/download/com_food-3.x.zip)
+[![DOWNLOADS LATEST Joomla 4.x-5.x](https://img.shields.io/github/downloads/ProjectSoft-STUDIONIONS/com_food/com_food-4.x-5.x.zip?style=for-the-badge&label=DOWNLOADS%20LATEST&cacheSeconds=160)](https://github.com/ProjectSoft-STUDIONIONS/com_food/releases/latest/download/com_food-4.x-5.x.zip)
+
 Компонент **`com_food`** для Joomla CMS
 
 Обслуживания директории **`food`** сайта школы. Актуально для сайтов школ РФ.
@@ -16,13 +19,13 @@
 
 #### Joomla CMS 3.x
 
-Скачать компонент из реализа <a href="https://github.com/ProjectSoft-STUDIONIONS/com_food/releases/latest/download/com_food-3.x.zip" target="_blank"><img src="https://img.shields.io/github/downloads/ProjectSoft-STUDIONIONS/com_food/com_food-3.x.zip?style=for-the-badge&label=DOWNLOAD%203.x&color=%23007ec6"></a>
+Скачать компонент из реализа [![DOWNLOADS LATEST Joomla 3.x](https://img.shields.io/github/downloads/ProjectSoft-STUDIONIONS/com_food/com_food-3.x.zip?style=for-the-badge&label=DOWNLOADS%20LATEST&cacheSeconds=160)](https://github.com/ProjectSoft-STUDIONIONS/com_food/releases/latest/download/com_food-3.x.zip)
 
 Установить через административную панель. `Расширения` -> `Расширения` -> `Установить`
 
 #### Joomla CMS 4.x и Joomla CMS 5.x
 
-Скачать компонент из реализа <a href="https://github.com/ProjectSoft-STUDIONIONS/com_food/releases/latest/download/com_food-4.x-5.x.zip" target="_blank"><img src="https://img.shields.io/github/downloads/ProjectSoft-STUDIONIONS/com_food/com_food-4.x-5.x.zip?style=for-the-badge&label=DOWNLOAD%204.x-5.x&color=%23007ec6"></a>
+Скачать компонент из реализа [![DOWNLOADS LATEST Joomla 4.x-5.x](https://img.shields.io/github/downloads/ProjectSoft-STUDIONIONS/com_food/com_food-4.x-5.x.zip?style=for-the-badge&label=DOWNLOADS%20LATEST&cacheSeconds=160)](https://github.com/ProjectSoft-STUDIONIONS/com_food/releases/latest/download/com_food-4.x-5.x.zip)
 
 Установить через административную панель. `Система` -> `Установка` -> `Расширения`
 
