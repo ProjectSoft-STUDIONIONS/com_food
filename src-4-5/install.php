@@ -14,7 +14,6 @@ use Joomla\CMS\Language\Text;
 class com_foodInstallerScript {
 
 	public function preflight($type, $parent=null){
-		echo "<p>Компонент «ПИТАНИЕ» " . $type . "</p>";
 		if ($type=='update'){
 			return true;
 		}
@@ -46,9 +45,6 @@ class com_foodInstallerScript {
 		include($dir_path . "/admin/htaccess/.htaccess.old.php");
 		@file_put_contents($joomla_path.'/food/.htaccess', $htaccess);
 		@chmod($joomla_path.'/food/.htaccess', 0644);
-		$parent->getParent()->setRedirectURL('index.php?option=com_food');
-		echo "<p>" . Text::sprintf('COM_FOOD_UPDATE_TEXT', $parent->get('manifest')->version) . "</p>";
-		// "<p>Компонент «ПИТАНИЕ» обнавлён. " . $parent->get('manifest')->version . "</p>";
 	}
 	
 	public function install($parent){
@@ -77,8 +73,6 @@ class com_foodInstallerScript {
 		include($dir_path . "/admin/htaccess/.htaccess.old.php");
 		@file_put_contents($joomla_path.'/food/.htaccess', $htaccess);
 		@chmod($joomla_path.'/food/.htaccess', 0644);
-		$parent->getParent()->setRedirectURL('index.php?option=com_food');
-		echo "<p>Компонент «ПИТАНИЕ» установлен." . $parent->get('manifest')->version . "</p>";
 	}
 
 	public function uninstall($parent){
@@ -120,7 +114,6 @@ class com_foodInstallerScript {
 				@file_put_contents($path, $htaccess);
 			endif;
 		endforeach;
-		echo "<p>Компонент «ПИТАНИЕ» удалён.</p>";
 	}
 
 	private function copyDir($source, $dest) {
