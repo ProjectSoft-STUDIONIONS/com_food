@@ -31,6 +31,10 @@ package.json text eol=crlf
 /LICENSE export-ignore
 /README.md export-ignore
 /src export-ignore
+/docs export-ignore
+/src-docs export-ignore
+/src-3 export-ignore
+/src-4-5 export-ignore
 /*.zip export-ignore
 /*.inf export-ignore
 /*.ini export-ignore

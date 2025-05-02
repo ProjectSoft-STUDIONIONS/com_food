@@ -483,7 +483,7 @@ module.exports = function(grunt) {
 						let json = grunt.file.readJSON(__dirname + '/docs/' + PACK.version + '/com_food-3.x.json');
 						json.joomla = "3.[0123456789]";
 						json.author = author;
-						json.zip = "com_food-3.x.zip";
+						json.zip = "3.x";
 						json.version = PACK.version;
 						return json;
 					}
@@ -508,7 +508,7 @@ module.exports = function(grunt) {
 						let json = grunt.file.readJSON(__dirname + '/docs/' + PACK.version + '/com_food-4.x.json');
 						json.joomla = "4.[0123456789]";
 						json.author = author;
-						json.zip = "com_food-4.x.zip";
+						json.zip = "4.x";
 						json.version = PACK.version;
 						return json;
 					}
@@ -533,7 +533,7 @@ module.exports = function(grunt) {
 						let json = grunt.file.readJSON(__dirname + '/docs/' + PACK.version + '/com_food-5.x.json');
 						json.joomla = "5.[0123456789]";
 						json.author = author;
-						json.zip = "com_food-5.x.zip";
+						json.zip = "5.x";
 						json.version = PACK.version;
 						return json;
 					}
