@@ -5,11 +5,14 @@
 		<description>Компонент <code>com_food</code> для Joomla CMS 3.x. Обслуживания директории food сайта школы. Актуально для школ РФ. Предназначен для использования в административной панели Joomla CMS 3.x.</description>
 		<element>com_food</element>
 		<type>component</type>
-		<version>1.2.2</version>
+		<version>1.2.3</version>
 		<infourl title="Сервер обновления компонента «ПИТАНИЕ»">https://projectsoft-studionions.github.io/com_food/</infourl>
 		<downloads>
-			<downloadurl type="full" format="zip">https://projectsoft-studionions.github.io/com_food/1.2.2/com_food-3.x.zip</downloadurl>
+			<downloadurl type="full" format="zip">https://projectsoft-studionions.github.io/com_food/1.2.3/com_food-3.x.zip</downloadurl>
 		</downloads>
+		<sha256>0a556b5689bfd2f61aa812dd4007c1fab70c5850fb4a6e9e56af0ce11fac443c</sha256>
+		<sha384>7b208812aab9191a66955eb93b9a66c026012325364669223f6209efe1d27053a56fda718738f74f1dfb6ef090c59277</sha384>
+		<sha512>dc6174585b49269aa8861df93a6f68cff899f78b343ae46db582afbb317357dffade769c2998b62a4cb004d10c1e07133030fa1a3295a602335581787c5e610a</sha512>
 		<targetplatform name="joomla" version="3.[0123456789]"></targetplatform>
 		<maintainer>ProjectSoft</maintainer>
 		<maintainerurl>https://projectsoft.ru/</maintainerurl>
