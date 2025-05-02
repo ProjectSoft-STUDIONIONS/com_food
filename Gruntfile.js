@@ -40,12 +40,10 @@ module.exports = function(grunt) {
 			}
 		);
 
-	require('load-grunt-tasks')(grunt);
-	require('time-grunt')(grunt);
-
 	var gc = {
 		version: `${PACK.version}`,
 		default: [
+			"clean",
 			// Копирование вьювера
 			"copy:viewer3",
 			"copy:viewer4",
@@ -70,26 +68,47 @@ module.exports = function(grunt) {
 			"copy:test3",
 			"copy:test4",
 			// Компиляция XML
-			"pug",
+			"pug:serv3",
+			"pug:serv4",
 			// Архивирование
-			"compress"
+			"compress",
+			// SHA
+			"sha",
+			"pug:update3",
+			"pug:update4",
+			"pug:update5"
+		],
+		dev: [
+			"sha"
 		]
 	};
 
 	require('load-grunt-tasks')(grunt);
 	require('time-grunt')(grunt);
+	require('./modules/sha.js')(grunt);
 
 	let arr = `${PACK.homepage}`.split('/'),
 		author = PACK.author.replace(/^(.*)(\s+<.*>)/, "$1"),
 		authorEmail = PACK.author.replace(/^(?:.*)\s+<(.*)>/, "$1"),
-		authorUrl = "";
+		authorUrl = "",
+		versionPath = path.join(__dirname, "docs", gc.version);
 
 	arr.pop();
 	authorUrl = arr.join("/");
+
+	if(!grunt.file.isDir(versionPath)) {
+		grunt.file.mkdir(versionPath);
+	}
 	
 	grunt.initConfig({
 		globalConfig : gc,
 		pkg : PACK,
+		clean: {
+			docs: [
+				`docs/${gc.version}/*.zip`,
+				`docs/${gc.version}/*.json`
+			]
+		},
 		less: {
 			css: {
 				options : {
@@ -342,6 +361,81 @@ module.exports = function(grunt) {
 					},
 				]
 			},
+			update3: {
+				options: {
+					doctype: 'html',
+					client: false,
+					pretty: '\t',
+					separator:  '\n',
+					data: function(dest, src) {
+						let json = grunt.file.readJSON(__dirname + '/docs/' + PACK.version + '/com_food-3.x.json');
+						json.joomla = "3.[0123456789]";
+						json.author = author;
+						json.zip = "com_food-3.x.zip";
+						json.version = PACK.version;
+						return json;
+					}
+				},
+				files: [
+					{
+						expand: true,
+						cwd: __dirname + '/src-docs/pug/',
+						src: [ 'food-update.pug' ],
+						dest: __dirname + '/docs/',
+						ext: '-3.x.xml'
+					},
+				]
+			},
+			update4: {
+				options: {
+					doctype: 'html',
+					client: false,
+					pretty: '\t',
+					separator:  '\n',
+					data: function(dest, src) {
+						let json = grunt.file.readJSON(__dirname + '/docs/' + PACK.version + '/com_food-4.x-5.x.json');
+						json.joomla = "4.[0123456789]";
+						json.author = author;
+						json.zip = "com_food-4.x-5.x.zip";
+						json.version = PACK.version;
+						return json;
+					}
+				},
+				files: [
+					{
+						expand: true,
+						cwd: __dirname + '/src-docs/pug/',
+						src: [ 'food-update.pug' ],
+						dest: __dirname + '/docs/',
+						ext: '-4.x.xml'
+					},
+				]
+			},
+			update5: {
+				options: {
+					doctype: 'html',
+					client: false,
+					pretty: '\t',
+					separator:  '\n',
+					data: function(dest, src) {
+						let json = grunt.file.readJSON(__dirname + '/docs/' + PACK.version + '/com_food-4.x-5.x.json');
+						json.joomla = "5.[0123456789]";
+						json.author = author;
+						json.zip = "com_food-4.x-5.x.zip";
+						json.version = PACK.version;
+						return json;
+					}
+				},
+				files: [
+					{
+						expand: true,
+						cwd: __dirname + '/src-docs/pug/',
+						src: [ 'food-update.pug' ],
+						dest: __dirname + '/docs/',
+						ext: '-5.x.xml'
+					},
+				]
+			}
 		},
 		copy: {
 			// Fonts
@@ -455,11 +549,62 @@ module.exports = function(grunt) {
 							'com_food/**',
 							'com_food/**/.*',
 						],
-						dest: '/'
+						dest: `/`
+					},
+				],
+			},
+			// component-3x
+			docs3: {
+				options: {
+					archive: `docs/${gc.version}/com_food-3.x.zip`
+				},
+				files: [
+					{
+						expand: true,
+						cwd: './component-3x/',
+						src: [
+							'com_food/**',
+							'com_food/**/.*',
+							'com_food/**/.htacc*',
+						],
+						dest: `/`
+					},
+				],
+			},
+			// component-5x
+			docs4: {
+				options: {
+					archive: `docs/${gc.version}/com_food-4.x-5.x.zip`
+				},
+				files: [
+					{
+						expand: true,
+						cwd: './component-5x/',
+						src: [
+							'com_food/**',
+							'com_food/**/.*',
+						],
+						dest: `/`
 					},
 				],
 			},
 		},
+		sha: {
+			docs: {
+				options: {},
+				files: [
+					{
+						src: [`docs/${gc.version}/com_food-3.x.zip`],
+						dest: `docs/${gc.version}/com_food-3.x.json`
+					},
+					{
+						src: [`docs/${gc.version}/com_food-4.x-5.x.zip`],
+						dest: `docs/${gc.version}/com_food-4.x-5.x.json`
+					},
+				]
+			}
+		}
 	});
 	grunt.registerTask('default',	gc.default);
+	//grunt.registerTask('default',	gc.dev);
 };

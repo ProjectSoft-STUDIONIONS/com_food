@@ -9,16 +9,47 @@
 defined('_JEXEC') or die();
 
 use \Joomla\CMS\Component\ComponentHelper;
+use Joomla\CMS\Language\Text;
 
 class com_foodInstallerScript {
 
 	public function preflight($type, $parent=null){
+		echo "<p>Компонент «ПИТАНИЕ» " . $type . "</p>";
 		if ($type=='update'){
 			return true;
 		}
 	}
 	
-	public function update(){}
+	public function update($parent){
+		$joomla_path = $this->realPath(JPATH_SITE);
+		$dir_path = $this->realPath(__DIR__);
+		/**
+		 * Создаём нужные директории для отображения индексации директории
+		 * Копируем содержимое
+		 * Директория food создаётся автоматически и никогда не удаляется.
+		 */
+		@mkdir($joomla_path . '/food', 0755);
+		@chmod($joomla_path . '/food', 0755);
+		@mkdir($joomla_path . '/icons-full', 0755);
+		@chmod($joomla_path . '/icons-full', 0755);
+		@mkdir($joomla_path . '/viewer', 0755);
+		@chmod($joomla_path . '/viewer', 0755);
+		/**
+		 * Копирование директорий
+		 */
+		$this->copyDir($dir_path . "/icons-full", $joomla_path . '/icons-full');
+		$this->copyDir($dir_path . "/viewer",     $joomla_path . '/viewer');
+		/**
+		 * Перезаписываем .htaccess
+		 */
+		$htaccess = "";
+		include($dir_path . "/admin/htaccess/.htaccess.old.php");
+		@file_put_contents($joomla_path.'/food/.htaccess', $htaccess);
+		@chmod($joomla_path.'/food/.htaccess', 0644);
+		$parent->getParent()->setRedirectURL('index.php?option=com_food');
+		echo "<p>" . Text::sprintf('COM_FOOD_UPDATE_TEXT', $parent->get('manifest')->version) . "</p>";
+		// "<p>Компонент «ПИТАНИЕ» обнавлён. " . $parent->get('manifest')->version . "</p>";
+	}
 	
 	public function install($parent){
 		$joomla_path = $this->realPath(JPATH_SITE);
@@ -46,6 +77,8 @@ class com_foodInstallerScript {
 		include($dir_path . "/admin/htaccess/.htaccess.old.php");
 		@file_put_contents($joomla_path.'/food/.htaccess', $htaccess);
 		@chmod($joomla_path.'/food/.htaccess', 0644);
+		$parent->getParent()->setRedirectURL('index.php?option=com_food');
+		echo "<p>Компонент «ПИТАНИЕ» установлен." . $parent->get('manifest')->version . "</p>";
 	}
 
 	public function uninstall($parent){
@@ -87,6 +120,7 @@ class com_foodInstallerScript {
 				@file_put_contents($path, $htaccess);
 			endif;
 		endforeach;
+		echo "<p>Компонент «ПИТАНИЕ» удалён.</p>";
 	}
 
 	private function copyDir($source, $dest) {

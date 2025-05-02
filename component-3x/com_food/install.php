@@ -16,7 +16,34 @@ class com_foodInstallerScript {
 		}
 	}
 	
-	public function update(){}
+	public function update(){
+		$joomla_path = $this->realPath(JPATH_SITE);
+		$dir_path = $this->realPath(__DIR__);
+		/**
+		 * Создаём нужные директории для отображения индексации директории
+		 * Копируем содержимое
+		 * Директория food создаётся автоматически и никогда не удаляется.
+		 */
+		@mkdir($joomla_path . '/food', 0755);
+		@chmod($joomla_path . '/food', 0755);
+		@mkdir($joomla_path . '/icons-full', 0755);
+		@chmod($joomla_path . '/icons-full', 0755);
+		@mkdir($joomla_path . '/viewer', 0755);
+		@chmod($joomla_path . '/viewer', 0755);
+		/**
+		 * Копирование директорий
+		 */
+		$this->copyDir($dir_path . "/icons-full", $joomla_path . '/icons-full');
+		$this->copyDir($dir_path . "/viewer",     $joomla_path . '/viewer');
+		/**
+		 * Перезаписываем .htaccess
+		 */
+		$htaccess = "";
+		include($dir_path . "/admin/models/.htaccess.old.php");
+		@file_put_contents($joomla_path.'/food/.htaccess', $htaccess);
+		@chmod($joomla_path.'/food/.htaccess', 0644);
+		echo "<p>Компонент «ПИТАНИЕ» обнавлён.</p>";
+	}
 	
 	public function install($parent){
 		$joomla_path = $this->realPath(JPATH_SITE);
@@ -44,6 +71,7 @@ class com_foodInstallerScript {
 		include($dir_path . "/admin/models/.htaccess.old.php");
 		@file_put_contents($joomla_path.'/food/.htaccess', $htaccess);
 		@chmod($joomla_path.'/food/.htaccess', 0644);
+		echo "<p>Компонент «ПИТАНИЕ» установлен.</p>";
 	}
 
 	public function uninstall($parent){
@@ -84,6 +112,7 @@ class com_foodInstallerScript {
 				@file_put_contents($path, $htaccess);
 			endif;
 		endforeach;
+		echo "<p>Компонент «ПИТАНИЕ» удалён.</p>";
 	}
 
 	private function copyDir($source, $dest) {

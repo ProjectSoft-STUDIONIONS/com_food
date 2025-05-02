@@ -123,15 +123,6 @@ class HtmlView extends BaseHtmlView {
 				$btn->onclick("window.open('" . $this->stats["update"] . "'); return false;");
 				$btn->listCheck(false);
 			endif;
-			/*
-			ToolbarHelper::custom(
-				'food.github',
-				'github fa fa-github',
-				'github',
-				'GitHub',
-				false
-			);
-			*/
 		}
 	}
 
