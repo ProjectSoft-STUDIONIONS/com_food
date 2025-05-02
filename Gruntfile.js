@@ -47,6 +47,7 @@ module.exports = function(grunt) {
 			// Копирование вьювера
 			"copy:viewer3",
 			"copy:viewer4",
+			"copy:viewer5",
 			// Компиляция JS
 			"concat",
 			"uglify",
@@ -61,15 +62,35 @@ module.exports = function(grunt) {
 			"copy:main4",
 			"copy:food4",
 			"copy:htacces4",
+			"copy:main5",
+			"copy:food5",
+			"copy:htacces5",
 			// Копирование языка DataTable
 			"copy:json3",
 			"copy:json4",
+			"copy:json5",
+			// Copy lang
+			"copy:lang4",
+			"copy:lang5",
 			// Копирование JS
 			"copy:test3",
 			"copy:test4",
+			"copy:test5",
+
+			"copy:services4",
+			"copy:services5",
+
+			"copy:src4",
+			"copy:src5",
+
+			"copy:tmpl4",
+			"copy:tmpl5",
+
+			"copy:files_4_5",
 			// Компиляция XML
 			"pug:serv3",
 			"pug:serv4",
+			"pug:serv5",
 			// Архивирование
 			"compress",
 			// SHA
@@ -121,6 +142,10 @@ module.exports = function(grunt) {
 					'component-3x/com_food/admin/assets/css/main.css' : [
 						'src-3/less/main.less'
 					],
+					// component-4x
+					'component-4x/com_food/admin/assets/css/main.css' : [
+						'src-4-5/less/main.less'
+					],
 					// component-5x
 					'component-5x/com_food/admin/assets/css/main.css' : [
 						'src-4-5/less/main.less'
@@ -141,6 +166,10 @@ module.exports = function(grunt) {
 					'component-3x/com_food/admin/assets/css/main.css' : [
 						'component-3x/com_food/admin/assets/css/main.css'
 					],
+					// component-4x
+					'component-4x/com_food/admin/assets/css/main.css' : [
+						'component-4x/com_food/admin/assets/css/main.css'
+					],
 					// component-5x
 					'component-5x/com_food/admin/assets/css/main.css' : [
 						'component-5x/com_food/admin/assets/css/main.css'
@@ -158,6 +187,10 @@ module.exports = function(grunt) {
 					// component-3x
 					'component-3x/com_food/admin/assets/css/main.min.css' : [
 						'component-3x/com_food/admin/assets/css/main.css'
+					],
+					// component-4x
+					'component-4x/com_food/admin/assets/css/main.min.css' : [
+						'component-4x/com_food/admin/assets/css/main.css'
 					],
 					// component-5x
 					'component-5x/com_food/admin/assets/css/main.min.css' : [
@@ -190,8 +223,15 @@ module.exports = function(grunt) {
 				],
 				dest: 'component-3x/com_food/admin/assets/js/main.min.js'
 			},
-			// component-5x
+			// component-4x
 			main4: {
+				src: [
+					'src/js/main.js'
+				],
+				dest: 'component-4x/com_food/admin/assets/js/main.min.js'
+			},
+			// component-5x
+			main5: {
 				src: [
 					'src/js/main.js'
 				],
@@ -254,10 +294,43 @@ module.exports = function(grunt) {
 					}
 				]
 			},
-			// component-5x
+			// component-4x
 			main4: {
 				options : {
-					banner : "const componentName = `" + cName + " Joomla CMS 4.x-5.x`, Developer = `ProjectSoft`;"
+					banner : "const componentName = `" + cName + " Joomla CMS 4.x`, Developer = `ProjectSoft`;"
+				},
+				files: [
+					{
+						expand: true,
+						flatten : true,
+						src: [
+							'component-4x/com_food/admin/assets/js/main.min.js'
+						],
+						dest: 'component-4x/com_food/admin/assets/js',
+						filter: 'isFile',
+					}
+				]
+			},
+			viewer4: {
+				files: [
+					{
+						expand: true,
+						flatten : true,
+						src: [
+							'component-4x/com_food/viewer/app.js'
+						],
+						dest: 'component-4x/com_food/viewer',
+						filter: 'isFile',
+						rename: function (dst, src) {
+							return dst + '/' + src.replace('.js', '.min.js');
+						}
+					}
+				]
+			},
+			// component-5x
+			main5: {
+				options : {
+					banner : "const componentName = `" + cName + " Joomla CMS 5.x`, Developer = `ProjectSoft`;"
 				},
 				files: [
 					{
@@ -271,7 +344,7 @@ module.exports = function(grunt) {
 					}
 				]
 			},
-			viewer4: {
+			viewer5: {
 				files: [
 					{
 						expand: true,
@@ -304,7 +377,8 @@ module.exports = function(grunt) {
 							"license": PACK.license,
 							"author": author,
 							"authorEmail": authorEmail,
-							"authorUrl": authorUrl
+							"authorUrl": authorUrl,
+							"versZip": "3.x"
 						}
 					}
 				},
@@ -325,7 +399,7 @@ module.exports = function(grunt) {
 					},
 				]
 			},
-			// component-5x
+			// component-4x
 			serv4: {
 				options: {
 					doctype: 'html',
@@ -340,7 +414,45 @@ module.exports = function(grunt) {
 							"license": PACK.license,
 							"author": author,
 							"authorEmail": authorEmail,
-							"authorUrl": authorUrl
+							"authorUrl": authorUrl,
+							"versZip": "4.x"
+						}
+					}
+				},
+				files: [
+					{
+						expand: true,
+						cwd: __dirname + '/src-4-5/pug/',
+						src: [ 'food.pug' ],
+						dest: __dirname + '/component-4x/com_food/',
+						ext: '.xml'
+					},
+					{
+						expand: true,
+						cwd: __dirname + '/src-4-5/pug/',
+						src: [ 'config.pug', 'access.pug' ],
+						dest: __dirname + '/component-4x/com_food/admin/',
+						ext: '.xml'
+					},
+				]
+			},
+			// component-5x
+			serv5: {
+				options: {
+					doctype: 'html',
+					client: false,
+					pretty: '\t',
+					separator:  '\n',
+					data: function(dest, src) {
+						return {
+							"version": PACK.version,
+							"create": grunt.template.date((new Date()).getTime(), "yyyy-mm-dd"),
+							"description": PACK.description.replace(/(com_food|food)/g, "<code>$1</code>"),
+							"license": PACK.license,
+							"author": author,
+							"authorEmail": authorEmail,
+							"authorUrl": authorUrl,
+							"versZip": "5.x"
 						}
 					}
 				},
@@ -393,10 +505,10 @@ module.exports = function(grunt) {
 					pretty: '\t',
 					separator:  '\n',
 					data: function(dest, src) {
-						let json = grunt.file.readJSON(__dirname + '/docs/' + PACK.version + '/com_food-4.x-5.x.json');
+						let json = grunt.file.readJSON(__dirname + '/docs/' + PACK.version + '/com_food-4.x.json');
 						json.joomla = "4.[0123456789]";
 						json.author = author;
-						json.zip = "com_food-4.x-5.x.zip";
+						json.zip = "com_food-4.x.zip";
 						json.version = PACK.version;
 						return json;
 					}
@@ -418,10 +530,10 @@ module.exports = function(grunt) {
 					pretty: '\t',
 					separator:  '\n',
 					data: function(dest, src) {
-						let json = grunt.file.readJSON(__dirname + '/docs/' + PACK.version + '/com_food-4.x-5.x.json');
+						let json = grunt.file.readJSON(__dirname + '/docs/' + PACK.version + '/com_food-5.x.json');
 						json.joomla = "5.[0123456789]";
 						json.author = author;
-						json.zip = "com_food-4.x-5.x.zip";
+						json.zip = "com_food-5.x.zip";
 						json.version = PACK.version;
 						return json;
 					}
@@ -449,6 +561,12 @@ module.exports = function(grunt) {
 				expand: true,
 				cwd: 'bower_components/bootstrap/dist/fonts',
 				src: '**',
+				dest: 'component-4x/com_food/admin/assets/fonts/',
+			},
+			main5: {
+				expand: true,
+				cwd: 'bower_components/bootstrap/dist/fonts',
+				src: '**',
 				dest: 'component-5x/com_food/admin/assets/fonts/',
 			},
 			// food
@@ -459,6 +577,12 @@ module.exports = function(grunt) {
 				dest: 'component-3x/com_food/icons-full/',
 			},
 			food4: {
+				expand: true,
+				cwd: 'bower_components/food/icons-full',
+				src: '**',
+				dest: 'component-4x/com_food/icons-full/',
+			},
+			food5: {
 				expand: true,
 				cwd: 'bower_components/food/icons-full',
 				src: '**',
@@ -475,6 +599,12 @@ module.exports = function(grunt) {
 				expand: true,
 				cwd: 'bower_components/food/viewer',
 				src: '**',
+				dest: 'component-4x/com_food/viewer/',
+			},
+			viewer5: {
+				expand: true,
+				cwd: 'bower_components/food/viewer',
+				src: '**',
 				dest: 'component-5x/com_food/viewer/',
 			},
 			// htaccess
@@ -485,6 +615,12 @@ module.exports = function(grunt) {
 				dest: 'component-3x/com_food/admin/models/',
 			},
 			htacces4: {
+				expand: true,
+				cwd: 'htacces',
+				src: '.*',
+				dest: 'component-4x/com_food/admin/htaccess/',
+			},
+			htacces5: {
 				expand: true,
 				cwd: 'htacces',
 				src: '.*',
@@ -501,6 +637,12 @@ module.exports = function(grunt) {
 				expand: true,
 				cwd: 'lang_data',
 				src: '**',
+				dest: 'component-4x/com_food/admin/assets/js/',
+			},
+			json5: {
+				expand: true,
+				cwd: 'lang_data',
+				src: '**',
 				dest: 'component-5x/com_food/admin/assets/js/',
 			},
 			// jquery
@@ -514,8 +656,121 @@ module.exports = function(grunt) {
 				expand: true,
 				cwd: 'test/js',
 				src: '**',
+				dest: 'component-4x/com_food/admin/assets/js/',
+			},
+			test5: {
+				expand: true,
+				cwd: 'test/js',
+				src: '**',
 				dest: 'component-5x/com_food/admin/assets/js/',
-			}
+			},
+			lang4: {
+				expand: true,
+				cwd: 'src-4-5/lang',
+				src: '**',
+				dest: 'component-4x/com_food/admin/languages/',
+			},
+			lang5: {
+				expand: true,
+				cwd: 'src-4-5/lang',
+				src: '**',
+				dest: 'component-5x/com_food/admin/languages/',
+			},
+			services4: {
+				expand: true,
+				cwd: 'src-4-5/services',
+				src: '**',
+				dest: 'component-4x/com_food/admin/services/',
+			},
+			services5: {
+				expand: true,
+				cwd: 'src-4-5/services',
+				src: '**',
+				dest: 'component-5x/com_food/admin/services/',
+			},
+			src4: {
+				expand: true,
+				cwd: 'src-4-5/src',
+				src: '**',
+				dest: 'component-4x/com_food/admin/src/',
+			},
+			src5: {
+				expand: true,
+				cwd: 'src-4-5/src',
+				src: '**',
+				dest: 'component-5x/com_food/admin/src/',
+			},
+			tmpl4: {
+				expand: true,
+				cwd: 'src-4-5/tmpl',
+				src: '**',
+				dest: 'component-4x/com_food/admin/tmpl/',
+			},
+			tmpl5: {
+				expand: true,
+				cwd: 'src-4-5/tmpl',
+				src: '**',
+				dest: 'component-5x/com_food/admin/tmpl/',
+			},
+			// files
+			files_4_5: {
+				files: [
+					// includes files within path
+					{
+						expand: true,
+						cwd: 'src-4-5',
+						src: ['\.*'],
+						dest: 'component-4x/com_food/admin/',
+					},
+					{
+						expand: true,
+						cwd: 'src-4-5',
+						src: ['\.*'],
+						dest: 'component-5x/com_food/admin/',
+					},
+					{
+						expand: true,
+						cwd: 'src-4-5',
+						src: ['install.php'],
+						dest: 'component-4x/com_food/',
+					},
+					{
+						expand: true,
+						cwd: 'src-4-5',
+						src: ['install.php'],
+						dest: 'component-5x/com_food/',
+					},
+					//{
+					//	expand: true,
+					//	cwd: 'src-4-5',
+					//	src: ['install.php'],
+					//	dest: 'component-4x/com_food/',
+					//},
+					/*
+					// includes files within path and its sub-directories
+					{
+						expand: true,
+						src: ['path/**'],
+						dest: 'dest/'
+					},
+					// makes all src relative to cwd
+					{
+						expand: true,
+						cwd: 'path/',
+						src: ['**'],
+						dest: 'dest/'
+					},
+					// flattens results to a single level
+					{
+						expand: true,
+						flatten: true,
+						src: ['path/**'],
+							dest: 'dest/',
+						filter: 'isFile'
+					},
+					*/
+				],
+			},
 		},
 		compress: {
 			// component-3x
@@ -539,7 +794,24 @@ module.exports = function(grunt) {
 			// component-5x
 			main4: {
 				options: {
-					archive: 'com_food-4.x-5.x.zip'
+					archive: 'com_food-4.x.zip'
+				},
+				files: [
+					{
+						expand: true,
+						cwd: './component-4x/',
+						src: [
+							'com_food/**',
+							'com_food/**/.*',
+						],
+						dest: `/`
+					},
+				],
+			},
+			// component-5x
+			main5: {
+				options: {
+					archive: 'com_food-5.x.zip'
 				},
 				files: [
 					{
@@ -571,10 +843,27 @@ module.exports = function(grunt) {
 					},
 				],
 			},
-			// component-5x
+			// component-4x
 			docs4: {
 				options: {
-					archive: `docs/${gc.version}/com_food-4.x-5.x.zip`
+					archive: `docs/${gc.version}/com_food-4.x.zip`
+				},
+				files: [
+					{
+						expand: true,
+						cwd: './component-4x/',
+						src: [
+							'com_food/**',
+							'com_food/**/.*',
+						],
+						dest: `/`
+					},
+				],
+			},
+			// component-4x
+			docs5: {
+				options: {
+					archive: `docs/${gc.version}/com_food-5.x.zip`
 				},
 				files: [
 					{
@@ -598,8 +887,12 @@ module.exports = function(grunt) {
 						dest: `docs/${gc.version}/com_food-3.x.json`
 					},
 					{
-						src: [`docs/${gc.version}/com_food-4.x-5.x.zip`],
-						dest: `docs/${gc.version}/com_food-4.x-5.x.json`
+						src: [`docs/${gc.version}/com_food-4.x.zip`],
+						dest: `docs/${gc.version}/com_food-4.x.json`
+					},
+					{
+						src: [`docs/${gc.version}/com_food-5.x.zip`],
+						dest: `docs/${gc.version}/com_food-5.x.json`
 					},
 				]
 			}

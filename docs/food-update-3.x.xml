@@ -6,13 +6,10 @@
 		<element>com_food</element>
 		<type>component</type>
 		<version>1.2.1</version>
-		<infourl title="Сервер обновления компонента «ПИТАНИЕ»">https://</infourl>
+		<infourl title="Сервер обновления компонента «ПИТАНИЕ»">https://projectsoft-studionions.github.io/com_food/</infourl>
 		<downloads>
-			<downloadurl type="full" format="zip">https://1.2.1/com_food-3.x.zip</downloadurl>
+			<downloadurl type="full" format="zip">https://projectsoft-studionions.github.io/com_food/1.2.1/com_food-3.x.zip</downloadurl>
 		</downloads>
-		<sha256>6054d7aaf72011afbfdbf1da74565def5cdaae1c603ccd3cc2332543dbb82b80</sha256>
-		<sha384>b2c76655075edc6c6459ddae413967ad4743617cb18c128260e1dfaa84af8cc8de50d9eeb7c9b709ef954221e19bcfe7</sha384>
-		<sha512>a06810533c4dacfe705d744d460c4c2e8507987a9c5003e115c8c3f318bdcd4c7b7979676e4feece332a37730da0e63ed9db43db76153d9a1e9498a2b0ac8916</sha512>
 		<targetplatform name="joomla" version="3.[0123456789]"></targetplatform>
 		<maintainer>ProjectSoft</maintainer>
 		<maintainerurl>https://projectsoft.ru/</maintainerurl>
