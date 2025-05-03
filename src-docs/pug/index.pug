@@ -1,4 +1,5 @@
 doctype html
+- var versions = ["1.2.0"];
 html(lang="ru")
 	head
 		title
@@ -22,7 +23,6 @@ html(lang="ru")
 		link(rel="icon" type="image/png" href="/favicon.png" sizes="256x256")
 		link(rel="shortcut icon" href="/favicon.ico")
 		meta(name="apple-mobile-web-app-title" content="Компонент «ПИТАНИЕ» для Joomla")
-		//- link(type="text/css" rel="stylesheet" href="main.min.css?" + hash)
 		style
 			|:root {
 			|	--pd: 15px;
@@ -31,6 +31,9 @@ html(lang="ru")
 			|*, *::before, *::after {
 			|	box-sizing: border-box;
 			|}
+			|header, main, article, footer {
+			|	display: block;
+			|}
 			|html, body {
 			|	margin: 0;
 			|}
@@ -38,7 +41,6 @@ html(lang="ru")
 			|	display: flex;
 			|	flex-direction: column;
 			|	min-height: 100vh;
-			|	padding-left: var(--pd);
 			|}
 			|body > fotter, body > header {
 			|	flex: 0 0 auto;
@@ -90,24 +92,45 @@ html(lang="ru")
 				article
 					head
 						h3
-							|1.2.0
+							|Последняя версия
 					div
 						ul
 							li
 								|Для Joomla 3.x
 								br
-								a.btn(href="https://github.com/ProjectSoft-STUDIONIONS/com_food/releases/download/1.2.0/com_food-3.x.zip" download="1.2.0-com_food-3.x.zip")
+								a.btn(href="https://github.com/ProjectSoft-STUDIONIONS/com_food/releases/latest/download/com_food-3.x.zip" download="com_food-3.x.zip")
 									|Скачать
 							li
 								|Для Joomla 4.x
 								br
-								a.btn(href="https://github.com/ProjectSoft-STUDIONIONS/com_food/releases/download/1.2.0/com_food-4.x.zip" download="1.2.0-com_food-4.x.zip")
+								a.btn(href="https://github.com/ProjectSoft-STUDIONIONS/com_food/releases/latest/download/com_food-4.x.zip" download="com_food-4.x.zip")
 									|Скачать
 							li
 								|Для Joomla 5.x
 								br
-								a.btn(href="https://github.com/ProjectSoft-STUDIONIONS/com_food/releases/download/1.2.0/com_food-5.x.zip" download="1.2.0-com_food-5.x.zip")
+								a.btn(href="https://github.com/ProjectSoft-STUDIONIONS/com_food/releases/latest/download/com_food-5.x.zip" download="com_food-5.x.zip")
 									|Скачать
+				each version in versions
+					article
+						head
+							h3= version
+						div
+							ul
+								li
+									|Для Joomla 3.x
+									br
+									a.btn(href="https://github.com/ProjectSoft-STUDIONIONS/com_food/releases/download/" + version + "/com_food-3.x.zip" download=version+"-com_food-3.x.zip")
+										|Скачать
+								li
+									|Для Joomla 4.x
+									br
+									a.btn(href="https://github.com/ProjectSoft-STUDIONIONS/com_food/releases/download/" + version + "/com_food-4.x.zip" download=version+"-com_food-4.x.zip")
+										|Скачать
+								li
+									|Для Joomla 5.x
+									br
+									a.btn(href="https://github.com/ProjectSoft-STUDIONIONS/com_food/releases/download/" + version + "/com_food-5.x.zip" download=version+"-com_food-5.x.zip")
+										|Скачать
 		footer
 			a(href="" target="_blank")
 				|ProjectSoft
