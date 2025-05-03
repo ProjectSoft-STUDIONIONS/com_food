@@ -13,6 +13,10 @@ package-lock.json
 **/**/food.xml
 **/**/config.xml
 **/**/access.xml
+**/**/admin/src/Controller/*.*
+**/**/admin/src/View/*.*
+**/**/admin/src/services/*.*
+**/**/admin/tmpl/**/*.*
 
 # test or temp
 test
