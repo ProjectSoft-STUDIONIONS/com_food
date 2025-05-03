@@ -496,6 +496,13 @@ module.exports = function(grunt) {
 						dest: __dirname + '/docs/',
 						ext: '-3.x.xml'
 					},
+					{
+						expand: true,
+						cwd: __dirname + '/src-docs/pug/',
+						src: [ 'index.pug' ],
+						dest: __dirname + '/docs/',
+						ext: '.html'
+					},
 				]
 			},
 			update4: {

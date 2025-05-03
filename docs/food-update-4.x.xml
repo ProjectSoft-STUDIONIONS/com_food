@@ -5,14 +5,14 @@
 		<description>Компонент <code>com_food</code> для Joomla CMS 4.x. Обслуживания директории food сайта школы. Актуально для школ РФ. Предназначен для использования в административной панели Joomla CMS 4.x.</description>
 		<element>com_food</element>
 		<type>component</type>
-		<version>1.2.3</version>
+		<version>1.2.0</version>
 		<infourl title="Сервер обновления компонента «ПИТАНИЕ»">https://projectsoft-studionions.github.io/com_food/</infourl>
 		<downloads>
-			<downloadurl type="full" format="zip">https://projectsoft-studionions.github.io/com_food/1.2.3/com_food-4.x.zip</downloadurl>
+			<downloadurl type="full" format="zip">https://projectsoft-studionions.github.io/com_food/1.2.0/com_food-4.x.zip</downloadurl>
 		</downloads>
-		<sha256>6bb5b72ebe40add889cc6a11ab44f5be71b956740551d2ab3cc839625e9edba1</sha256>
-		<sha384>93552bf86ffb042d7404af79361adeef4811c83081985303910f864d45dde3300787808e201eaeed52585355400aa9fc</sha384>
-		<sha512>1b9c6dd6af04d35ce20d4a087476eb4023adeabd5535b5431cd9e220020ccf3050d57fb31e47ad464d85f1291fdbce5e4b14a1cac5500498e88db52ddcefe4d1</sha512>
+		<sha256>dd5c51401a96cb07fe8bcc25cadcefd1011a4fed6cfef820ad8bf8b271364ebf</sha256>
+		<sha384>0ed803741562a1b98a1ef7298f6cf9319e0bec43adf1c8667e2baee3d32b17c38f2604f764cb82764eacbeafa05e19a4</sha384>
+		<sha512>61167af6ec2995e63e16c57deef3bbac9edd74fb5ee6e4d9bfc289614dfd16af071f60d438c498fb80320145dd44cb797818047540bcc4d6be0428f84fded2ba</sha512>
 		<targetplatform name="joomla" version="4.[0123456789]"></targetplatform>
 		<maintainer>ProjectSoft</maintainer>
 		<maintainerurl>https://projectsoft.ru/</maintainerurl>
