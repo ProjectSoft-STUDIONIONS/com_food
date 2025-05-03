@@ -33,6 +33,7 @@ temp
 
 # htaccess php
 component*/**/.htaccess.*.*
+docs/**/*.json
 
 !docs/*.*
 !docs/**/*.*
