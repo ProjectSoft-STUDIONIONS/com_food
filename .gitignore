@@ -35,8 +35,8 @@ temp
 component*/**/.htaccess.*.*
 docs/**/*.json
 docs/**/*.zip
+docs/*.xml
 
-!docs/*.xml
 !docs/*.html
 !docs/**/*.js
 !docs/**/*.css
