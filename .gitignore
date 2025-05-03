@@ -15,7 +15,10 @@ package-lock.json
 **/**/access.xml
 **/**/admin/src/Controller/*.*
 **/**/admin/src/View/*.*
-**/**/admin/src/services/*.*
+**/**/admin/services/*.*
+**/**/admin/src/Controller/**/*.*
+**/**/admin/src/View/**/*.*
+**/**/admin/services/**/*.*
 **/**/admin/tmpl/**/*.*
 
 # test or temp
