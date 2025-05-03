@@ -38,30 +38,6 @@ jobs:
       - name: Сборка компонента
         run: |
           grunt
-      - name: Загрузка реализа для Joomla CMS 3.x
-        uses: svenstaro/upload-release-action@v2
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: com_food-3.x.zip
-          tag: ${{ github.ref }}
-          overwrite: true
-          file_glob: true
-      - name: Загрузка реализа для Joomla CMS 4.x
-        uses: svenstaro/upload-release-action@v2
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: com_food-4.x.zip
-          tag: ${{ github.ref }}
-          overwrite: true
-          file_glob: true
-      - name: Загрузка реализа для Joomla CMS 5.x
-        uses: svenstaro/upload-release-action@v2
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: com_food-5.x.zip
-          tag: ${{ github.ref }}
-          overwrite: true
-          file_glob: true
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
