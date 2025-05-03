@@ -23,6 +23,45 @@ html(lang="ru")
 		link(rel="shortcut icon" href="/favicon.ico")
 		meta(name="apple-mobile-web-app-title" content="Компонент «ПИТАНИЕ» для Joomla")
 		//- link(type="text/css" rel="stylesheet" href="main.min.css?" + hash)
+		style
+			|:root {
+			|	--pd: 15px
+			|}
+			|*, *::before, *::after {
+			|	box-sizing: border-box;
+			|}
+			|html, body {
+			|	margin: 0;
+			|}
+			|body {
+			|	display: flex;
+			|	flex-direction: column;
+			|	min-height: 100vh;
+			|	padding-left: var(--pd);
+			|}
+			|body > fotter, body > header {
+			|	flex: 0 0 auto;
+			|}
+			|body > main {
+			|	flex: 1 0 auto;
+			|	padding-top: 30px;
+			|	padding-left: var(--pd);
+			|	padding-right: var(--pd);
+			|	padding-bottom: 2em;
+			|	transition: padding .3sease;
+			|}
+			|.articles {
+			|	display: flex;
+			|	flex-direction: row;
+			|	flex-wrap: wrap;
+			|
+			|}
+			|.articles article {
+			|	display: flex;
+			|	flex-direction: column;
+			|	padding: var(--pd);
+			|	box-shadow: 0 0 5px #000;
+			|}
 	body
 		header
 			h1
@@ -32,7 +71,7 @@ html(lang="ru")
 		main
 			h2
 				|Версии
-			div
+			div.articles
 				article
 					head
 						h3
@@ -40,14 +79,20 @@ html(lang="ru")
 					div
 						ul
 							li
-								a(href="1.2.0/com_food-3.x.zip")
-									|com_food для joomla 3.x
+								|Для Joomla 3.x
+								br
+								a.btn(href="1.2.0/com_food-3.x.zip" download="1.2.0-com_food-3.x.zip")
+									|Скачать
 							li
-								a(href="1.2.0/com_food-4.x.zip")
-									|com_food для joomla 4.x
+								|Для Joomla 4.x
+								br
+								a.btn(href="1.2.0/com_food-4.x.zip" download="1.2.0-com_food-4.x.zip")
+									|Скачать
 							li
-								a(href="1.2.0/com_food-5.x.zip")
-									|com_food для joomla 5.x
+								|Для Joomla 5.x
+								br
+								a.btn(href="1.2.0/com_food-5.x.zip" download="1.2.0-com_food-5.x.zip")
+									|Скачать
 		footer
 			a(href="" target="_blank")
 				|ProjectSoft

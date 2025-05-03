@@ -21,6 +21,46 @@
 		<link rel="icon" type="image/png" href="/favicon.png" sizes="256x256">
 		<link rel="shortcut icon" href="/favicon.ico">
 		<meta name="apple-mobile-web-app-title" content="Компонент «ПИТАНИЕ» для Joomla">
+		<style>
+			:root {
+				--pd: 15px
+			}
+			*, *::before, *::after {
+				box-sizing: border-box;
+			}
+			html, body {
+				margin: 0;
+			}
+			body {
+				display: flex;
+				flex-direction: column;
+				min-height: 100vh;
+				padding-left: var(--pd);
+			}
+			body > fotter, body > header {
+				flex: 0 0 auto;
+			}
+			body > main {
+				flex: 1 0 auto;
+				padding-top: 30px;
+				padding-left: var(--pd);
+				padding-right: var(--pd);
+				padding-bottom: 2em;
+				transition: padding .3sease;
+			}
+			.articles {
+				display: flex;
+				flex-direction: row;
+				flex-wrap: wrap;
+			
+			}
+			.articles article {
+				display: flex;
+				flex-direction: column;
+				padding: var(--pd);
+				box-shadow: 0 0 5px #000;
+			}
+		</style>
 	</head>
 	<body>
 		<header>
@@ -29,16 +69,16 @@
 		</header>
 		<main>
 			<h2>Версии</h2>
-			<div>
+			<div class="articles">
 				<article>
 					<head>
 						<h3>1.2.0</h3>
 					</head>
 					<div>
 						<ul>
-							<li><a href="1.2.0/com_food-3.x.zip">com_food для joomla 3.x</a></li>
-							<li><a href="1.2.0/com_food-4.x.zip">com_food для joomla 4.x</a></li>
-							<li><a href="1.2.0/com_food-5.x.zip">com_food для joomla 5.x</a></li>
+							<li>Для Joomla 3.x<br><a class="btn" href="1.2.0/com_food-3.x.zip" download="1.2.0-com_food-3.x.zip">Скачать</a></li>
+							<li>Для Joomla 4.x<br><a class="btn" href="1.2.0/com_food-4.x.zip" download="1.2.0-com_food-4.x.zip">Скачать</a></li>
+							<li>Для Joomla 5.x<br><a class="btn" href="1.2.0/com_food-5.x.zip" download="1.2.0-com_food-5.x.zip">Скачать</a></li>
 						</ul>
 					</div>
 				</article>
