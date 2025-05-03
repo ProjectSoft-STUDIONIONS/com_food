@@ -77,7 +77,7 @@
 				width: 100vw;
 				flex: 1 0 auto;
 				transform: scale(1);
-				transition: all .3sease;
+				transition: all .3s ease;
 			}
 			.articles article:hover {
 				box-shadow: 0 0 13px #b9b9b9;
@@ -88,6 +88,18 @@
 			}
 			.articles article ul {
 				margin-bottom: 0;
+			}
+			.articles article ul li {
+				overflow: hidden;
+				border-bottom: dashed 1px #b3b1b1;
+				margin-bottom: 15px;
+				padding-bottom: 10px;
+			}
+			.articles article ul li:last-child {
+				margin-bottom: unset;
+			}
+			.articles article ul li a {
+				float: right;
 			}
 		</style>
 	</head>
