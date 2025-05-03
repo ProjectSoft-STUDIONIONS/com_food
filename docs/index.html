@@ -39,6 +39,8 @@
 				display: flex;
 				flex-direction: column;
 				min-height: 100vh;
+				font-family: Tahoma, sans-serif;
+				line-height: 1.4;
 			}
 			body > fotter, body > header {
 				flex: 0 0 auto;
@@ -76,6 +78,18 @@
 				min-width: 263px;
 				width: 100vw;
 				flex: 1 0 auto;
+				transform: scale(1);
+				transition: all .3sease;
+			}
+			.articles article:hover {
+				box-shadow: 0 0 13px #b9b9b9;
+				transform: scale(1.03);
+			}
+			.articles article h3 {
+				margin: 0;
+			}
+			.articles article ul {
+				margin-bottom: 0;
 			}
 		</style>
 	</head>
