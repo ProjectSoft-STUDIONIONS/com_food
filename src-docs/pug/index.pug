@@ -25,7 +25,8 @@ html(lang="ru")
 		//- link(type="text/css" rel="stylesheet" href="main.min.css?" + hash)
 		style
 			|:root {
-			|	--pd: 15px
+			|	--pd: 15px;
+			|	--mg: -15px;
 			|}
 			|*, *::before, *::after {
 			|	box-sizing: border-box;
@@ -41,6 +42,12 @@ html(lang="ru")
 			|}
 			|body > fotter, body > header {
 			|	flex: 0 0 auto;
+			|	padding-left: var(--pd);
+			|	padding-right: var(--pd);
+			|}
+			|body > footer {
+			|	padding-top: var(--pd);
+			|	text-align: right;
 			|}
 			|body > main {
 			|	flex: 1 0 auto;
@@ -54,13 +61,21 @@ html(lang="ru")
 			|	display: flex;
 			|	flex-direction: row;
 			|	flex-wrap: wrap;
+			|	gap: 30px;
+			|	justify-content: flex-start;
+			|	margin-left: var(--mg);
+			|	margin-right: var(--mg);
 			|
 			|}
 			|.articles article {
 			|	display: flex;
 			|	flex-direction: column;
 			|	padding: var(--pd);
-			|	box-shadow: 0 0 5px #000;
+			|	box-shadow: 0 0 5px #dcdcdc;
+			|	max-width: calc(100% / 7);
+			|	min-width: 263px;
+			|	width: 100vw;
+			|	flex: 1 0 auto;
 			|}
 	body
 		header

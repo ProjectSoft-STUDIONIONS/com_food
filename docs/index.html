@@ -23,7 +23,8 @@
 		<meta name="apple-mobile-web-app-title" content="Компонент «ПИТАНИЕ» для Joomla">
 		<style>
 			:root {
-				--pd: 15px
+				--pd: 15px;
+				--mg: -15px;
 			}
 			*, *::before, *::after {
 				box-sizing: border-box;
@@ -39,6 +40,12 @@
 			}
 			body > fotter, body > header {
 				flex: 0 0 auto;
+				padding-left: var(--pd);
+				padding-right: var(--pd);
+			}
+			body > footer {
+				padding-top: var(--pd);
+				text-align: right;
 			}
 			body > main {
 				flex: 1 0 auto;
@@ -52,13 +59,21 @@
 				display: flex;
 				flex-direction: row;
 				flex-wrap: wrap;
+				gap: 30px;
+				justify-content: flex-start;
+				margin-left: var(--mg);
+				margin-right: var(--mg);
 			
 			}
 			.articles article {
 				display: flex;
 				flex-direction: column;
 				padding: var(--pd);
-				box-shadow: 0 0 5px #000;
+				box-shadow: 0 0 5px #dcdcdc;
+				max-width: calc(100% / 7);
+				min-width: 263px;
+				width: 100vw;
+				flex: 1 0 auto;
 			}
 		</style>
 	</head>
