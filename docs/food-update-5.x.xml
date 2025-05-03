@@ -10,9 +10,9 @@
 		<downloads>
 			<downloadurl type="full" format="zip">https://projectsoft-studionions.github.io/com_food/1.2.3/com_food-5.x.zip</downloadurl>
 		</downloads>
-		<sha256>a1d032ba80ccbdea534c0efd06022a1447e025e926df65cd0063fd564df8b9ab</sha256>
-		<sha384>8eef8a8c5ba4f8d6d1f3f9239fcb70c316cfa0ff7276be76fdfdd64fe07043556456e1b1012a48bab66081e71bf06169</sha384>
-		<sha512>a878cba82a1832a5ec4626ceaba9583a9d7f3868b75ed346011026927104b813b1fbda684d5dba41ef0895943e3c4c1cf7113e88abacb2bf5dbad94c6c432c12</sha512>
+		<sha256>3c7fcad1c88cc1d33fcb48cb68c1000aa2be4f43f49ec3e3e42b5eadfdf895ed</sha256>
+		<sha384>6abf8dda817e16e0d5f3ff0cbbbf1e835689bffadfb43ef1999d6fb58675f12a7766e4ccf90ca469af43c2197beb8b1a</sha384>
+		<sha512>18bde0bfb07cf644e5bc0c8694254ecd950edcbbe1c422484b3c2d3b5c75d807a9d7c233bfcf293e01ddddba53506a0b5dcfe952ac67b4b922a62cbffa8690e0</sha512>
 		<targetplatform name="joomla" version="5.[0123456789]"></targetplatform>
 		<maintainer>ProjectSoft</maintainer>
 		<maintainerurl>https://projectsoft.ru/</maintainerurl>

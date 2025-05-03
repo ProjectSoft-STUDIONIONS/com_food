@@ -7,10 +7,6 @@ on:
     branches: ["main"]
     tags: 
       - '*'
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
@@ -33,6 +29,39 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Установка Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+      - name: NPM установка пакетов
+        run: |
+          npm i
+          bower install
+      - name: Сборка компонента
+        run: |
+          grunt
+      - name: Загрузка реализа для Joomla CMS 3.x
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: com_food-3.x.zip
+          tag: ${{ github.ref }}
+          overwrite: true
+          file_glob: true
+      - name: Загрузка реализа для Joomla CMS 4.x
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: com_food-4.x.zip
+          tag: ${{ github.ref }}
+          overwrite: true
+          file_glob: true
+      - name: Загрузка реализа для Joomla CMS 5.x
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: com_food-5.x.zip
+          tag: ${{ github.ref }}
+          overwrite: true
+          file_glob: true
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
