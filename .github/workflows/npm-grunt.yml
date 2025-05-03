@@ -1,4 +1,4 @@
-name: Сборка и публикация компонента для Joomla CMS 3.x, 4.x, 5.x
+name: Сборка и публикация com_food для Joomla CMS 3.x, 4.x, 5.x
 on:
   push:
     tags: 
@@ -23,7 +23,7 @@ jobs:
     - name: Сборка компонента
       run: |
         grunt
-    - name: Загрузка реализа для Joomla CMS 3.x
+    - name: Загрузка реализа com_food для Joomla CMS 3.x
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
@@ -31,11 +31,19 @@ jobs:
         tag: ${{ github.ref }}
         overwrite: true
         file_glob: true
-    - name: Загрузка реализа для Joomla CMS 4.x-5.x
+    - name: Загрузка реализа com_food для Joomla CMS 4.x
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: com_food-4.x-5.x.zip
+        file: com_food-4.x.zip
+        tag: ${{ github.ref }}
+        overwrite: true
+        file_glob: true
+    - name: Загрузка реализа com_food для Joomla CMS 5.x
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: com_food-5.x.zip
         tag: ${{ github.ref }}
         overwrite: true
         file_glob: true
