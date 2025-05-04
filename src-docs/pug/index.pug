@@ -1,5 +1,6 @@
 doctype html
 - var versions = ["1.2.1", "1.2.0"];
+- var joomvers = ["3", "4", "5"];
 html(lang="ru")
 	head
 		title
@@ -43,6 +44,8 @@ html(lang="ru")
 			|	min-height: 100vh;
 			|	font-family: Tahoma, sans-serif;
 			|	line-height: 1.4;
+			|	background-color: #fff;
+			|	color: #333;
 			|}
 			|body > footer, body > header {
 			|	flex: 0 0 auto;
@@ -68,7 +71,12 @@ html(lang="ru")
 			|	padding-left: var(--pd);
 			|	padding-right: var(--pd);
 			|	padding-bottom: 2em;
-			|	transition: padding .3sease;
+			|	background-color: #fff;
+			|	background-image: url('joomla.svg');
+			|	background-position: center center;
+			|	background-size: contain;
+			|	background-repeat: no-repeat;
+			|	color: #333;
 			|}
 			|.articles {
 			|	display: flex;
@@ -89,10 +97,15 @@ html(lang="ru")
 			|	flex: 1 0 auto;
 			|	transform: scale(1);
 			|	transition: all .3s ease;
+			|	overflow: hidden;
+			|	background-color: rgb(255, 255, 255, .89);
 			|}
 			|.articles article:hover {
 			|	box-shadow: 0 0 13px #b9b9b9;
 			|	transform: scale(1.03);
+			|	border-top-right-radius: 2em;
+			|	border-bottom-left-radius: 3em;
+			|	background-color: rgb(255, 255, 255, 1);
 			|}
 			|.articles article h3 {
 			|	margin: 0;
@@ -101,7 +114,6 @@ html(lang="ru")
 			|	margin-bottom: 0;
 			|}
 			|.articles article ul li {
-			|	overflow: hidden;
 			|	border-bottom: dashed 1px #b3b1b1;
 			|	margin-bottom: 15px;
 			|	padding-bottom: 10px;
@@ -109,15 +121,19 @@ html(lang="ru")
 			|.articles article ul li:last-child {
 			|	margin-bottom: unset;
 			|}
-			|.articles article ul li a {
-			|	float: right;
+			|.articles article ul li div {
+			|	display: flex;
+			|	flex-direction: column;
+			|}
+			|.text-right {
+			|	text-align: right;
 			|}
 	body
 		header
 			h1
 				|Компонент «ПИТАНИЕ» для Joomla
 			p
-				|Компонент `com_food` для Joomla CMS. Обслуживания директории `food` сайта школы. Актуально для сайтов школ РФ.
+				|Компонент `com_food` для Joomla CMS. Обслуживание директории `food` сайта школы. Актуально для сайтов школ РФ.
 		main
 			h2
 				|Версии
@@ -129,41 +145,40 @@ html(lang="ru")
 					div
 						ul
 							li
-								|Для Joomla 3.x
-								br
-								a.btn(href="https://github.com/ProjectSoft-STUDIONIONS/com_food/releases/latest/download/com_food-3.x.zip" download="com_food-3.x.zip")
-									|Скачать
+								div
+									span
+										|Для Joomla 3.x
+									span.text-right
+										a.btn(href="https://github.com/ProjectSoft-STUDIONIONS/com_food/releases/latest/download/com_food-3.x.zip" download="com_food-3.x.zip")
+											|Скачать
 							li
-								|Для Joomla 4.x
-								br
-								a.btn(href="https://github.com/ProjectSoft-STUDIONIONS/com_food/releases/latest/download/com_food-4.x.zip" download="com_food-4.x.zip")
-									|Скачать
+								div
+									span
+										|Для Joomla 4.x
+									span.text-right
+										a.btn(href="https://github.com/ProjectSoft-STUDIONIONS/com_food/releases/latest/download/com_food-4.x.zip" download="com_food-4.x.zip")
+											|Скачать
 							li
-								|Для Joomla 5.x
-								br
-								a.btn(href="https://github.com/ProjectSoft-STUDIONIONS/com_food/releases/latest/download/com_food-5.x.zip" download="com_food-5.x.zip")
-									|Скачать
+								div
+									span
+										|Для Joomla 5.x
+									span.text-right
+										a.btn(href="https://github.com/ProjectSoft-STUDIONIONS/com_food/releases/latest/download/com_food-5.x.zip" download="com_food-5.x.zip")
+											|Скачать
 				each version in versions
 					article
 						head
 							h3= version
 						div
 							ul
-								li
-									|Для Joomla 3.x
-									br
-									a.btn(href="https://github.com/ProjectSoft-STUDIONIONS/com_food/releases/download/" + version + "/com_food-3.x.zip" download=version+"-com_food-3.x.zip")
-										|Скачать
-								li
-									|Для Joomla 4.x
-									br
-									a.btn(href="https://github.com/ProjectSoft-STUDIONIONS/com_food/releases/download/" + version + "/com_food-4.x.zip" download=version+"-com_food-4.x.zip")
-										|Скачать
-								li
-									|Для Joomla 5.x
-									br
-									a.btn(href="https://github.com/ProjectSoft-STUDIONIONS/com_food/releases/download/" + version + "/com_food-5.x.zip" download=version+"-com_food-5.x.zip")
-										|Скачать
+								each jvers in joomvers
+									li
+										div
+											span
+												|Для Joomla #{jvers}
+											span.text-right
+												a.btn(href="https://github.com/ProjectSoft-STUDIONIONS/com_food/releases/download/" + version + "/com_food-" + jvers + ".x.zip" download=version+"-com_food-" + jvers + ".x.zip")
+													|Скачать
 		footer
 			a(href="" target="_blank")
 				|ProjectSoft
