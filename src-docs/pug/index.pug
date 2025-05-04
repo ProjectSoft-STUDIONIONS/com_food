@@ -88,16 +88,18 @@ html(lang="ru")
 			|	color: #333;
 			|	position: relative;
 			|}
-			|body > main > svg{
-			|	position: absolute;
-			|	z-index: 0;
-			|	width: calc(100% - 30px);
-			|	height: calc(100% - 4em);
-			|	left: 15px;
-			|}
+			|body > main > h2,
 			|.articles {
 			|	position: relative;
 			|	z-index: 2;
+			|}
+			|body > main > svg{
+			|	position: sticky;
+			|	z-index: 0;
+			|	width: 100%;
+			|	top: 30px;
+			|}
+			|.articles {
 			|	display: flex;
 			|	flex-direction: row;
 			|	flex-wrap: wrap;
