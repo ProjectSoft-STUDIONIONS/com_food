@@ -97,7 +97,9 @@ module.exports = function(grunt) {
 			"sha",
 			"pug:update3",
 			"pug:update4",
-			"pug:update5"
+			"pug:update5",
+			// docs
+			"pug:docs"
 		],
 		dev: [
 			"sha"
@@ -150,6 +152,10 @@ module.exports = function(grunt) {
 					'component-5x/com_food/admin/assets/css/main.css' : [
 						'src-4-5/less/main.less'
 					],
+					// docs
+					'src-docs/main.css': [
+						'src-docs/less/main.less'
+					]
 				}
 			},
 		},
@@ -173,7 +179,11 @@ module.exports = function(grunt) {
 					// component-5x
 					'component-5x/com_food/admin/assets/css/main.css' : [
 						'component-5x/com_food/admin/assets/css/main.css'
-					]
+					],
+					// docs
+					'src-docs/main.css': [
+						'src-docs/main.css'
+					],
 				}
 			},
 		},
@@ -195,6 +205,10 @@ module.exports = function(grunt) {
 					// component-5x
 					'component-5x/com_food/admin/assets/css/main.min.css' : [
 						'component-5x/com_food/admin/assets/css/main.css'
+					],
+					// docs
+					'src-docs/main.css': [
+						'src-docs/main.css'
 					],
 				}
 			},
@@ -496,13 +510,6 @@ module.exports = function(grunt) {
 						dest: __dirname + '/docs/',
 						ext: '-3.x.xml'
 					},
-					{
-						expand: true,
-						cwd: __dirname + '/src-docs/pug/',
-						src: [ 'index.pug' ],
-						dest: __dirname + '/docs/',
-						ext: '.html'
-					},
 				]
 			},
 			update4: {
@@ -552,6 +559,26 @@ module.exports = function(grunt) {
 						src: [ 'food-update.pug' ],
 						dest: __dirname + '/docs/',
 						ext: '-5.x.xml'
+					},
+				]
+			},
+			docs: {
+				options: {
+					doctype: 'html',
+					client: false,
+					pretty: '',
+					separator:  '',
+					data: function(dest, src) {
+						return {};
+					}
+				},
+				files: [
+					{
+						expand: true,
+						cwd: __dirname + '/src-docs/pug/',
+						src: [ 'index.pug' ],
+						dest: __dirname + '/docs/',
+						ext: '.html'
 					},
 				]
 			}
