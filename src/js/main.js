@@ -105,8 +105,13 @@
 	window.uploadFiles = function(el) {
 		let p = jq("#p_uploads"),
 			files = [...el.files],
-			out = [], str = "";
+			out = [], str = "",
+			btn = document.querySelector('.button-upload'),
+			btnDrag = document.querySelector('.dt-dragdrop-block');
+
 		if(files.length > maxCountFile) {
+			btn && (btn.innerHTML = '<i class="fa fa-floppy-o"></i>Выберите файлы для загрузки');
+			btnDrag && btnDrag.setAttribute('data-length', "0");
 			alert(Translate.sprintf('COM_FOOD_ERROR_MAX_UPLOAD',  maxCountFile));
 			document.upload.reset();
 			return !1;
@@ -120,12 +125,20 @@
 					out.push(`<code>${a.name}</code>`);
 				}else{
 					p.html("");
+					btnDrag && btnDrag.setAttribute('data-length', "0");
+					btn && (btn.innerHTML = '<i class="fa fa-floppy-o"></i>Выберите файлы для загрузки');
 					alert(Translate.sprintf('COM_FOOD_ERROR_TYPE_UPLOAD', a.name, a.type));
 					document.upload.reset();
 					return !1;
 				}
 			}
 		}
+		if(out.length){
+			btn && (btn.innerHTML = '<i class="fa fa-upload"></i>Загрузить');
+		}else{
+			btn && (btn.innerHTML = '<i class="fa fa-floppy-o"></i>Выберите файлы для загрузки');
+		}
+		btnDrag && btnDrag.setAttribute('data-length', out.length);
 		p.html(out.join(""));
 		return !1;
 	}
@@ -174,35 +187,54 @@
 	}
 	// Если находимся в директории.
 	if(searchAPI.dir) {
+		DataTable.Buttons.defaults.dom.button.liner.tag = '';
+		DataTable.Buttons.defaults.dom.container.className = ' btn-group';
+		// Изменим PDF Классы
+		DataTable.ext.buttons.pdfHtml5.className = DataTable.ext.buttons.pdfHtml5.className + ' btn';
+		// Изменим Excel Классы
+		DataTable.ext.buttons.excelHtml5.className = DataTable.ext.buttons.excelHtml5.className + ' btn';
+		// Изменим layout Классы
+		DataTable.ext.classes.layout.start = 'dt-layout-start col-lg-6';
+		DataTable.ext.classes.layout.end = 'dt-layout-end col-lg-6';
+		// Drag and Drop Block
+		DataTable.ext.buttons.dragdrop = {
+			className: 'dt-dragdrop-block btn-default btn-block',
+			text: '',
+			attr: {
+				title: 'Перетащите сюда файлы *.xlsx или *.pdf для загрузки\nИли выберите их с помощю диалога'
+			},
+			tag: "button",
+			action: function (e, dt, node, config) {
+					let uploader, input;
+					if( uploader = document.querySelector('[name="upload"]')){
+						if(input = uploader.querySelector('[type=file]')) {
+							input.click();
+						}
+					}
+				}
+		};
+
 		const url = `${location.origin}/${searchAPI.dir}/`;
+
 		jq.extend(true, DataTable.Buttons.defaults, {
 			dom: {
 				container: {
 					className: 'dt-buttons btn-group flex-wrap'
 				},
 				button: {
-					className: 'btn btn-secondary text-uppercase'
+					className: 'btn text-uppercase'
 				}
 			}
 		});
 		let table = new DataTable('.food-table .table', {
+			responsive: false,
 			// Колонки
 			columns: [
-				{
-					name: 'file'
-				},
-				{
-					name: 'permission'
-				},
-				{
-					name: 'date'
-				},
-				{
-					name: 'size'
-				},
-				{
-					name: 'actions'
-				}
+				{ name: 'file'       },
+				{ name: 'permission' },
+				{ name: 'date'       },
+				{ name: 'size'       },
+				{ name: 'actions'    }
 			],
 			// Настройки по колонкам
 			columnDefs : [
@@ -218,6 +250,11 @@
 					'targets'       : [1,2,3,4],
 					'orderable'     : !1
 				},
+				// Видимость
+				{
+					'targets': [1,4],
+					'visible': false
+				}
 			],
 			// Разрешена сортировка
 			ordering: !0,
@@ -230,44 +267,16 @@
 			stateSave: !0,
 			// Сохранение свойств определённой таблицы директории
 			stateSaveCallback: function (settings, data) {
-				// Удаляем сортировку
-				delete data.order;
-				// Удаляем данные о столбцах
-				delete data.columns;
-				// Удаляем данные о поиске
-				delete data.search;
-				// Запоминаем данные о кол-ве отражения файлов
-				let length = data.length;
-				// Данные о кол-ве отражения файлов
-				localStorage.setItem('DataTablesLength', length);
 				// Данные о состоянии данной таблице
-				// Вид имени таблицы - 'DataTables_сштые_food' - таблица директории food
+				// DataTables_com_food
 				localStorage.setItem(
-					'DataTables_' + settings.sInstance + '_' + searchAPI.dir,
+					'DataTables_com_food',
 					JSON.stringify(data)
 				);
 			},
 			// Загружаем свойства для определённой таблицы
 			stateLoadCallback: function (settings) {
-				// Данные по дефолту
-				let tempData = {
-					time: (new Date()).getTime(),
-					start: 0,
-					length: 10,
-					childRows: []
-				};
-				// Получаем данные таблицы директории даже если она null
-				let data = JSON.parse(localStorage.getItem('DataTables_' + settings.sInstance + '_' + searchAPI.dir));
-				// Получаем данные о кол-ве отражения файлов
-				let length = parseInt(localStorage.getItem('DataTablesLength'));
-				// Если null присваиваем дефолтное 10
-				length = isNaN(length) ? 10 : length;
-				// Указываем дефолтному объекту настроек кол-во отражения файлов
-				tempData.length = length;
-				// Объединяем полученные данные таблицы с дефолтными данными с перезаписью.
-				data = jq.extend({}, data, tempData);
-				// Теперь вид таблиц не будет отличаться.
-				return data;
+				return JSON.parse(localStorage.getItem('DataTables_com_food'));
 			},
 			// Меню вывода кол-ва файлов
 			lengthMenu: [
@@ -277,16 +286,68 @@
 			// Контейнеры
 			layout: {
 				// Контейнер слева: Меню вывода кол-ва файлов
-				topStart: [
-					'pageLength',
-					'search'
-				],
+				topStart: {
+					buttons: [
+						{
+							extend: 'colvis',
+							className: 'button-colvis btn-default',
+							//text: `<i class="fas fa-layer-group"></i>Видимость столбцов`,
+							columns: [1,2,3,4],
+							select: true,
+						},
+						{
+							extend: 'print',
+							className: 'button-print btn-success',
+							//text: `<i class="fas fa-print"></i>Печать`,
+							exportOptions: {
+								columns: ':visible'
+							},
+							header: true,
+							footer: true,
+							title: ``,
+							messageTop: false,
+							messageBottom: false,
+							autoPrint: true,
+						},
+						{
+							extend: 'pageLength',
+							className: 'dt-button-page-length btn-default btn-block',
+							dropIcon: true,
+							attr: {
+								style: "width: 100%"
+							}
+						}
+					],
+					'search': 'search',
+				},
 				// Контейнер справа: кнопки экспорта XLSX, PDF
 				topEnd: {
 					buttons: [
+						// Кнопка приёма файлов
+						{
+							extend: 'dragdrop',
+						},
+						// Кнопка выбора файлов
+						{
+							text: '<i class="fa fa-floppy-o"></i>Выберите файлы для загрузки',
+							className: 'button-upload btn-success',
+							action: function (e, dt, node, config) {
+								let uploader, input;
+								if( uploader = document.querySelector('[name="upload"]')){
+									if(input = uploader.querySelector('[type=file]')) {
+										if(input.files.length){
+											uploader.submit();
+										}else{
+											input.click();
+										}
+									}
+								}
+							}
+						},
 						// Кнопка экспорта XLSX
 						{
 							extend: 'excel',
+							className: 'btn-default',
 							text: Translate.sprintf('COM_FOOD_EXPORT_XLSX'),
 							download: '',
 							filename: Translate.sprintf('COM_FOOD_EXPORT_TO_XLSX', searchAPI.dir),
@@ -375,20 +436,11 @@
 								// Присваиваем
 								xlsx["[Content_Types].xml"] = contentType;
 							},
-							action: function (e, dt, node, config, cb) {
-								DataTable.ext.buttons.excelHtml5.action.call(
-									this,
-									e,
-									dt,
-									node,
-									config,
-									cb
-								);
-							}
 						},
 						// Кнопка экспорта PDF
 						{
 							extend: 'pdf',
+							className: 'btn-default',
 							text: Translate.sprintf('COM_FOOD_EXPORT_PDF'),
 							download: '',
 							filename: Translate.sprintf('COM_FOOD_EXPORT_TO_PDF', searchAPI.dir),
@@ -442,19 +494,14 @@
 								// Текст контента.
 								doc.content[0].text = title.join('\r\n');
 							},
-							action: function (e, dt, node, config, cb) {
-								DataTable.ext.buttons.pdfHtml5.action.call(
-									this,
-									e,
-									dt,
-									node,
-									config,
-									cb
-								);
-							}
 						}
 					]
-				}
+				},
+				bottomStart: [],
+				bottomEnd: [
+					"info",
+					"paging"
+				]
 			},
 			// Загружаем язык
 			// Нужно сделать определение и загрузка нужного языка панели.
@@ -462,5 +509,48 @@
 				url: '/administrator/components/com_food/assets/js/' + Lang + '.json',
 			}
 		});
+		setTimeout(() => {
+			const dropArea = document.querySelector('.dt-dragdrop-block'),
+				inputFile = document.querySelector('input[type="file"]'),
+				preventDefaults = function(e) {
+					e.preventDefault();
+					e.stopPropagation();
+				},
+				handleDrop = function(e) {
+					inputFile.files = e.dataTransfer.files;
+					inputFile.dispatchEvent(new Event('change'));
+				},
+				highlight = function(e) {
+					dropArea.classList.add('drophandle');
+				},
+				unhighlight = function(e) {
+					dropArea.classList.remove('drophandle');
+				};
+			['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+				dropArea.addEventListener(eventName, preventDefaults, false)
+				document.body.addEventListener(eventName, preventDefaults, false)
+			});
+
+			['dragenter', 'dragover'].forEach(eventName => {
+				dropArea.addEventListener(eventName, highlight, false);
+			});
+
+			['dragleave', 'drop'].forEach(eventName => {
+				dropArea.addEventListener(eventName, unhighlight, false);
+			});
+
+			// Handle dropped files
+			dropArea.addEventListener('drop', handleDrop, false);
+		}, 1000);
+		setTimeout(() => {
+			// 4.x - 5.x
+			[...document.querySelectorAll('.joomla-alert--close')].forEach((el)=>{
+				el.click();
+			});
+			// 3.x
+			[...document.querySelectorAll('.alert .close')].forEach((el)=>{
+				el.click();
+			});
+		}, 5000);
 	}
 }(jQuery));

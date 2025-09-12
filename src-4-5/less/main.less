@@ -1,35 +1,44 @@
+
+// Core variables and mixins
+@import "../../bower_components/bootstrap/less/variables.less";
+@import "../../bower_components/bootstrap/less/mixins.less";
+
+@import "../../bower_components/bootstrap/less/glyphicons.less";
+
+// Core CSS
+@import "../../bower_components/bootstrap/less/scaffolding.less";
+@import "../../bower_components/bootstrap/less/type.less";
+@import "../../bower_components/bootstrap/less/code.less";
+@import "../../bower_components/bootstrap/less/grid.less";
+@import "../../bower_components/bootstrap/less/tables.less";
+@import "../../bower_components/bootstrap/less/forms.less";
+@import "../../bower_components/bootstrap/less/buttons.less";
+@import "../../bower_components/bootstrap/less/button-groups.less";
+@import "../../bower_components/bootstrap/less/input-groups.less";
+// Theme
+@import "../../bower_components/bootstrap/less/theme.less";
+// DataTables
+@import (less) "../../bower_components/datatables.net-bs/css/dataTables.bootstrap.css";
+@import (less) "../../bower_components/datatables.net-buttons-bs/css/buttons.bootstrap.css";
 #content {
-	// Core variables and mixins
-	@import "../../bower_components/bootstrap/less/variables.less";
-	@import "../../bower_components/bootstrap/less/mixins.less";
-
-	// Reset and dependencies
-	@import "../../bower_components/bootstrap/less/glyphicons.less";
-
-	// Core CSS
-	@import "../../bower_components/bootstrap/less/scaffolding.less";
-	@import "../../bower_components/bootstrap/less/type.less";
-	@import "../../bower_components/bootstrap/less/code.less";
-	@import "../../bower_components/bootstrap/less/grid.less";
-	@import "../../bower_components/bootstrap/less/tables.less";
-	@import "../../bower_components/bootstrap/less/forms.less";
-	
-	//@import "../../bower_components/bootstrap/less/buttons.less";
-
-	// Components
-	//@import "../../bower_components/bootstrap/less/button-groups.less";
-	//@import "../../bower_components/bootstrap/less/input-groups.less";
-	//@import "../../bower_components/bootstrap/less/labels.less";
-	//@import "../../bower_components/bootstrap/less/badges.less";
-
-	// DataTables
-	@import (less) "../../bower_components/datatables.net-bs/css/dataTables.bootstrap.css";
-
-	@import "theme.less";
-	@import "style.less";
-	@import "../../src/less/food.less";
+		@import "../../bower_components/bootstrap/less/breadcrumbs.less";
+		@import "../../bower_components/bootstrap/less/pagination.less";
+		@import "../../bower_components/bootstrap/less/pager.less";
+		@import "../../bower_components/bootstrap/less/labels.less";
+		@import "../../bower_components/bootstrap/less/badges.less";
+		@import "../../bower_components/bootstrap/less/list-group.less";
+		@import "../../bower_components/bootstrap/less/panels.less";
+		@import "../../bower_components/bootstrap/less/close.less";
 }
 
+@import "theme.less";
+@import "style.less";
+@import "../../src/less/food.less";
+
+html {
+	font-size: inherit;
+	-webkit-tap-highlight-color: transparent;
+}
 
 .button-github {
 	&.fa-github {
@@ -39,3 +48,5 @@
 		}
 	}
 }
+
+

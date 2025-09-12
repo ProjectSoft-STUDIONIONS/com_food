@@ -42,6 +42,19 @@ module.exports = function(grunt) {
 
 	var gc = {
 		version: `${PACK.version}`,
+		src: [
+			'bower_components/jquery/dist/jquery.js',
+			'bower_components/pdfmake/build/pdfmake.js',
+			'bower_components/jszip/dist/jszip.js',
+			'bower_components/pdfmake/build/vfs_fonts.js',
+			'bower_components/datatables.net/js/dataTables.js',
+			'bower_components/datatables.net-buttons/js/dataTables.buttons.js',
+			'bower_components/datatables.net-buttons/js/buttons.html5.js',
+			'bower_components/datatables.net-buttons/js/buttons.colVis.js',
+			'bower_components/datatables.net-buttons/js/buttons.print.js',
+			'bower_components/datatables.net-bs/js/dataTables.bootstrap.js',
+			'bower_components/datatables.net-buttons-bs/js/buttons.bootstrap.js'
+		],
 		default: [
 			"clean",
 			// Копирование вьювера
@@ -142,14 +155,23 @@ module.exports = function(grunt) {
 				files : {
 					// component-3x
 					'component-3x/com_food/admin/assets/css/main.css' : [
+						//'bower_components/bootstrap/less/bootstrap.less',
+						'bower_components/datatables.net-bs/css/dataTables.bootstrap.css',
+						'bower_components/datatables.net-buttons-bs/css/buttons.bootstrap.css',
 						'src-3/less/main.less'
 					],
 					// component-4x
 					'component-4x/com_food/admin/assets/css/main.css' : [
+						//'bower_components/bootstrap/less/bootstrap.less',
+						'bower_components/datatables.net-bs/css/dataTables.bootstrap.css',
+						'bower_components/datatables.net-buttons-bs/css/buttons.bootstrap.css',
 						'src-4-5/less/main.less'
 					],
 					// component-5x
 					'component-5x/com_food/admin/assets/css/main.css' : [
+						//'bower_components/bootstrap/less/bootstrap.less',
+						'bower_components/datatables.net-bs/css/dataTables.bootstrap.css',
+						'bower_components/datatables.net-buttons-bs/css/buttons.bootstrap.css',
 						'src-4-5/less/main.less'
 					],
 					// docs
@@ -218,16 +240,7 @@ module.exports = function(grunt) {
 				separator: "\n",
 			},
 			app: {
-				src: [
-					'bower_components/jquery/dist/jquery.js',
-					'bower_components/pdfmake/build/pdfmake.js',
-					'bower_components/jszip/dist/jszip.js',
-					'bower_components/pdfmake/build/vfs_fonts.js',
-					'bower_components/datatables.net/js/dataTables.js',
-					'bower_components/datatables.net-buttons/js/dataTables.buttons.js',
-					'bower_components/datatables.net-buttons/js/buttons.html5.js',
-					'bower_components/datatables.net-bs/js/dataTables.bootstrap.js'
-				],
+				src: gc.src,
 				dest: 'test/js/jquery.min.js'
 			},
 			// component-3x

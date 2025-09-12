@@ -16,19 +16,19 @@ $max_count_files = ini_get("max_file_uploads");
 	window.MAX_COUNT_FILE = <?= ini_get("max_file_uploads");?>;
 	window.J_LANG = "<?= $this->stats['lang']?>";
 </script>
+<style>
+	html {
+		font-size: inherit;
+		-webkit-tap-highlight-color: transparent;
+	}
+</style>
 <h1><?= Text::_('COM_FOOD_TITLE'); ?></h1>
 <div class="clearfix">
 	<?php if($this->stats["dir"]): ?>
 	<form class="text-right" name="upload" method="post" action="index.php?option=com_food&dir=<?= $this->stats["dir"];?>" enctype="multipart/form-data">
 		<input type="hidden" name="mode" value="upload">
-		<div id="uploader" class="text-right">
-			<label class="btn btn-secondary text-uppercase">
-				<i class="glyphicon glyphicon-floppy-save"></i> <?= Text::_("COM_FOOD_SELECT_FILES");?>
-				<input type="file" name="userfiles[]" onchange="uploadFiles(this);" multiple accept=".xlsx,.pdf" max="<?= $max_count_files; ?>">
-			</label>
-			<p id="p_uploads" class="alert alert-info"></p>
-			<button class="btn btn-secondary text-uppercase" type="button" onclick="document.upload.submit()"><i class="glyphicon glyphicon-cloud-upload"></i> <?= Text::_("COM_FOOD_UPLOAD_FILES");?></button>
-		</div>
+		<p id="p_uploads" class="alert alert-info"></p>
+		<input type="file" name="userfiles[]" onchange="uploadFiles(this);" multiple accept=".xlsx,.pdf" max="<?= $max_count_files; ?>">
 	</form>
 	<form class="hidden" name="form_mode" method="post" action="index.php?option=com_food&dir=<?= $this->stats["dir"];?>" enctype="multipart/form-data">
 		<input type="hidden" name="mode">
@@ -46,7 +46,7 @@ $max_count_files = ini_get("max_file_uploads");
 	<?php endif; ?>
 </div>
 <div class="food-table">
-	<div class="table-responsive">
+	<div class="">
 		<table class="table table-bordered table-hover table-food">
 			<thead>
 				<tr>
@@ -105,6 +105,7 @@ $max_count_files = ini_get("max_file_uploads");
 		</table>
 	</div>
 </div>
+<p class="text-left">GitHub репозиторий компонента <a href="https://github.com/ProjectSoft-STUDIONIONS/com_food" target="_blank">https://github.com/ProjectSoft-STUDIONIONS/com_food</a></p>
 <?php
 /**
  * Версионность файлов

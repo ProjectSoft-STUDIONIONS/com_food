@@ -4,6 +4,7 @@
 // --------------------------------------------------
 
 // Common styles
+/*
 .btn-default,
 .btn-primary,
 .btn-success,
@@ -31,7 +32,18 @@
 		text-shadow: none;
 	}
 }
-
+.btn-primary,
+.btn-success,
+.btn-info,
+.btn-warning,
+.btn-danger,
+.btn-secondary {
+	&:active,
+	&:hover,
+	&:focus {
+		color: white;
+	}
+}
 // Mixin for generating new styles
 .btn-styles(@btn-color: #555) {
 	#gradient > .vertical(@start-color: @btn-color; @end-color: darken(@btn-color, 12%));
@@ -80,7 +92,9 @@
 .btn-info    { .btn-styles(@btn-info-bg); }
 .btn-warning { .btn-styles(@btn-warning-bg); }
 .btn-danger  { .btn-styles(@btn-danger-bg); }
+*/
 
+/*
 // Common styles
 .alert {
 	text-shadow: 0 1px 0 rgba(255, 255, 255, .2);
@@ -99,3 +113,4 @@
 .alert-info       { .alert-styles(@alert-info-bg); }
 .alert-warning    { .alert-styles(@alert-warning-bg); }
 .alert-danger     { .alert-styles(@alert-danger-bg); }
+*/

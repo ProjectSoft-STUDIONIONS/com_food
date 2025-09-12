@@ -6,21 +6,15 @@ $path = $this->realPath(JPATH_ROOT);
 	window.J_LANG = "<?= $this->stats['lang']?>";
 </script>
 <div id="food_content" class="clearfix">
-	<div class="row clearfix">
+	<div id="joomla3" class="row clearfix">
 		<div class="container-fluid clearfix">
 			<h1 class="com-food-title"><?= JText::_('COM_FOOD_TITLE'); ?></h1>
 			<div class="clearfix">
 				<?php if($this->stats["dir"]):?>
 				<form class="text-right" name="upload" method="post" action="index.php?option=com_food&dir=<?= $this->stats["dir"];?>" enctype="multipart/form-data">
 					<input type="hidden" name="mode" value="upload">
-					<div id="uploader" class="text-right">
-						<label class="btn btn-secondary text-uppercase">
-							<i class="glyphicon glyphicon-floppy-save"></i> <?= JText::_("COM_FOOD_SELECT_FILES");?>
-							<input type="file" name="userfiles[]" onchange="uploadFiles(this);" multiple accept=".xlsx,.pdf" max="<?= ini_get("max_file_uploads");?>">
-						</label>
-						<p id="p_uploads" class="alert alert-info"></p>
-						<a class="btn btn-success text-uppercase" href="javascript:;" onclick="document.upload.submit()"><i class="glyphicon glyphicon-cloud-upload"></i> <?= JText::_("COM_FOOD_UPLOAD_FILES");?></a>
-					</div>
+					<input type="file" name="userfiles[]" onchange="uploadFiles(this);" multiple accept=".xlsx,.pdf" max="<?= ini_get("max_file_uploads");?>">
+					<p id="p_uploads" class="alert alert-info"></p>
 				</form>
 				<form class="hidden" name="form_mode" method="post" action="index.php?option=com_food&dir=<?= $this->stats["dir"];?>" enctype="multipart/form-data">
 					<input type="hidden" name="mode">
@@ -34,7 +28,7 @@ $path = $this->realPath(JPATH_ROOT);
 				<?= $this->stats["food_title"] ? '<p class="food-title-root"><i class="glyphicon glyphicon-folder-open"></i>&nbsp;<a href="index.php?option=com_food">' . JText::_('COM_FOOD_DIR_TOP') . '</a></p>' : ''; ?>
 			</div>
 			<div class="food-table">
-				<div class="table-responsive">
+				<div class="">
 					<table class="table table-bordered table-hover table-food">
 						<thead>
 							<tr>
@@ -93,6 +87,7 @@ $path = $this->realPath(JPATH_ROOT);
 					</table>
 				</div>
 			</div>
+			<p class="text-left">GitHub репозиторий компонента <a href="https://github.com/ProjectSoft-STUDIONIONS/com_food" target="_blank">https://github.com/ProjectSoft-STUDIONIONS/com_food</a></p>
 		</div>
 	</div>
 </div>

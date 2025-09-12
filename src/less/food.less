@@ -1,3 +1,8 @@
+html {
+	font-size: inherit;
+	-webkit-tap-highlight-color: transparent;
+}
+
 h1,
 h2,
 h3,
@@ -8,10 +13,369 @@ h4 {
 	}
 }
 
+.btn {
+	&-default,
+	&-primary,
+	&-info,
+	&-success,
+	&-danger,
+	&-warning {
+		background-image: unset;
+	}
+	&-success {
+		background-color: var(--success, #457d54);
+		&:hover {
+			background-color: var(--successhvr, #2a4c33);
+		}
+	}
+	&,
+	&.focus {
+		&,
+		&:focus {
+			outline: 0px none -webkit-focus-ring-color !important;
+			outline-offset: 0 !important;
+		}
+	}
+	&-default {
+		&:active {
+			background-color: var(--white-offset, #fefefe);
+			&:focus {
+
+			}
+		}
+	}
+}
+
+button.dt-dragdrop-block {
+	flex: 1;
+	width: 100%;
+	background-image: unset !important;
+	flex-direction: column !important;
+	align-items: center !important;
+	justify-content: center !important;
+	gap: 0 !important;
+	&:focus,
+	&:active,
+	&:hover {
+		background-color: #fff !important;
+	}
+	&.btn {
+		&.drophandle {
+			outline-offset: -2px !important;
+			outline-style: auto !important;
+			outline-width: 5px !important;
+		}
+	}
+
+	&::before {
+		content: "Перетащите сюда файлы (*.xlsx или *.pdf)\AИли выберите их с помощю диалога";
+		white-space: break-spaces;
+	}
+	&:not([data-length="0"]) {
+		&::after {
+			content: "Выбрано: " attr(data-length) " файлов";
+			color: var(--success, #457d54);
+		}
+	}
+	&[data-length="1"] {
+		&::after {
+			content: "Выбрано: " attr(data-length) " файл";
+		}
+	}
+	&[data-length="2"],
+	&[data-length="3"],
+	&[data-length="4"] {
+		&::after {
+			content: "Выбрано: " attr(data-length) " файла";
+		}
+	}
+	&:not([data-length]) {
+		&::after {
+			content: "";
+		}
+	}
+}
+
+div.dt-button-collection {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	.dropdown-menu {
+		position: relative;
+		float: unset;
+		margin-top: inherit;
+		li > a {
+			display: block;
+			padding: 10px 20px;
+			clear: both;
+			font-weight: 400;
+			line-height: @line-height-base;
+			color: @dropdown-link-color;
+			white-space: nowrap;
+			&:hover,
+			&:focus {
+				color: @dropdown-link-hover-color;
+				text-decoration: none;
+				background-color: @dropdown-link-hover-bg;
+			}
+		}
+	}
+}
+
+.caret {
+	&::before {
+		content: "\25BC";
+	}
+}
+
+// Form Upload
+form[name="upload"] {
+	.clearfix();
+	display: block;
+	//float: right;
+	//margin-bottom: 10px;
+	.text-right();
+	input[type="file"] {
+		display: none;
+	}
+	.btn {
+		display: inline-block;
+		max-width: 200px;
+		width: 100%;
+		.text-center();
+	}
+	#p_uploads {
+		margin-top: 15px;
+		margin-bottom: 15px;
+		padding-left: 14px;
+		padding-right: 14px;
+		background-image: unset;
+		background-color: var(--info-bg-subtle, #d4e1f1);
+		code {
+			color: inherit;
+			background-color: transparent;
+		}
+		&:empty {
+			display: none;
+		}
+		code {
+			display: block;
+			font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+		}
+	}
+}
+
+.btn {
+	flex: 0 1 auto;
+}
+
+.dt-layout-cell.dt-layout-full {
+	padding-left: unset !important;
+	padding-right: unset !important;
+}
+
+.dt-layout-cell.dt-layout{
+	&-start,
+	&-end {
+		&.col-sm-6 {
+			&:first-child {
+				padding-left: unset;
+			}
+			&:last-child {
+				padding-right: unset;
+			}
+			
+		}
+	}
+}
+
+.dt-layout-table + .dt-layout-row {
+	padding-top: 10px;
+	@media screen and (max-width: 767px) {
+		padding-top: unset;
+	}
+}
+
+.dt-buttons {
+	&.btn-group {
+		gap: 10px;
+		// Drag And Drop
+		.dt-dragdrop-block {
+			flex: 1 0 auto;
+			width: 100%;
+			min-height: 80px;
+			background-image: unset;
+		}
+	}
+}
+
+#joomla3 {
+	.container-fluid {
+		padding-right: 20px;
+		padding-left: 30px;
+	}
+	.dt-buttons {
+		&.btn-group {
+			gap: 10px;
+			// Drag And Drop
+			.dt-dragdrop-block {
+				flex: 1 0 auto;
+				width: 100%;
+				min-height: 100px;
+				background-image: unset;
+			}
+		}
+	}
+}
+
+#content .pagination {
+	margin: 0;
+}
+
+// Container Buttons
+div.dt-container {
+	div.dt-layout {
+		&-row {
+			display: flex;
+			justify-content: space-between;
+			&:first-child {
+				margin-bottom: 10px !important;
+				align-items: flex-end !important;
+			}
+			&:nth-child(1),
+			&:nth-child(3) {
+				margin-left: -15px;
+				margin-right: -15px;
+				margin-top: 0;
+				padding-top: 0;
+			}
+			@media screen and (max-width: 991px) {
+				gap: 10px;
+			}
+			&:nth-child(3) {
+				div.dt-layout-cell {
+					&.dt-layout-end {
+						flex-direction: column;
+						align-items: end;
+					}
+				}
+			}
+		}
+		&-cell {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			gap: 10px;
+			flex-wrap: wrap;
+		}
+		&-start {
+			justify-content: flex-start;
+			flex-direction: column;
+			>:not(:last-child) {
+				margin-right: inherit !important;
+				flex: 1 0 auto;
+				width: 100%;
+				display: flex;
+				flex-direction: row;
+				flex-wrap: wrap;
+			}
+			.dt-search {
+				flex: 1 0 auto;
+				width: 100%;
+				input {
+					margin-left: inherit;
+					width: 100%;
+				}
+			}
+			.dt-length,
+			.dt-search {
+				display: inline-flex;
+				justify-content: flex-start;
+				align-items: center;
+				gap: 10px;
+				flex-direction: row;
+				margin-bottom: 5px;
+				&,
+				* {
+					font-weight: 400;
+				}
+			}
+		}
+		&-end {
+			justify-content: flex-end;
+			margin-left: auto;
+			.dt-buttons {
+				display: flex;
+				gap: 10px;
+				flex-wrap: wrap;
+				width: 100%;
+				justify-content: flex-end;
+				align-items: flex-end;
+			}
+		}
+	}
+}
+
 .food {
 	&-table {
 		.btn {
-			font-weight: 700;
+			font-weight: normal;
+			display: flex;
+			flex-direction: row;
+			flex-wrap: nowrap;
+			gap: .5em;
+			justify-content: center;
+			text-align: center;
+			align-items: center;
+			* {
+				margin: unset;
+			}
+			&-group {
+				font-size: inherit;
+				> .btn {
+					flex: 0 1 auto;
+				}
+			}
+			.caret {
+				margin-left: inherit;
+				text-align: right;
+				flex: 1 0 auto;
+				~ .caret {
+					display: none;
+				}
+			}
+			// Buttons Excel, PDF
+			&.buttons {
+				&-excel,
+				&-pdf {
+					&::before {
+						.glyphicon();
+						content: "\e025";
+						margin-right: 5px;
+					}
+					*,
+					&:before {
+						pointer-events: none;
+					}
+				}
+				&-print {
+					flex: 0 1 auto;
+				}
+				&-colvis {
+					flex: 1 0 auto;
+				}
+			}
+			.caret {
+				display: inline;
+				width: auto;
+				height: auto;
+				vertical-align: unset;
+				border-top: unset;
+				border-right: unset;
+				border-left: unset;
+			}
+			&-block {
+				padding: 4px 12px;
+			}
 		}
 		.table {
 			td,
@@ -51,130 +415,6 @@ h4 {
 		&-root {
 			font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
 			font-size: 17px;
-		}
-	}
-}
-
-// Form Upload
-form[name="upload"] {
-	.clearfix();
-	display: block;
-	float: right;
-	margin-bottom: 10px;
-	.text-right();
-	input[type="file"] {
-		display: none;
-	}
-	.btn {
-		display: inline-block;
-		max-width: 200px;
-		width: 100%;
-		font-weight: 700;
-		.text-center();
-	}
-	#p_uploads {
-		margin-top: 15px;
-		margin-bottom: 15px;
-		padding-left: 14px;
-		padding-right: 14px;
-		&:empty {
-			display: none;
-			+ .btn {
-				display: none;
-			}
-		}
-		code {
-			display: block;
-			font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
-		}
-	}
-}
-
-.dt-layout-cell.dt-layout-full {
-	padding-left: unset !important;
-	padding-right: unset !important;
-}
-
-.dt-layout-cell.dt-layout{
-	&-start,
-	&-end {
-		&.col-sm-6 {
-			&:first-child {
-				padding-left: unset;
-			}
-			&:last-child {
-				padding-right: unset;
-			}
-			
-		}
-	}
-}
-
-.dt-layout-table + .dt-layout-row {
-	padding-top: 10px;
-	@media screen and (max-width: 767px) {
-		padding-top: unset;
-	}
-}
-
-// Container Buttons
-div.dt-container {
-	.dt-layout {
-		&-row {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			width: 100%;
-			margin: .75em 0;
-		}
-		&-cell {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			gap: 10px;
-			flex-wrap: wrap;
-		}
-		&-start {
-			justify-content: flex-start;
-			.dt-length,
-			.dt-search {
-				display: inline-flex;
-				justify-content: flex-start;
-				align-items: center;
-				gap: 10px;
-				flex-direction: row;
-				margin-bottom: 5px;
-				&,
-				* {
-					font-weight: 400;
-				}
-			}
-		}
-		&-end {
-			justify-content: flex-end;
-			margin-left: auto;
-			.dt-buttons {
-				display: inline-flex;
-				gap: 10px;
-				flex-wrap: wrap;
-				margin-bottom: 10px;
-			}
-		}
-	}
-}
-
-// Buttons Excel, PDF
-.buttons {
-	&-excel,
-	&-pdf {
-		&::before {
-			.glyphicon();
-			content: "\e025";
-			margin-right: 5px;
-		}
-		*,
-		&:before {
-			pointer-events: none;
 		}
 	}
 }
@@ -224,4 +464,9 @@ select,
 	&.form-control {
 		appearance: auto;
 	}
+}
+
+html {
+	font-size: inherit;
+	-webkit-tap-highlight-color: transparent;
 }

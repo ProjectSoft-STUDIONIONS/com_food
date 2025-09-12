@@ -1,243 +1,247 @@
 {
-    "emptyTable": "No data available in table",
-    "info": "Showing _START_ to _END_ of _TOTAL_ entries",
-    "infoEmpty": "Showing 0 to 0 of 0 entries",
-    "infoFiltered": "(filtered from _MAX_ total entries)",
-    "infoThousands": ",",
-    "lengthMenu": "Show _MENU_ entries",
-    "loadingRecords": "Loading...",
-    "processing": "Processing...",
-    "search": "Search:",
-    "zeroRecords": "No matching records found",
-    "thousands": ",",
-    "paginate": {
-        "first": "First",
-        "last": "Last",
-        "next": "Next",
-        "previous": "Previous"
-    },
-    "aria": {
-        "sortAscending": ": activate to sort column ascending",
-        "sortDescending": ": activate to sort column descending"
-    },
-    "autoFill": {
-        "cancel": "Cancel",
-        "fill": "Fill all cells with <i>%d<\/i>",
-        "fillHorizontal": "Fill cells horizontally",
-        "fillVertical": "Fill cells vertically"
-    },
-    "buttons": {
-        "collection": "Collection <span class='ui-button-icon-primary ui-icon ui-icon-triangle-1-s'\/>",
-        "colvis": "Column Visibility",
-        "colvisRestore": "Restore visibility",
-        "copy": "Copy",
-        "copyKeys": "Press ctrl or u2318 + C to copy the table data to your system clipboard.<br><br>To cancel, click this message or press escape.",
-        "copySuccess": {
-            "1": "Copied 1 row to clipboard",
-            "_": "Copied %d rows to clipboard"
-        },
-        "copyTitle": "Copy to Clipboard",
-        "csv": "CSV",
-        "excel": "Excel",
-        "pageLength": {
-            "-1": "Show all rows",
-            "_": "Show %d rows"
-        },
-        "pdf": "PDF",
-        "print": "Print",
-        "updateState": "Update",
-        "stateRestore": "State %d",
-        "savedStates": "Saved States",
-        "renameState": "Rename",
-        "removeState": "Remove",
-        "removeAllStates": "Remove All States",
-        "createState": "Create State"
-    },
-    "searchBuilder": {
-        "add": "Add Condition",
-        "button": {
-            "0": "Search Builder",
-            "_": "Search Builder (%d)"
-        },
-        "clearAll": "Clear All",
-        "condition": "Condition",
-        "conditions": {
-            "date": {
-                "after": "After",
-                "before": "Before",
-                "between": "Between",
-                "empty": "Empty",
-                "equals": "Equals",
-                "not": "Not",
-                "notBetween": "Not Between",
-                "notEmpty": "Not Empty"
-            },
-            "number": {
-                "between": "Between",
-                "empty": "Empty",
-                "equals": "Equals",
-                "gt": "Greater Than",
-                "gte": "Greater Than Equal To",
-                "lt": "Less Than",
-                "lte": "Less Than Equal To",
-                "not": "Not",
-                "notBetween": "Not Between",
-                "notEmpty": "Not Empty"
-            },
-            "string": {
-                "contains": "Contains",
-                "empty": "Empty",
-                "endsWith": "Ends With",
-                "equals": "Equals",
-                "not": "Not",
-                "notEmpty": "Not Empty",
-                "startsWith": "Starts With",
-                "notContains": "Does Not Contain",
-                "notStartsWith": "Does Not Start With",
-                "notEndsWith": "Does Not End With"
-            },
-            "array": {
-                "without": "Without",
-                "notEmpty": "Not Empty",
-                "not": "Not",
-                "contains": "Contains",
-                "empty": "Empty",
-                "equals": "Equals"
-            }
-        },
-        "data": "Data",
-        "deleteTitle": "Delete filtering rule",
-        "leftTitle": "Outdent Criteria",
-        "logicAnd": "And",
-        "logicOr": "Or",
-        "rightTitle": "Indent Criteria",
-        "title": {
-            "0": "Search Builder",
-            "_": "Search Builder (%d)"
-        },
-        "value": "Value"
-    },
-    "searchPanes": {
-        "clearMessage": "Clear All",
-        "collapse": {
-            "0": "SearchPanes",
-            "_": "SearchPanes (%d)"
-        },
-        "count": "{total}",
-        "countFiltered": "{shown} ({total})",
-        "emptyPanes": "No SearchPanes",
-        "loadMessage": "Loading SearchPanes",
-        "title": "Filters Active - %d",
-        "showMessage": "Show All",
-        "collapseMessage": "Collapse All"
-    },
-    "select": {
-        "cells": {
-            "1": "1 cell selected",
-            "_": "%d cells selected"
-        },
-        "columns": {
-            "1": "1 column selected",
-            "_": "%d columns selected"
-        },
-        "rows": {
-            "1": "1 row selected",
-            "_": "%d rows selected"
-        }
-    },
-    "datetime": {
-        "previous": "Previous",
-        "next": "Next",
-        "hours": "Hour",
-        "minutes": "Minute",
-        "seconds": "Second",
-        "unknown": "-",
-        "amPm": [
-            "am",
-            "pm"
-        ],
-        "weekdays": [
-            "Sun",
-            "Mon",
-            "Tue",
-            "Wed",
-            "Thu",
-            "Fri",
-            "Sat"
-        ],
-        "months": [
-            "January",
-            "February",
-            "March",
-            "April",
-            "May",
-            "June",
-            "July",
-            "August",
-            "September",
-            "October",
-            "November",
-            "December"
-        ]
-    },
-    "editor": {
-        "close": "Close",
-        "create": {
-            "button": "New",
-            "title": "Create new entry",
-            "submit": "Create"
-        },
-        "edit": {
-            "button": "Edit",
-            "title": "Edit Entry",
-            "submit": "Update"
-        },
-        "remove": {
-            "button": "Delete",
-            "title": "Delete",
-            "submit": "Delete",
-            "confirm": {
-                "_": "Are you sure you wish to delete %d rows?",
-                "1": "Are you sure you wish to delete 1 row?"
-            }
-        },
-        "error": {
-            "system": "A system error has occurred (<a target=\"\\\" rel=\"nofollow\" href=\"\\\">More information<\/a>)."
-        },
-        "multi": {
-            "title": "Multiple Values",
-            "info": "The selected items contain different values for this input. To edit and set all items for this input to the same value, click or tap here, otherwise they will retain their individual values.",
-            "restore": "Undo Changes",
-            "noMulti": "This input can be edited individually, but not part of a group. "
-        }
-    },
-    "stateRestore": {
-        "renameTitle": "Rename State",
-        "renameLabel": "New Name for %s:",
-        "renameButton": "Rename",
-        "removeTitle": "Remove State",
-        "removeSubmit": "Remove",
-        "removeJoiner": " and ",
-        "removeError": "Failed to remove state.",
-        "removeConfirm": "Are you sure you want to remove %s?",
-        "emptyStates": "No saved states",
-        "emptyError": "Name cannot be empty.",
-        "duplicateError": "A state with this name already exists.",
-        "creationModal": {
-            "toggleLabel": "Includes:",
-            "title": "Create New State",
-            "select": "Select",
-            "searchBuilder": "SearchBuilder",
-            "search": "Search",
-            "scroller": "Scroll Position",
-            "paging": "Paging",
-            "order": "Sorting",
-            "name": "Name:",
-            "columns": {
-                "visible": "Column Visibility",
-                "search": "Column Search"
-            },
-            "button": "Create"
-        }
-    }
+	"processing": "Подождите...",
+	"search": "Поиск:",
+	"lengthMenu": "Показать: _MENU_",
+	"info": "Записи с _START_ до _END_ из _TOTAL_ записей",
+	"infoEmpty": "Записи с 0 до 0 из 0 записей",
+	"infoFiltered": "(отфильтровано из _MAX_ записей)",
+	"loadingRecords": "Загрузка записей...",
+	"zeroRecords": "Записи отсутствуют.",
+	"emptyTable": "В таблице отсутствуют данные",
+	"paginate": {
+		"first": "<i class=\"glyphicon glyphicon-chevron-before\"></i>",
+		"previous": "<i class=\"glyphicon glyphicon-chevron-left\"></i>",
+		"next": "<i class=\"glyphicon glyphicon-chevron-right\"></i>",
+		"last": "<i class=\"glyphicon glyphicon-chevron-after\"></i>"
+	},
+	"aria": {
+		"sortAscending": ": активировать для сортировки столбца по возрастанию",
+		"sortDescending": ": активировать для сортировки столбца по убыванию"
+	},
+	"select": {
+		"rows": {
+			"_": "Выбрано записей: %d",
+			"1": "Выбрана одна запись"
+		},
+		"cells": {
+			"_": "Выбрано %d ячеек",
+			"1": "Выбрана 1 ячейка "
+		},
+		"columns": {
+			"1": "Выбран 1 столбец ",
+			"_": "Выбрано %d столбцов "
+		}
+	},
+	"searchBuilder": {
+		"conditions": {
+			"string": {
+				"startsWith": "Начинается с",
+				"contains": "Содержит",
+				"empty": "Пусто",
+				"endsWith": "Заканчивается на",
+				"equals": "Равно",
+				"not": "Не",
+				"notEmpty": "Не пусто",
+				"notContains": "Не содержит",
+				"notStartsWith": "Не начинается на",
+				"notEndsWith": "Не заканчивается на"
+			},
+			"date": {
+				"after": "После",
+				"before": "До",
+				"between": "Между",
+				"empty": "Пусто",
+				"equals": "Равно",
+				"not": "Не",
+				"notBetween": "Не между",
+				"notEmpty": "Не пусто"
+			},
+			"number": {
+				"empty": "Пусто",
+				"equals": "Равно",
+				"gt": "Больше чем",
+				"gte": "Больше, чем равно",
+				"lt": "Меньше чем",
+				"lte": "Меньше, чем равно",
+				"not": "Не",
+				"notEmpty": "Не пусто",
+				"between": "Между",
+				"notBetween": "Не между ними"
+			},
+			"array": {
+				"equals": "Равно",
+				"empty": "Пусто",
+				"contains": "Содержит",
+				"not": "Не равно",
+				"notEmpty": "Не пусто",
+				"without": "Без"
+			}
+		},
+		"data": "Данные",
+		"deleteTitle": "Удалить условие фильтрации",
+		"logicAnd": "И",
+		"logicOr": "Или",
+		"title": {
+			"0": "Конструктор поиска",
+			"_": "Конструктор поиска (%d)"
+		},
+		"value": "Значение",
+		"add": "Добавить условие",
+		"button": {
+			"0": "Конструктор поиска",
+			"_": "Конструктор поиска (%d)"
+		},
+		"clearAll": "Очистить всё",
+		"condition": "Условие",
+		"leftTitle": "Превосходные критерии",
+		"rightTitle": "Критерии отступа"
+	},
+	"searchPanes": {
+		"clearMessage": "Очистить всё",
+		"collapse": {
+			"0": "Панели поиска",
+			"_": "Панели поиска (%d)"
+		},
+		"count": "{total}",
+		"countFiltered": "{shown} ({total})",
+		"emptyPanes": "Нет панелей поиска",
+		"loadMessage": "Загрузка панелей поиска",
+		"title": "Фильтры активны - %d",
+		"showMessage": "Показать все",
+		"collapseMessage": "Скрыть все"
+	},
+	"buttons": {
+		"pdf": "PDF",
+		"print": "<i class=\"fas fa-print\"></i>Печать",
+		"collection": "Коллекция <span class=\"ui-button-icon-primary ui-icon ui-icon-triangle-1-s\"><\/span>",
+		"colvis": "<i class=\"fas fa-layer-group\"></i>Видимость столбцов",
+		"colvisRestore": "Восстановить видимость",
+		"copy": "Копировать",
+		"copyTitle": "Скопировать в буфер обмена",
+		"csv": "CSV",
+		"excel": "Excel",
+		"pageLength": {
+			"-1": "Показать все строки <span class=\"caret\"></span>",
+			"_": "Показать %d строк <span class=\"caret\"></span>",
+			"1": "Показать 1 строку <span class=\"caret\"></span>"
+		},
+		"removeState": "Удалить",
+		"renameState": "Переименовать",
+		"copySuccess": {
+			"1": "Строка скопирована в буфер обмена",
+			"_": "Скопировано %d строк в буфер обмена"
+		},
+		"createState": "Создать состояние",
+		"removeAllStates": "Удалить все состояния",
+		"savedStates": "Сохраненные состояния",
+		"stateRestore": "Состояние %d",
+		"updateState": "Обновить",
+		"copyKeys": "Нажмите ctrl  или u2318 + C, чтобы скопировать данные таблицы в буфер обмена.  Для отмены, щелкните по сообщению или нажмите escape."
+	},
+	"decimal": ".",
+	"infoThousands": ",",
+	"autoFill": {
+		"cancel": "Отменить",
+		"fill": "Заполнить все ячейки <i>%d<i><\/i><\/i>",
+		"fillHorizontal": "Заполнить ячейки по горизонтали",
+		"fillVertical": "Заполнить ячейки по вертикали",
+		"info": "Информация"
+	},
+	"datetime": {
+		"previous": "Предыдущий",
+		"next": "Следующий",
+		"hours": "Часы",
+		"minutes": "Минуты",
+		"seconds": "Секунды",
+		"unknown": "Неизвестный",
+		"amPm": [
+			"AM",
+			"PM"
+		],
+		"months": {
+			"0": "Январь",
+			"1": "Февраль",
+			"10": "Ноябрь",
+			"11": "Декабрь",
+			"2": "Март",
+			"3": "Апрель",
+			"4": "Май",
+			"5": "Июнь",
+			"6": "Июль",
+			"7": "Август",
+			"8": "Сентябрь",
+			"9": "Октябрь"
+		},
+		"weekdays": [
+			"Вс",
+			"Пн",
+			"Вт",
+			"Ср",
+			"Чт",
+			"Пт",
+			"Сб"
+		]
+	},
+	"editor": {
+		"close": "Закрыть",
+		"create": {
+			"button": "Новый",
+			"title": "Создать новую запись",
+			"submit": "Создать"
+		},
+		"edit": {
+			"button": "Изменить",
+			"title": "Изменить запись",
+			"submit": "Изменить"
+		},
+		"remove": {
+			"button": "Удалить",
+			"title": "Удалить",
+			"submit": "Удалить",
+			"confirm": {
+				"_": "Вы точно хотите удалить %d строк?",
+				"1": "Вы точно хотите удалить 1 строку?"
+			}
+		},
+		"multi": {
+			"restore": "Отменить изменения",
+			"title": "Несколько значений",
+			"info": "Выбранные элементы содержат разные значения для этого входа. Чтобы отредактировать и установить для всех элементов этого ввода одинаковое значение, нажмите или коснитесь здесь, в противном случае они сохранят свои индивидуальные значения.",
+			"noMulti": "Это поле должно редактироваться отдельно, а не как часть группы"
+		},
+		"error": {
+			"system": "Возникла системная ошибка (<a target=\"\\\" rel=\"nofollow\" href=\"\\\">Подробнее<\/a>)."
+		}
+	},
+	"searchPlaceholder": "Что ищете?",
+	"stateRestore": {
+		"creationModal": {
+			"button": "Создать",
+			"search": "Поиск",
+			"columns": {
+				"search": "Поиск по столбцам",
+				"visible": "Видимость столбцов"
+			},
+			"name": "Имя:",
+			"order": "Сортировка",
+			"paging": "Страницы",
+			"scroller": "Позиция прокрутки",
+			"searchBuilder": "Редактор поиска",
+			"select": "Выделение",
+			"title": "Создать новое состояние",
+			"toggleLabel": "Включает:"
+		},
+		"removeJoiner": "и",
+		"removeSubmit": "Удалить",
+		"renameButton": "Переименовать",
+		"duplicateError": "Состояние с таким именем уже существует.",
+		"emptyError": "Имя не может быть пустым.",
+		"emptyStates": "Нет сохраненных состояний",
+		"removeConfirm": "Вы уверены, что хотите удалить %s?",
+		"removeError": "Не удалось удалить состояние.",
+		"removeTitle": "Удалить состояние",
+		"renameLabel": "Новое имя для %s:",
+		"renameTitle": "Переименовать состояние"
+	},
+	"thousands": " "
 }
