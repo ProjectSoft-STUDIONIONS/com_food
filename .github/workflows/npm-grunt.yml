@@ -16,34 +16,20 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
+
     - name: NPM установка пакетов
       run: |
-        npm i
-        bower install
+        npm run inst
+
     - name: Сборка компонента
       run: |
-        grunt
-    - name: Загрузка реализа com_food для Joomla CMS 3.x
+        npm run build
+
+    - name: Загрузка реализа com_food для Joomla CMS 3.x - 5.x
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: com_food-3.x.zip
-        tag: ${{ github.ref }}
-        overwrite: true
-        file_glob: true
-    - name: Загрузка реализа com_food для Joomla CMS 4.x
-      uses: svenstaro/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: com_food-4.x.zip
-        tag: ${{ github.ref }}
-        overwrite: true
-        file_glob: true
-    - name: Загрузка реализа com_food для Joomla CMS 5.x
-      uses: svenstaro/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: com_food-5.x.zip
+        file: com_food-*.zip
         tag: ${{ github.ref }}
         overwrite: true
         file_glob: true

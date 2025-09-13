@@ -9,7 +9,6 @@ package-lock.json
 # txt
 *.txt
 .Grunt*
-**/**/assets
 **/**/food.xml
 **/**/config.xml
 **/**/access.xml
@@ -43,9 +42,10 @@ component*/**/.htaccess.*.*
 docs/**/*.json
 docs/**/*.zip
 docs/*.xml
-
 !docs/*.html
 !docs/**/*.js
 !docs/**/*.css
 !docs/**/*.svg
 !docs/**/.ignore
+!docs/**/assets
+docs/**/assets/**/*.css

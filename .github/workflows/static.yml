@@ -30,20 +30,24 @@ jobs:
         uses: actions/checkout@v4
       - name: Установка Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
+
       - name: NPM установка пакетов
         run: |
-          npm i
-          bower install
+          npm run inst
+
       - name: Сборка компонента
         run: |
-          grunt
-      - name: Setup Pages
+          npm run build
+
+      - name: Старт страницы
         uses: actions/configure-pages@v5
-      - name: Upload artifact
+
+      - name: Загрузка артифактов
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload entire repository
           path: './docs/'
-      - name: Deploy to GitHub Pages
+
+      - name: Развертывание на странице GitHub - https://projectsoft-studionions.github.io/com_food/
         id: deployment
         uses: actions/deploy-pages@v4
