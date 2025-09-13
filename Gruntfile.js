@@ -57,10 +57,6 @@ module.exports = function(grunt) {
 		],
 		default: [
 			"clean",
-			// Копирование вьювера
-			"copy:viewer3",
-			"copy:viewer4",
-			"copy:viewer5",
 			// Компиляция JS
 			"concat",
 			"uglify",
@@ -68,38 +64,26 @@ module.exports = function(grunt) {
 			"less",
 			"autoprefixer",
 			"cssmin",
+			// Копирование вьювера
+			"copy:viewer",
 			// Копирование основных файлов
-			"copy:main3",
-			"copy:food3",
-			"copy:htacces3",
-			"copy:main4",
-			"copy:food4",
-			"copy:htacces4",
-			"copy:main5",
-			"copy:food5",
-			"copy:htacces5",
+			"copy:main",
+			"copy:food",
+			"copy:htacces",
 			// Копирование языка DataTable
-			"copy:json3",
-			"copy:json4",
-			"copy:json5",
+			"copy:json",
 			// Copy lang
-			"copy:lang4",
-			"copy:lang5",
+			"copy:lang",
 			// Копирование JS
-			"copy:test3",
-			"copy:test4",
-			"copy:test5",
+			"copy:test",
 
-			"copy:services4",
-			"copy:services5",
+			"copy:services",
 
-			"copy:src4",
-			"copy:src5",
+			"copy:src",
 
-			"copy:tmpl4",
-			"copy:tmpl5",
+			"copy:tmpl",
 
-			"copy:files_4_5",
+			"copy:files",
 			// Компиляция XML
 			"pug:serv3",
 			"pug:serv4",
@@ -598,169 +582,216 @@ module.exports = function(grunt) {
 		},
 		copy: {
 			// Fonts
-			main3: {
-				expand: true,
-				cwd: 'bower_components/bootstrap/dist/fonts',
-				src: '**',
-				dest: 'component-3x/com_food/admin/assets/fonts/',
-			},
-			main4: {
-				expand: true,
-				cwd: 'bower_components/bootstrap/dist/fonts',
-				src: '**',
-				dest: 'component-4x/com_food/admin/assets/fonts/',
-			},
-			main5: {
-				expand: true,
-				cwd: 'bower_components/bootstrap/dist/fonts',
-				src: '**',
-				dest: 'component-5x/com_food/admin/assets/fonts/',
+			main: {
+				files: [
+					{
+						expand: true,
+						cwd: 'bower_components/bootstrap/dist/fonts',
+						src: '**',
+						dest: 'component-3x/com_food/admin/assets/fonts/',
+					},
+					{
+						expand: true,
+						cwd: 'bower_components/bootstrap/dist/fonts',
+						src: '**',
+						dest: 'component-4x/com_food/admin/assets/fonts/',
+					},
+					{
+						expand: true,
+						cwd: 'bower_components/bootstrap/dist/fonts',
+						src: '**',
+						dest: 'component-5x/com_food/admin/assets/fonts/',
+					},
+				]
+
 			},
 			// food
-			food3: {
-				expand: true,
-				cwd: 'bower_components/food/icons-full',
-				src: '**',
-				dest: 'component-3x/com_food/icons-full/',
-			},
-			food4: {
-				expand: true,
-				cwd: 'bower_components/food/icons-full',
-				src: '**',
-				dest: 'component-4x/com_food/icons-full/',
-			},
-			food5: {
-				expand: true,
-				cwd: 'bower_components/food/icons-full',
-				src: '**',
-				dest: 'component-5x/com_food/icons-full/',
+			food: {
+				files: [
+					{
+						expand: true,
+						cwd: 'bower_components/food/icons-full',
+						src: '**',
+						dest: 'component-3x/com_food/icons-full/',
+					},
+					{
+						expand: true,
+						cwd: 'bower_components/food/icons-full',
+						src: '**',
+						dest: 'component-4x/com_food/icons-full/',
+					},
+					{
+						expand: true,
+						cwd: 'bower_components/food/icons-full',
+						src: '**',
+						dest: 'component-5x/com_food/icons-full/',
+					},
+				]
 			},
 			// viewer
-			viewer3: {
-				expand: true,
-				cwd: 'bower_components/food/viewer',
-				src: '**',
-				dest: 'component-3x/com_food/viewer/',
-			},
-			viewer4: {
-				expand: true,
-				cwd: 'bower_components/food/viewer',
-				src: '**',
-				dest: 'component-4x/com_food/viewer/',
-			},
-			viewer5: {
-				expand: true,
-				cwd: 'bower_components/food/viewer',
-				src: '**',
-				dest: 'component-5x/com_food/viewer/',
+			viewer: {
+				files: [
+					{
+						expand: true,
+						cwd: 'bower_components/food/viewer',
+						src: '**',
+						dest: 'component-3x/com_food/viewer/',
+					},
+					{
+						expand: true,
+						cwd: 'bower_components/food/viewer',
+						src: '**',
+						dest: 'component-4x/com_food/viewer/',
+					},
+					{
+						expand: true,
+						cwd: 'bower_components/food/viewer',
+						src: '**',
+						dest: 'component-5x/com_food/viewer/',
+					},
+				]
 			},
 			// htaccess
-			htacces3: {
-				expand: true,
-				cwd: 'htacces',
-				src: '.*',
-				dest: 'component-3x/com_food/admin/models/',
-			},
-			htacces4: {
-				expand: true,
-				cwd: 'htacces',
-				src: '.*',
-				dest: 'component-4x/com_food/admin/htaccess/',
-			},
-			htacces5: {
-				expand: true,
-				cwd: 'htacces',
-				src: '.*',
-				dest: 'component-5x/com_food/admin/htaccess/',
+			htacces: {
+				files: [
+					{
+						expand: true,
+						cwd: 'htacces',
+						src: '.*',
+						dest: 'component-3x/com_food/admin/models/',
+					},
+					{
+						expand: true,
+						cwd: 'htacces',
+						src: '.*',
+						dest: 'component-4x/com_food/admin/htaccess/',
+					},
+					{
+						expand: true,
+						cwd: 'htacces',
+						src: '.*',
+						dest: 'component-5x/com_food/admin/htaccess/',
+					},
+				]
 			},
 			// JSON lang
-			json3: {
-				expand: true,
-				cwd: 'lang_data',
-				src: '**',
-				dest: 'component-3x/com_food/admin/assets/js/',
-			},
-			json4: {
-				expand: true,
-				cwd: 'lang_data',
-				src: '**',
-				dest: 'component-4x/com_food/admin/assets/js/',
-			},
-			json5: {
-				expand: true,
-				cwd: 'lang_data',
-				src: '**',
-				dest: 'component-5x/com_food/admin/assets/js/',
+			json: {
+				files: [
+					{
+						expand: true,
+						cwd: 'lang_data',
+						src: '**',
+						dest: 'component-3x/com_food/admin/assets/js/',
+					},
+					{
+						expand: true,
+						cwd: 'lang_data',
+						src: '**',
+						dest: 'component-4x/com_food/admin/assets/js/',
+					},
+					{
+						expand: true,
+						cwd: 'lang_data',
+						src: '**',
+						dest: 'component-5x/com_food/admin/assets/js/',
+					},
+				]
 			},
 			// jquery
-			test3: {
-				expand: true,
-				cwd: 'test/js',
-				src: '**',
-				dest: 'component-3x/com_food/admin/assets/js/',
+			test: {
+				files: [
+					{
+						expand: true,
+						cwd: 'test/js',
+						src: '**',
+						dest: 'component-3x/com_food/admin/assets/js/',
+					},
+					{
+						expand: true,
+						cwd: 'test/js',
+						src: '**',
+						dest: 'component-4x/com_food/admin/assets/js/',
+					},
+					{
+						expand: true,
+						cwd: 'test/js',
+						src: '**',
+						dest: 'component-5x/com_food/admin/assets/js/',
+					},
+				]
 			},
-			test4: {
-				expand: true,
-				cwd: 'test/js',
-				src: '**',
-				dest: 'component-4x/com_food/admin/assets/js/',
+			lang: {
+				files: [
+					{
+						expand: true,
+						cwd: 'lang',
+						src: '**',
+						dest: 'component-3x/com_food/admin/languages/',
+					},
+					{
+						expand: true,
+						cwd: 'lang',
+						src: '**',
+						dest: 'component-4x/com_food/admin/languages/',
+					},
+					{
+						expand: true,
+						cwd: 'lang',
+						src: '**',
+						dest: 'component-5x/com_food/admin/languages/',
+					}
+				]
 			},
-			test5: {
-				expand: true,
-				cwd: 'test/js',
-				src: '**',
-				dest: 'component-5x/com_food/admin/assets/js/',
+			services: {
+				files: [
+					{
+						expand: true,
+						cwd: 'src-4-5/services',
+						src: '**',
+						dest: 'component-4x/com_food/admin/services/',
+					},
+					{
+						expand: true,
+						cwd: 'src-4-5/services',
+						src: '**',
+						dest: 'component-5x/com_food/admin/services/',
+					},
+				]
 			},
-			lang4: {
-				expand: true,
-				cwd: 'src-4-5/lang',
-				src: '**',
-				dest: 'component-4x/com_food/admin/languages/',
+			src: {
+				files: [
+					{
+						expand: true,
+						cwd: 'src-4-5/src',
+						src: '**',
+						dest: 'component-4x/com_food/admin/src/',
+					},
+					{
+						expand: true,
+						cwd: 'src-4-5/src',
+						src: '**',
+						dest: 'component-5x/com_food/admin/src/',
+					},
+				]
 			},
-			lang5: {
-				expand: true,
-				cwd: 'src-4-5/lang',
-				src: '**',
-				dest: 'component-5x/com_food/admin/languages/',
-			},
-			services4: {
-				expand: true,
-				cwd: 'src-4-5/services',
-				src: '**',
-				dest: 'component-4x/com_food/admin/services/',
-			},
-			services5: {
-				expand: true,
-				cwd: 'src-4-5/services',
-				src: '**',
-				dest: 'component-5x/com_food/admin/services/',
-			},
-			src4: {
-				expand: true,
-				cwd: 'src-4-5/src',
-				src: '**',
-				dest: 'component-4x/com_food/admin/src/',
-			},
-			src5: {
-				expand: true,
-				cwd: 'src-4-5/src',
-				src: '**',
-				dest: 'component-5x/com_food/admin/src/',
-			},
-			tmpl4: {
-				expand: true,
-				cwd: 'src-4-5/tmpl',
-				src: '**',
-				dest: 'component-4x/com_food/admin/tmpl/',
-			},
-			tmpl5: {
-				expand: true,
-				cwd: 'src-4-5/tmpl',
-				src: '**',
-				dest: 'component-5x/com_food/admin/tmpl/',
+			tmpl: {
+				files: [
+					{
+						expand: true,
+						cwd: 'src-4-5/tmpl',
+						src: '**',
+						dest: 'component-4x/com_food/admin/tmpl/',
+					},
+					{
+						expand: true,
+						cwd: 'src-4-5/tmpl',
+						src: '**',
+						dest: 'component-5x/com_food/admin/tmpl/',
+					},
+				]
 			},
 			// files
-			files_4_5: {
+			files: {
 				files: [
 					// includes files within path
 					{
@@ -787,35 +818,6 @@ module.exports = function(grunt) {
 						src: ['install.php'],
 						dest: 'component-5x/com_food/',
 					},
-					//{
-					//	expand: true,
-					//	cwd: 'src-4-5',
-					//	src: ['install.php'],
-					//	dest: 'component-4x/com_food/',
-					//},
-					/*
-					// includes files within path and its sub-directories
-					{
-						expand: true,
-						src: ['path/**'],
-						dest: 'dest/'
-					},
-					// makes all src relative to cwd
-					{
-						expand: true,
-						cwd: 'path/',
-						src: ['**'],
-						dest: 'dest/'
-					},
-					// flattens results to a single level
-					{
-						expand: true,
-						flatten: true,
-						src: ['path/**'],
-							dest: 'dest/',
-						filter: 'isFile'
-					},
-					*/
 				],
 			},
 		},

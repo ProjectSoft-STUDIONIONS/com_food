@@ -140,6 +140,14 @@ class HtmlView extends BaseHtmlView {
 		Text::script('COM_FOOD_EXPORT_PDF');
 		Text::script('COM_FOOD_EXPORT_TO_PDF');
 		Text::script('COM_FOOD_DIRECTORY');
+		Text::script('COM_FOOD_SELECT_FILES');
+		Text::script('COM_FOOD_FILES_UPLOAD');
+		Text::script('COM_FOOD_TITLE_DRAG');
+		Text::script('COM_FOOD_TITLE_DRAG_BEFORE');
+		Text::script('COM_FFOD_TXT_FILES_SELECT');
+		Text::script('COM_FOOD_TXT_FILES_ONE');
+		Text::script('COM_FOOD_TXT_FILES_TWO');
+		Text::script('COM_FOOD_TXT_FILES_THREE');
 	}
 
 	// Объединение директорий

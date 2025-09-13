@@ -110,7 +110,7 @@
 			btnDrag = document.querySelector('.dt-dragdrop-block');
 
 		if(files.length > maxCountFile) {
-			btn && (btn.innerHTML = '<i class="fa fa-floppy-o"></i>Выберите файлы для загрузки');
+			btn && (btn.innerHTML = Translate.sprintf('COM_FOOD_FILES_UPLOAD'));
 			btnDrag && btnDrag.setAttribute('data-length', "0");
 			alert(Translate.sprintf('COM_FOOD_ERROR_MAX_UPLOAD',  maxCountFile));
 			document.upload.reset();
@@ -125,8 +125,15 @@
 					out.push(`<code>${a.name}</code>`);
 				}else{
 					p.html("");
-					btnDrag && btnDrag.setAttribute('data-length', "0");
-					btn && (btn.innerHTML = '<i class="fa fa-floppy-o"></i>Выберите файлы для загрузки');
+					btnDrag && (
+						btnDrag.setAttribute('data-title-after', "")
+					);
+					// Выбор файлов
+					btn && (
+						btn.innerHTML = Translate.sprintf('COM_FOOD_FILES_UPLOAD'),
+						btn.classList.remove('glyphicon-open'),
+						btn.classList.add('glyphicon-floppy-open')
+					);
 					alert(Translate.sprintf('COM_FOOD_ERROR_TYPE_UPLOAD', a.name, a.type));
 					document.upload.reset();
 					return !1;
@@ -134,11 +141,24 @@
 			}
 		}
 		if(out.length){
-			btn && (btn.innerHTML = '<i class="fa fa-upload"></i>Загрузить');
+			// Загрузка
+			let afterSufix = out.length == 1 ? Translate.sprintf('COM_FOOD_TXT_FILES_ONE') : ((out.length > 1 && out.length < 5) ? Translate.sprintf('COM_FOOD_TXT_FILES_TWO') : Translate.sprintf('COM_FOOD_TXT_FILES_THREE')),
+				afterPrefix = Translate.sprintf('COM_FFOD_TXT_FILES_SELECT');
+			btn && (
+				btn.innerHTML = Translate.sprintf('COM_FOOD_FILES_UPLOAD'),
+				btn.classList.add('glyphicon-open'),
+				btn.classList.remove('glyphicon-floppy-open')
+			);
+			btnDrag && btnDrag.setAttribute('data-title-after', `${afterPrefix} ${out.length} ${afterSufix}`);
 		}else{
-			btn && (btn.innerHTML = '<i class="fa fa-floppy-o"></i>Выберите файлы для загрузки');
+			// Выбор файлов
+			btn && (
+				btn.innerHTML = Translate.sprintf('COM_FOOD_SELECT_FILES'),
+				btn.classList.add('glyphicon-file-add'),
+				btn.classList.remove('glyphicon-open')
+			);
+			btnDrag && btnDrag.removeAttribute('data-title-after');
 		}
-		btnDrag && btnDrag.setAttribute('data-length', out.length);
 		p.html(out.join(""));
 		return !1;
 	}
@@ -201,7 +221,8 @@
 			className: 'dt-dragdrop-block btn-default btn-block',
 			text: '',
 			attr: {
-				title: 'Перетащите сюда файлы *.xlsx или *.pdf для загрузки\nИли выберите их с помощю диалога'
+				title: Translate.sprintf('COM_FOOD_TITLE_DRAG'),
+				"data-title-before": Translate.sprintf('COM_FOOD_TITLE_DRAG_BEFORE')
 			},
 			tag: "button",
 			action: function (e, dt, node, config) {
@@ -288,17 +309,17 @@
 				// Контейнер слева: Меню вывода кол-ва файлов
 				topStart: {
 					buttons: [
+						// Видимость столбцов
 						{
 							extend: 'colvis',
-							className: 'button-colvis btn-default',
-							//text: `<i class="fas fa-layer-group"></i>Видимость столбцов`,
+							className: 'button-colvis btn-default glyphicon-tasks',
 							columns: [1,2,3,4],
 							select: true,
 						},
+						// Вывод на печать
 						{
 							extend: 'print',
-							className: 'button-print btn-success',
-							//text: `<i class="fas fa-print"></i>Печать`,
+							className: 'button-print btn-success glyphicon-print',
 							exportOptions: {
 								columns: ':visible'
 							},
@@ -320,17 +341,17 @@
 					],
 					'search': 'search',
 				},
-				// Контейнер справа: кнопки экспорта XLSX, PDF
+				// Контейнер справа: кнопки Выбора файлов, Экспорта XLSX, Экспорта PDF
 				topEnd: {
 					buttons: [
-						// Кнопка приёма файлов
+						// Кнопка/блок приёма файлов
 						{
 							extend: 'dragdrop',
 						},
 						// Кнопка выбора файлов
 						{
-							text: '<i class="fa fa-floppy-o"></i>Выберите файлы для загрузки',
-							className: 'button-upload btn-success',
+							text: Translate.sprintf('COM_FOOD_SELECT_FILES'),
+							className: 'button-upload btn-success glyphicon-floppy-open',
 							action: function (e, dt, node, config) {
 								let uploader, input;
 								if( uploader = document.querySelector('[name="upload"]')){

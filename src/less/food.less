@@ -13,6 +13,18 @@ h4 {
 	}
 }
 
+[class^="glyphicon-"]:before,
+[class*=" glyphicon-"]:before {
+	position: relative;
+	display: inline;
+	font-family: "Glyphicons Halflings";
+	font-style: normal;
+	font-weight: 400;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
 .btn {
 	&-default,
 	&-primary,
@@ -68,30 +80,13 @@ button.dt-dragdrop-block {
 	}
 
 	&::before {
-		content: "Перетащите сюда файлы (*.xlsx или *.pdf)\AИли выберите их с помощю диалога";
+		content: attr(data-title-before);
 		white-space: break-spaces;
 	}
-	&:not([data-length="0"]) {
+	&[data-title-after] {
 		&::after {
-			content: "Выбрано: " attr(data-length) " файлов";
+			content: attr(data-title-after);
 			color: var(--success, #457d54);
-		}
-	}
-	&[data-length="1"] {
-		&::after {
-			content: "Выбрано: " attr(data-length) " файл";
-		}
-	}
-	&[data-length="2"],
-	&[data-length="3"],
-	&[data-length="4"] {
-		&::after {
-			content: "Выбрано: " attr(data-length) " файла";
-		}
-	}
-	&:not([data-length]) {
-		&::after {
-			content: "";
 		}
 	}
 }
@@ -200,10 +195,16 @@ form[name="upload"] {
 		gap: 10px;
 		// Drag And Drop
 		.dt-dragdrop-block {
-			flex: 1 0 auto;
-			width: 100%;
+			flex: 1 0 auto !important;
+			width: 100% !important;
 			min-height: 80px;
 			background-image: unset;
+		}
+		.btn {
+			width: auto;
+			height: auto;
+			margin-right: inherit;
+			line-height: inherit;
 		}
 	}
 }
@@ -220,7 +221,7 @@ form[name="upload"] {
 			.dt-dragdrop-block {
 				flex: 1 0 auto;
 				width: 100%;
-				min-height: 100px;
+				min-height: 5.4em;
 				background-image: unset;
 			}
 		}
@@ -233,6 +234,9 @@ form[name="upload"] {
 
 // Container Buttons
 div.dt-container {
+	&.form-inline {
+		margin-top: 2em;
+	}
 	div.dt-layout {
 		&-row {
 			display: flex;
@@ -339,6 +343,8 @@ div.dt-container {
 				margin-left: inherit;
 				text-align: right;
 				flex: 1 0 auto;
+				margin-top: unset;
+				margin-bottom: unset;
 				~ .caret {
 					display: none;
 				}
@@ -350,7 +356,6 @@ div.dt-container {
 					&::before {
 						.glyphicon();
 						content: "\e025";
-						margin-right: 5px;
 					}
 					*,
 					&:before {

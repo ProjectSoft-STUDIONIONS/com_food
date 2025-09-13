@@ -58,6 +58,14 @@ class FoodViewsStatisticsHtml extends JViewHtml
 		JText::script('COM_FOOD_EXPORT_PDF');
 		JText::script('COM_FOOD_EXPORT_TO_PDF');
 		JText::script('COM_FOOD_DIRECTORY');
+		JText::script('COM_FOOD_SELECT_FILES');
+		JText::script('COM_FOOD_FILES_UPLOAD');
+		JText::script('COM_FOOD_TITLE_DRAG');
+		JText::script('COM_FOOD_TITLE_DRAG_BEFORE');
+		JText::script('COM_FFOD_TXT_FILES_SELECT');
+		JText::script('COM_FOOD_TXT_FILES_ONE');
+		JText::script('COM_FOOD_TXT_FILES_TWO');
+		JText::script('COM_FOOD_TXT_FILES_THREE');
 	}
 
 	public function getSize($file) {
