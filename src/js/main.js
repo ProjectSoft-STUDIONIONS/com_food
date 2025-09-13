@@ -134,6 +134,7 @@
 						btn.classList.remove('glyphicon-open'),
 						btn.classList.add('glyphicon-floppy-open')
 					);
+					console.log(a);
 					alert(Translate.sprintf('COM_FOOD_ERROR_TYPE_UPLOAD', a.name, a.type));
 					document.upload.reset();
 					return !1;
@@ -235,7 +236,11 @@
 				}
 		};
 
-		const url = `${location.origin}/${searchAPI.dir}/`;
+		const url = `${location.origin}/${searchAPI.dir}/`,
+			dateString = () => {
+				let date = (new Date()).getTime();
+				return `${date}`;
+			};
 
 		jq.extend(true, DataTable.Buttons.defaults, {
 			dom: {
@@ -247,6 +252,7 @@
 				}
 			}
 		});
+		let dateFile = new Date();
 		let table = new DataTable('.food-table .table', {
 			responsive: false,
 			// Колонки
@@ -315,6 +321,7 @@
 							className: 'button-colvis btn-default glyphicon-tasks',
 							columns: [1,2,3,4],
 							select: true,
+							dropIcon: false,
 						},
 						// Вывод на печать
 						{
@@ -332,8 +339,8 @@
 						},
 						{
 							extend: 'pageLength',
-							className: 'dt-button-page-length btn-default btn-block',
-							dropIcon: true,
+							className: 'button-page-length dt-button-page-length btn-default btn-block glyphicon-list',
+							dropIcon: false,
 							attr: {
 								style: "width: 100%"
 							}
@@ -527,7 +534,7 @@
 			// Загружаем язык
 			// Нужно сделать определение и загрузка нужного языка панели.
 			language: {
-				url: '/administrator/components/com_food/assets/js/' + Lang + '.json',
+				url: '/administrator/components/com_food/assets/js/' + Lang + '.json?date=' +dateString(),
 			}
 		});
 		setTimeout(() => {

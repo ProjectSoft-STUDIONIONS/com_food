@@ -117,9 +117,7 @@ div.dt-button-collection {
 }
 
 .caret {
-	&::before {
-		content: "\25BC";
-	}
+	display: none !important;
 }
 
 // Form Upload
@@ -230,6 +228,24 @@ form[name="upload"] {
 
 #content .pagination {
 	margin: 0;
+}
+
+// Buttons Page Length and Column Visible
+button.btn.button-page-length,
+button.btn.button-colvis {
+	&::after {
+		content: "▼";
+		flex: 1 0 auto;
+		text-align: right;
+	}
+	&.dt-button-active-a {
+		&::after {
+			display: none;
+		}
+	}
+	.caret {
+		display: none;
+	}
 }
 
 // Container Buttons
@@ -427,15 +443,15 @@ div.dt-container {
 // Pagination Glyphicon
 .glyphicon {
 	&.glyphicon {
-		&-chevron {
-			&-before {
+		&-menu {
+			&-left-before {
 				&::before {
-					content: "\e079\e079";
+					content: "\e257\e257";
 				}
 			}
-			&-after {
+			&-right-after {
 				&::before {
-					content: "\e080\e080";
+					content: "\e258\e258";
 				}
 			}
 		}

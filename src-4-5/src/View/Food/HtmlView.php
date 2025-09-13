@@ -56,9 +56,18 @@ class HtmlView extends BaseHtmlView {
 		// Кнопки
 		$this->addToolbar();
 		$doc = Factory::getDocument();
+		// Стили
+		$styles = array(
+			"/viewer/app.min.css",
+			"/administrator/components/com_food/assets/css/main.min.css"
+		);
 		// Добавляем стили
-		$doc->addStyleSheet("/viewer/app.min.css", array("version" => "auto"));
-		$doc->addStyleSheet("/administrator/components/com_food/assets/css/main.min.css", array("version" => "auto"));
+		foreach ($styles as $key => $value):
+			if(is_file(JPATH_ROOT . $value)):
+				$version = filemtime(JPATH_ROOT . $value);
+				$doc->addStyleSheet($value, array('version' => $version));
+			endif;
+		endforeach;
 		// Добавляем JS
 		$this->addScripts();
 		parent::display($tpl);

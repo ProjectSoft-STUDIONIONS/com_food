@@ -42,11 +42,14 @@ class FoodViewsStatisticsHtml extends JViewHtml
 
 	// Добавляем свои переменные языка для JS
 	private function addScripts(){
-		//$lang = JFactory::getLanguage();
-		// Добавляем стили
 		$doc = JFactory::getDocument();
-		$doc->addStyleSheet("/viewer/app.min.css", array("version" => "auto"));
-		$doc->addStyleSheet("/administrator/components/com_food/assets/css/main.min.css", array("version" => "auto"));
+		// Стили
+		$styles = array(
+			"/viewer/app.min.css",
+			"/administrator/components/com_food/assets/css/main.min.css"
+		);
+
+		// Add langs
 		JText::script('COM_FOOD_TITLE');
 		JText::script('COM_FOOD_ERROR_MAX_UPLOAD');
 		JText::script('COM_FOOD_ERROR_TYPE_UPLOAD');
@@ -66,6 +69,14 @@ class FoodViewsStatisticsHtml extends JViewHtml
 		JText::script('COM_FOOD_TXT_FILES_ONE');
 		JText::script('COM_FOOD_TXT_FILES_TWO');
 		JText::script('COM_FOOD_TXT_FILES_THREE');
+
+		// Добавляем стили
+		foreach ($styles as $key => $value):
+			if(is_file(JPATH_ROOT . $value)):
+				$version = filemtime(JPATH_ROOT . $value);
+				$doc->addStyleSheet($value, array('version' => $version));
+			endif;
+		endforeach;
 	}
 
 	public function getSize($file) {
