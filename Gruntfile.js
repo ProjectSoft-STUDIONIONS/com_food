@@ -65,26 +65,8 @@ module.exports = function(grunt) {
 			"less",
 			"autoprefixer",
 			"cssmin",
-			// Копирование вьювера
-			"copy:viewer",
-			// Копирование основных файлов
-			"copy:main",
-			"copy:food",
-			"copy:htacces",
-			// Копирование языка DataTable
-			"copy:json",
-			// Copy lang
-			"copy:lang",
-			// Копирование JS
-			"copy:test",
-
-			"copy:services",
-
-			"copy:src",
-
-			"copy:tmpl",
-
-			"copy:files",
+			// Копирование
+			"copy",
 			// Компиляция XML
 			"pug:serv3",
 			"pug:serv4",
@@ -251,17 +233,17 @@ module.exports = function(grunt) {
 			},
 		},
 		uglify: {
-			options: {
-				sourceMap: false,
-				compress: {
-					drop_console: false
-				},
-				output: {
-					ascii_only: true
-				}
-			},
 			// component-3x
 			app: {
+				options: {
+					sourceMap: false,
+					compress: {
+						drop_console: false
+					},
+					output: {
+						ascii_only: true
+					}
+				},
 				files: [
 					{
 						expand: true,
@@ -274,9 +256,21 @@ module.exports = function(grunt) {
 					}
 				]
 			},
-			main3: {
+			main: {
 				options : {
-					banner : "const componentName = `" + cName + " 3.x`, Developer = `ProjectSoft`;"
+					sourceMap: false,
+					compress: {
+						drop_console: false
+					},
+					output: {
+						ascii_only: true
+					},
+					banner : `/**
+ * Компонент com_food для Joomla CMS
+ * Автор: ProjectSoft aka Чернышёв Андрей <projectsoft2009@yandex.ru>
+ * Все вопросы в Телеграм - https://t.me/ProjectSoft
+ */
+` + "const componentName = `" + cName + " 3.x`, Developer = `ProjectSoft`;"
 				},
 				files: [
 					{
@@ -287,10 +281,28 @@ module.exports = function(grunt) {
 						],
 						dest: 'component-3x/com_food/admin/assets/js',
 						filter: 'isFile',
+					},
+					{
+						expand: true,
+						flatten : true,
+						src: [
+							'component-4x/com_food/admin/assets/js/main.min.js'
+						],
+						dest: 'component-4x/com_food/admin/assets/js',
+						filter: 'isFile',
+					},
+					{
+						expand: true,
+						flatten : true,
+						src: [
+							'component-5x/com_food/admin/assets/js/main.min.js'
+						],
+						dest: 'component-5x/com_food/admin/assets/js',
+						filter: 'isFile',
 					}
 				]
 			},
-			viewer3: {
+			viewer: {
 				files: [
 					{
 						expand: true,
@@ -303,28 +315,7 @@ module.exports = function(grunt) {
 						rename: function (dst, src) {
 							return dst + '/' + src.replace('.js', '.min.js');
 						}
-					}
-				]
-			},
-			// component-4x
-			main4: {
-				options : {
-					banner : "const componentName = `" + cName + " Joomla CMS 4.x`, Developer = `ProjectSoft`;"
-				},
-				files: [
-					{
-						expand: true,
-						flatten : true,
-						src: [
-							'component-4x/com_food/admin/assets/js/main.min.js'
-						],
-						dest: 'component-4x/com_food/admin/assets/js',
-						filter: 'isFile',
-					}
-				]
-			},
-			viewer4: {
-				files: [
+					},
 					{
 						expand: true,
 						flatten : true,
@@ -336,28 +327,7 @@ module.exports = function(grunt) {
 						rename: function (dst, src) {
 							return dst + '/' + src.replace('.js', '.min.js');
 						}
-					}
-				]
-			},
-			// component-5x
-			main5: {
-				options : {
-					banner : "const componentName = `" + cName + " Joomla CMS 5.x`, Developer = `ProjectSoft`;"
-				},
-				files: [
-					{
-						expand: true,
-						flatten : true,
-						src: [
-							'component-5x/com_food/admin/assets/js/main.min.js'
-						],
-						dest: 'component-5x/com_food/admin/assets/js',
-						filter: 'isFile',
-					}
-				]
-			},
-			viewer5: {
-				files: [
+					},
 					{
 						expand: true,
 						flatten : true,
@@ -371,7 +341,7 @@ module.exports = function(grunt) {
 						}
 					}
 				]
-			}
+			},
 		},
 		pug: {
 			// component-3x
