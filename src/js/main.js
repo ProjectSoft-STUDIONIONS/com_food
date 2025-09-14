@@ -318,7 +318,7 @@
 						// Видимость столбцов
 						{
 							extend: 'colvis',
-							className: 'button-colvis btn-default glyphicon-tasks',
+							className: 'button-colvis btn-default glyphicon-tasks text-uppercase',
 							columns: [1,2,3,4],
 							select: true,
 							dropIcon: false,
@@ -326,7 +326,7 @@
 						// Вывод на печать
 						{
 							extend: 'print',
-							className: 'button-print btn-success glyphicon-print',
+							className: 'button-print btn-success glyphicon-print text-uppercase',
 							exportOptions: {
 								columns: ':visible'
 							},
@@ -339,7 +339,7 @@
 						},
 						{
 							extend: 'pageLength',
-							className: 'button-page-length dt-button-page-length btn-default btn-block glyphicon-list',
+							className: 'button-page-length dt-button-page-length btn-default btn-block glyphicon-list text-uppercase',
 							dropIcon: false,
 							attr: {
 								style: "width: 100%"
@@ -358,7 +358,7 @@
 						// Кнопка выбора файлов
 						{
 							text: Translate.sprintf('COM_FOOD_SELECT_FILES'),
-							className: 'button-upload btn-success glyphicon-floppy-open',
+							className: 'button-upload btn-success glyphicon-floppy-open text-uppercase',
 							action: function (e, dt, node, config) {
 								let uploader, input;
 								if( uploader = document.querySelector('[name="upload"]')){
@@ -375,7 +375,7 @@
 						// Кнопка экспорта XLSX
 						{
 							extend: 'excel',
-							className: 'btn-default',
+							className: 'btn-default text-uppercase',
 							text: Translate.sprintf('COM_FOOD_EXPORT_XLSX'),
 							download: '',
 							filename: Translate.sprintf('COM_FOOD_EXPORT_TO_XLSX', searchAPI.dir),
@@ -468,7 +468,7 @@
 						// Кнопка экспорта PDF
 						{
 							extend: 'pdf',
-							className: 'btn-default',
+							className: 'btn-default text-uppercase',
 							text: Translate.sprintf('COM_FOOD_EXPORT_PDF'),
 							download: '',
 							filename: Translate.sprintf('COM_FOOD_EXPORT_TO_PDF', searchAPI.dir),

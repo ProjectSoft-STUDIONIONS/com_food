@@ -44,16 +44,17 @@ module.exports = function(grunt) {
 		version: `${PACK.version}`,
 		src: [
 			'bower_components/jquery/dist/jquery.js',
+			'bower_components/js-cookie/src/js.cookie.js',
 			'bower_components/pdfmake/build/pdfmake.js',
 			'bower_components/jszip/dist/jszip.js',
 			'bower_components/pdfmake/build/vfs_fonts.js',
 			'bower_components/datatables.net/js/dataTables.js',
 			'bower_components/datatables.net-buttons/js/dataTables.buttons.js',
 			'bower_components/datatables.net-buttons/js/buttons.html5.js',
-			'bower_components/datatables.net-buttons/js/buttons.colVis.js',
 			'bower_components/datatables.net-buttons/js/buttons.print.js',
+			'bower_components/datatables.net-buttons/js/buttons.colVis.js',
 			'bower_components/datatables.net-bs/js/dataTables.bootstrap.js',
-			'bower_components/datatables.net-buttons-bs/js/buttons.bootstrap.js'
+			//'bower_components/datatables.net-buttons-bs/js/buttons.bootstrap.js'
 		],
 		default: [
 			"clean",
