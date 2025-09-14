@@ -14,6 +14,8 @@
 
 Так же поддерживается обновление компонента средствами Joomla при выходе нового реализа
 
+Сборка компонента происходит с помощью `npm` и `grunt` на стороне `GitHub` при публикации реализа.
+
 ## Установка
 
 ### Joomla CMS 3.x
@@ -33,29 +35,3 @@
 Скачать компонент из реализа [![DOWNLOADS LATEST Joomla 5.x](https://img.shields.io/github/downloads/ProjectSoft-STUDIONIONS/com_food/com_food-5.x.zip?style=for-the-badge&label=DOWNLOADS%20LATEST&cacheSeconds=160)](https://github.com/ProjectSoft-STUDIONIONS/com_food/releases/latest/download/com_food-5.x.zip)
 
 Установить через административную панель. `Система` -> `Установка` -> `Расширения`
-
-## Скриншоты
-
-### Joomla CMS 3.x
-
-![Joomla CMS 3.x](../../blob/main/src-3/screen/com_food-3.x-0001.png?raw=true)
-
-![Joomla CMS 3.x](../../blob/main/src-3/screen/com_food-3.x-0002.png?raw=true)
-
-![Joomla CMS 3.x](../../blob/main/src-3/screen/com_food-3.x-0003.png?raw=true)
-
-### Joomla CMS 4.x
-
-![Joomla CMS 5.x](../../blob/main/src-4-5/screen/com_food-4.x-0001.png?raw=true)
-
-![Joomla CMS 5.x](../../blob/main/src-4-5/screen/com_food-4.x-0002.png?raw=true)
-
-![Joomla CMS 5.x](../../blob/main/src-4-5/screen/com_food-4.x-0003.png?raw=true)
-
-### Joomla CMS 5.x
-
-![Joomla CMS 4.x](../../blob/main/src-4-5/screen/com_food-5.x-0001.png?raw=true)
-
-![Joomla CMS 4.x](../../blob/main/src-4-5/screen/com_food-5.x-0002.png?raw=true)
-
-![Joomla CMS 4.x](../../blob/main/src-4-5/screen/com_food-5.x-0003.png?raw=true)
