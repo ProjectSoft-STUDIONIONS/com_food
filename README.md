@@ -35,3 +35,9 @@
 Скачать компонент из реализа [![DOWNLOADS LATEST Joomla 5.x](https://img.shields.io/github/downloads/ProjectSoft-STUDIONIONS/com_food/com_food-5.x.zip?style=for-the-badge&label=DOWNLOADS%20LATEST&cacheSeconds=160)](https://github.com/ProjectSoft-STUDIONIONS/com_food/releases/latest/download/com_food-5.x.zip)
 
 Установить через административную панель. `Система` -> `Установка` -> `Расширения`
+
+### Joomla CMS 6.x
+
+Скачать компонент из реализа [![DOWNLOADS LATEST Joomla 6.x](https://img.shields.io/github/downloads/ProjectSoft-STUDIONIONS/com_food/com_food-6.x.zip?style=for-the-badge&label=DOWNLOADS%20LATEST&cacheSeconds=160)](https://github.com/ProjectSoft-STUDIONIONS/com_food/releases/latest/download/com_food-6.x.zip)
+
+Установить через административную панель. `Система` -> `Установка` -> `Расширения`
