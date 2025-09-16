@@ -1,4 +1,4 @@
-name: Сборка и публикация com_food для Joomla CMS 3.x, 4.x, 5.x
+name: Сборка и публикация com_food для Joomla CMS 3.x, 4.x, 5.x, 6.x
 on:
   push:
     tags: 
