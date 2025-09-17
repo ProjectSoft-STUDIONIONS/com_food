@@ -41,3 +41,11 @@
 Скачать компонент из реализа [![DOWNLOADS LATEST Joomla 6.x](https://img.shields.io/github/downloads/ProjectSoft-STUDIONIONS/com_food/com_food-6.x.zip?style=for-the-badge&label=DOWNLOADS%20LATEST&cacheSeconds=160)](https://github.com/ProjectSoft-STUDIONIONS/com_food/releases/latest/download/com_food-6.x.zip)
 
 Установить через административную панель. `Система` -> `Установка` -> `Расширения`
+
+### Скриншот Joomla! 6.0.0-beta3
+
+![Скриншот Joomla! 6.0.0-beta3](src/screenshots/screenshot-6.x.png)
+
+### Постскриптум
+
+Если у вас возникли проблемы с компонентом или вы хотите **обновить вашу версию Joomla CMS**, то, по вашему желанию, вы можете обратиться ко мне для последующего обсуждения действий - [@ProjectSoft](https:://t.me/ProjectSoft)

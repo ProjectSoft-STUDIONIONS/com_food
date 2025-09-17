@@ -76,23 +76,15 @@ $max_count_files = ini_get("max_file_uploads");
 					<td><?= $size; ?></td>
 					<td><!-- Переименовать, Удалить -->
 						<div class="flex">
-							<i class="btn btn-secondary glyphicon glyphicon-edit" data-mode="rename" data-file="<?= $value; ?>" title="<?= Text::sprintf('COM_FOOD_RENAME', $value);?>" onclick="modeFile(this);"></i>
-							<i class="btn btn-secondary glyphicon glyphicon-trash" data-mode="delete" data-file="<?= $value; ?>" title="<?= Text::sprintf('COM_FOOD_DELETE', $value);?>" onclick="modeFile(this);"></i>
+							<i class="btn btn-default glyphicon glyphicon-edit" data-mode="rename" data-file="<?= $value; ?>" title="<?= Text::sprintf('COM_FOOD_RENAME', $value);?>" onclick="modeFile(this);"></i>
+							<i class="btn btn-danger glyphicon glyphicon-trash" data-mode="delete" data-file="<?= $value; ?>" title="<?= Text::sprintf('COM_FOOD_DELETE', $value);?>" onclick="modeFile(this);"></i>
 							<span>-</span>
 						</div>
 					</td>
 				</tr>
 				<?php endforeach; ?>
 			<?php else: ?>
-				<?php if($this->stats["dir"]):?>
-				<tr>
-					<td class="nowrap"><?= Text::_('COM_FOOD_TABLE_NOT_FOUND'); ?></td>
-					<td class="nowrap">-</td>
-					<td class="nowrap">-</td>
-					<td class="nowrap">-</td>
-					<td class="nowrap">-</td>
-				</tr>
-				<?php else: ?>
+				<?php if(!$this->stats["dir"]):?>
 					<?php foreach($this->stats["folders"] as $key => $value): ?>
 				<tr>
 					<td class="nowrap" colspan="4"><i class="glyphicon glyphicon-folder-open"></i>&nbsp;<a href="index.php?option=com_food&dir=<?= $value; ?>"><?= $value; ?></a></td>

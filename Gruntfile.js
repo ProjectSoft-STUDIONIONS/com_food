@@ -71,6 +71,7 @@ module.exports = function(grunt) {
 			"pug:serv3",
 			"pug:serv4",
 			"pug:serv5",
+			"pug:serv6",
 			// Архивирование
 			"compress",
 			// SHA
@@ -522,7 +523,7 @@ module.exports = function(grunt) {
 							"author": author,
 							"authorEmail": authorEmail,
 							"authorUrl": authorUrl,
-							"versZip": "5.x"
+							"versZip": "6.x"
 						}
 					}
 				},

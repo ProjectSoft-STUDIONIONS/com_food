@@ -1,8 +1,8 @@
 doctype html
-- var versions = ["1.2.2", "1.2.1", "1.2.0"];
-- var joomvers = ["3", "4", "5"];
-- var versions6 = ["1.2.3"];
-- var joomvers6 = ["3", "4", "5", "6"];
+- var versions = ["1.2.3"];
+- var joomvers = ["3", "4", "5", "6"];
+- var versions6 = [];
+- var joomvers6 = [];
 html(lang="ru")
 	head
 		title
@@ -77,20 +77,6 @@ html(lang="ru")
 									span.text-right
 										a.btn(href="https://github.com/ProjectSoft-STUDIONIONS/com_food/releases/latest/download/com_food-6.x.zip" download="com_food-6.x.zip")
 											|Скачать
-				each version6 in versions6
-					article
-						head
-							h3= version6
-						div
-							ul
-								each jvers in joomvers6
-									li
-										div
-											span
-												|Для Joomla #{jvers}
-											span.text-right
-												a.btn(href="https://github.com/ProjectSoft-STUDIONIONS/com_food/releases/download/" + version6 + "/com_food-" + jvers + ".x.zip" download=version6+"-com_food-" + jvers + ".x.zip")
-													|Скачать
 				each version in versions
 					article
 						head
@@ -106,6 +92,6 @@ html(lang="ru")
 												a.btn(href="https://github.com/ProjectSoft-STUDIONIONS/com_food/releases/download/" + version + "/com_food-" + jvers + ".x.zip" download=version+"-com_food-" + jvers + ".x.zip")
 													|Скачать
 		footer
-			a(href="" target="_blank")
+			a(href="https://github.com/ProjectSoft-STUDIONIONS" target="_blank")
 				|ProjectSoft
 			|&nbsp;&copy; 2008 - All rights reserved

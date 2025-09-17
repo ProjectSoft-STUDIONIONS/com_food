@@ -3,6 +3,14 @@ html {
 	-webkit-tap-highlight-color: transparent;
 }
 
+// Select, Input search
+select,
+[type=search] {
+	&.form-control {
+		appearance: auto;
+	}
+}
+
 h1,
 h2,
 h3,
@@ -68,20 +76,7 @@ h4 {
 }
 
 .btn {
-	&-default,
-	&-primary,
-	&-info,
-	&-success,
-	&-danger,
-	&-warning {
-		background-image: unset;
-	}
-	&-success {
-		background-color: var(--success, #457d54);
-		&:hover {
-			background-color: var(--successhvr, #2a4c33);
-		}
-	}
+	flex: 0 1 auto;
 	&,
 	&.focus {
 		&,
@@ -90,15 +85,29 @@ h4 {
 			outline-offset: 0 !important;
 		}
 	}
+	&-default,
+	&-primary,
+	&-info,
+	&-success,
+	&-danger,
+	&-warning {
+		background-image: unset !important;
+	}
+	&-success {
+		background-color: var(--success, #457d54);
+		&:hover {
+			background-color: var(--successhvr, #2a4c33);
+		}
+	}
 	&-default {
 		&:active {
 			background-color: var(--white-offset, #fefefe);
 			&:focus {
-
 			}
 		}
 	}
 }
+
 
 .table tbody a:not(.badge):not(.btn):not(.dropdown-item) {
 	&::before {
@@ -162,6 +171,25 @@ div.dt-button-collection {
 			}
 		}
 	}
+	div[role="menu"] {
+		.btn {
+			position: relative;
+			width: 100% !important;
+			justify-content: space-between !important;
+			border-radius: 0px;
+			background-color: transparent;
+			border-color: transparent;
+			appearance: none;
+			&:hover {
+				background-color: #e0e0e0;
+			}
+			&.active,
+			&:active {
+				box-shadow: unset;
+				border-color: transparent;
+			}
+		}
+	}
 }
 
 .caret {
@@ -172,17 +200,9 @@ div.dt-button-collection {
 form[name="upload"] {
 	.clearfix();
 	display: block;
-	//float: right;
-	//margin-bottom: 10px;
 	.text-right();
 	input[type="file"] {
 		display: none;
-	}
-	.btn {
-		display: inline-block;
-		max-width: 200px;
-		width: 100%;
-		.text-center();
 	}
 	#p_uploads {
 		margin-top: 15px;
@@ -192,29 +212,22 @@ form[name="upload"] {
 		background-image: unset;
 		background-color: var(--info-bg-subtle, #d4e1f1);
 		code {
+			display: block;
+			font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
 			color: inherit;
 			background-color: transparent;
 		}
 		&:empty {
 			display: none;
 		}
-		code {
-			display: block;
-			font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
-		}
 	}
 }
 
-.btn {
-	flex: 0 1 auto;
-}
-
-.dt-layout-cell.dt-layout-full {
-	padding-left: unset !important;
-	padding-right: unset !important;
-}
-
 .dt-layout-cell.dt-layout{
+	&-full {
+		padding-left: unset !important;
+		padding-right: unset !important;
+	}
 	&-start,
 	&-end {
 		&.col-sm-6 {
@@ -279,8 +292,8 @@ form[name="upload"] {
 }
 
 // Buttons Page Length and Column Visible
-button.btn.button-page-length,
-button.btn.button-colvis {
+button.btn.buttons-page-length,
+button.btn.buttons-colvis {
 	&::after {
 		content: "▼";
 		flex: 1 0 auto;
@@ -422,7 +435,16 @@ div.dt-container {
 				&-excel,
 				&-pdf {
 					&::before {
-						.glyphicon();
+						//.glyphicon();
+						position: relative;
+						top: 1px;
+						display: inline-block;
+						font-family: "Glyphicons Halflings";
+						font-style: normal;
+						font-weight: 400;
+						line-height: 1;
+						-webkit-font-smoothing: antialiased;
+						-moz-osx-font-smoothing: grayscale;
 						content: "\e025";
 					}
 					*,
@@ -507,6 +529,8 @@ div.dt-container {
 		}
 	}
 }
+
+// Developer
 .developer {
 	font-style: italic;
 	font-size: .9em;
@@ -515,16 +539,4 @@ div.dt-container {
 			display: none;
 		}
 	}
-}
-// Select, Input search
-select,
-[type=search] {
-	&.form-control {
-		appearance: auto;
-	}
-}
-
-html {
-	font-size: inherit;
-	-webkit-tap-highlight-color: transparent;
 }

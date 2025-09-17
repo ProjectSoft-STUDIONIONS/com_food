@@ -379,8 +379,10 @@
 							text: Translate.sprintf('COM_FOOD_EXPORT_XLSX'),
 							download: '',
 							filename: Translate.sprintf('COM_FOOD_EXPORT_TO_XLSX', searchAPI.dir),
-							title: Translate.sprintf('COM_FOOD_DIRECTORY', url),
-							sheetName: `${searchAPI.dir}`,
+							sheetName: Translate.sprintf('COM_FOOD_DIRECTORY', searchAPI.dir).replace(/\//g, '\\/'),
+							exportOptions: {
+								columns: ':visible'
+							},
 							customize: function (xlsx) {
 								let date = new Date();
 								let dateISO = date.toISOString();
@@ -473,6 +475,9 @@
 							download: '',
 							filename: Translate.sprintf('COM_FOOD_EXPORT_TO_PDF', searchAPI.dir),
 							title: Translate.sprintf('COM_FOOD_DIRECTORY', url),
+							exportOptions: {
+								columns: ':visible'
+							},
 							// Кастомизируем вывод
 							customize: function (doc) {
 								let date = new Date();
