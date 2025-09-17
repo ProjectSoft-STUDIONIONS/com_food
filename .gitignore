@@ -6,32 +6,12 @@ package-lock.json
 # dotenv
 .env
 
-# txt
-*.txt
-.Grunt*
-**/**/food.xml
-**/**/config.xml
-**/**/access.xml
-**/**/admin/services/*.*
-**/**/admin/languages
-**/**/admin/src/Controller/*.*
-**/**/admin/src/View/*.*
-**/**/admin/services/*.*
-**/**/admin/src/Controller/**/*.*
-**/**/admin/src/View/**/*.*
-**/**/admin/services/**/*.*
-**/**/admin/tmpl/**/*.*
-
 # test or temp
 test
 test*
 test.*
 tests
 temp
-
-**/**/assets
-**/**/icons-full
-**/**/viewer
 
 # SublimeText workspace file
 *.sublime-workspace
@@ -44,6 +24,29 @@ component*/**/.htaccess.*.*
 docs/**/*.json
 docs/**/*.zip
 docs/*.xml
+
+# txt
+*.txt
+.Grunt*
+
+**/**/assets
+**/**/icons-full
+**/**/viewer
+**/**/food.xml
+**/**/config.xml
+**/**/access.xml
+**/**/admin/assets/*.*
+**/**/admin/services/*.*
+**/**/admin/languages
+**/**/admin/src/Controller/*.*
+**/**/admin/src/View/*.*
+**/**/admin/services/*.*
+**/**/admin/src/Controller/**/*.*
+**/**/admin/src/View/**/*.*
+**/**/admin/services/**/*.*
+**/**/admin/tmpl/**/*.*
+
+docs/*
 !docs/*.html
 !docs/**/*.js
 !docs/**/*.css
@@ -51,3 +54,27 @@ docs/*.xml
 !docs/**/.ignore
 !docs/**/assets
 docs/**/assets/**/*.css
+
+!component-3x/com_food/admin/
+!component-3x/com_food/admin/.htaccess
+!component-3x/com_food/admin/food.php
+!component-3x/com_food/admin/controllers
+!component-3x/com_food/admin/controllers/*.*
+!component-3x/com_food/admin/controllers/**/*.*
+!component-3x/com_food/admin/helpers
+!component-3x/com_food/admin/helpers/*.*
+!component-3x/com_food/admin/helpers/**/*.*
+!component-3x/com_food/admin/models
+!component-3x/com_food/admin/models/*.*
+!component-3x/com_food/admin/models/**/*.*
+!component-3x/com_food/admin/views
+!component-3x/com_food/admin/views/*.*
+!component-3x/com_food/admin/views/**/*.*
+
+component-3x/com_food/admin/models/**/*.dev.php
+component-3x/com_food/admin/models/**/*.old.php
+
+component-[^3]x/com_food/admin/htaccess
+component-[^3]x/com_food/admin/services
+component-[^3]x/com_food/admin/src
+component-[^3]x/com_food/admin/tmpl
