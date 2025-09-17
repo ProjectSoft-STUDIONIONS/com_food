@@ -12,6 +12,8 @@ package-lock.json
 **/**/food.xml
 **/**/config.xml
 **/**/access.xml
+**/**/admin/services/*.*
+**/**/admin/languages
 **/**/admin/src/Controller/*.*
 **/**/admin/src/View/*.*
 **/**/admin/services/*.*
