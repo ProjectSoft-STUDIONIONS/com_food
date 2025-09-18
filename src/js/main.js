@@ -277,7 +277,7 @@
 					'targets'       : [1,2,3,4],
 					'orderable'     : !1
 				},
-				// Видимость
+				// Видимость. Устанавливаем дефолт для скрытия permission и actions
 				{
 					'targets': [1,4],
 					'visible': false
@@ -319,6 +319,7 @@
 						{
 							extend: 'colvis',
 							className: 'button-colvis btn-default glyphicon-tasks text-uppercase',
+							// Колонки, которые можно скрыть. permission, date, size, actions
 							columns: [1,2,3,4],
 							select: true,
 							dropIcon: false,
