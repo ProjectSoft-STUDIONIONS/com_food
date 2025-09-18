@@ -1,15 +1,17 @@
 doctype xml
 config
-	help(key="Food:_Options")
-	inlinehelp(button="hide")
+	inlinehelp(button="show")
 	fieldset(name="component" label="COM_FOOD_OPTIONS" description="COM_FOOD_OPTIONS_DESC")
 		field(name="food_folders" type="text" default="" class="" label="COM_FOOD_OPTIONS_FOLDER" description="COM_FOOD_OPTIONS_FOLDER_DESC")
 		field(name="food_auto_delete" type="list" default="1" class="" label="COM_FOOD_AUTO_DELETE" description="COM_FOOD_AUTO_DELETE")
 			option(value="0") COM_FOOD_NO
 			option(value="1") COM_FOOD_YES
-		field(name="food_auto_year" type="list" default="5" class="" label="COM_FOOD_AUTO_YEAR" description="COM_FOOD_AUTO_YEAR_DESC")
+		// Дефолтное значение пять лет. Вообще документы теряют свою актуальность через пять лет. Но для директории food это значение можно уменьшать до одного года. Т. е. при значении 1 год на сайте остаются документы этого и прошлого года.
+		field(name="food_auto_year" type="list" default="5" class="" label="COM_FOOD_AUTO_YEAR" description="COM_FOOD_AUTO_YEAR_DESC" showon="food_auto_delete:1")
 			option(value="1") 1
 			option(value="2") 2
 			option(value="3") 3
 			option(value="4") 4
 			option(value="5") 5
+	fieldset(name="permissions" label="COM_FOOD_PERMISSION" description="COM_FOOD_PERMISSION_DESC")
+		field(name="rules" type="rules" filter="rules" validate="rules" section="component" component="com_food" label="COM_FOOD_PERMISSION_LABEL")

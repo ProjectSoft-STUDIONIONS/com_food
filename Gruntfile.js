@@ -652,8 +652,8 @@ module.exports = function(grunt) {
 				options: {
 					doctype: 'html',
 					client: false,
-					pretty: '',
-					separator:  '',
+					pretty: '\t',
+					separator:  '\n',
 					data: function(dest, src) {
 						return {};
 					}
