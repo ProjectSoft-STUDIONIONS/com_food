@@ -254,6 +254,7 @@
 		});
 		let dateFile = new Date();
 		let table = new DataTable('.food-table .table', {
+			select: 'single',
 			responsive: false,
 			// Колонки
 			columns: [

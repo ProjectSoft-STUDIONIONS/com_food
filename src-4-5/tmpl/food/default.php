@@ -11,11 +11,14 @@ use Joomla\CMS\Language\Text;
 // Нет прямого доступа к этому файлу
 defined('_JEXEC') or die('Нет доступа');
 $max_count_files = ini_get("max_file_uploads");
+$valueCSS = "/administrator/components/com_food/assets/css/main.min.css";
+$versionCSS = $valueCSS . "?" . filemtime(JPATH_ROOT . $valueCSS);
 ?>
 <script type="text/javascript">
 	window.MAX_COUNT_FILE = <?= ini_get("max_file_uploads");?>;
 	window.J_LANG = "<?= $this->stats['lang']?>";
 </script>
+<!--link rel="stylesheet" type="text/css" href="<?= $versionCSS; ?>"-->
 <style>
 	html {
 		font-size: inherit;
