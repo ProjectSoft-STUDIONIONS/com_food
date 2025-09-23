@@ -43,7 +43,7 @@ $versionCSS = $valueCSS . "?" . filemtime(JPATH_ROOT . $valueCSS);
 <div class="folder-title">
 	<?php if($this->stats["dir"]): ?>
 	<h3><?= Text::sprintf('COM_FOOD_DIR', $this->stats["dir"]); ?> <a href="/<?= $this->stats["dir"]; ?>/" target="_blank"></a></h3>
-	<p class="food-title-root"><i class="glyphicon glyphicon-folder-open"></i>&nbsp;<a href="index.php?option=com_food"><?= Text::_('COM_FOOD_DIR_TOP'); ?></a></p>
+	<p class="food-title-root"><i class="food-icon food-icon-folder-open-o"></i>&nbsp;<a href="index.php?option=com_food"><?= Text::_('COM_FOOD_DIR_TOP'); ?></a></p>
 	<?php else: ?>
 	<h3><?= Text::_('COM_FOOD_DIR_ROOT'); ?></h3>
 	<?php endif; ?>
@@ -73,14 +73,14 @@ $versionCSS = $valueCSS . "?" . filemtime(JPATH_ROOT . $valueCSS);
 					$perms = substr(sprintf('%o', fileperms($tmp_file)), -4);
 				?>
 				<tr>
-					<td><i class="glyphicon glyphicon-file"></i>&nbsp;<a href="/<?= $this->stats["dir"] . "/" . $value; ?>" target="_blank"><?= $value; ?></a></td>
+					<td><i class="food-icon food-icon-file"></i>&nbsp;<a href="/<?= $this->stats["dir"] . "/" . $value; ?>" target="_blank"><?= $value; ?></a></td>
 					<td><?= $perms; ?></td>
 					<td><?= $ltime; ?></td>
 					<td><?= $size; ?></td>
 					<td><!-- Переименовать, Удалить -->
 						<div class="flex">
-							<i class="btn btn-default glyphicon glyphicon-edit" data-mode="rename" data-file="<?= $value; ?>" title="<?= Text::sprintf('COM_FOOD_RENAME', $value);?>" onclick="modeFile(this);"></i>
-							<i class="btn btn-danger glyphicon glyphicon-trash" data-mode="delete" data-file="<?= $value; ?>" title="<?= Text::sprintf('COM_FOOD_DELETE', $value);?>" onclick="modeFile(this);"></i>
+							<i class="btn btn-default food-icon food-icon-edit" data-mode="rename" data-file="<?= $value; ?>" title="<?= Text::sprintf('COM_FOOD_RENAME', $value);?>" onclick="modeFile(this);"></i>
+							<i class="btn btn-danger food-icon food-icon-trash" data-mode="delete" data-file="<?= $value; ?>" title="<?= Text::sprintf('COM_FOOD_DELETE', $value);?>" onclick="modeFile(this);"></i>
 							<span>-</span>
 						</div>
 					</td>
@@ -90,8 +90,8 @@ $versionCSS = $valueCSS . "?" . filemtime(JPATH_ROOT . $valueCSS);
 				<?php if(!$this->stats["dir"]):?>
 					<?php foreach($this->stats["folders"] as $key => $value): ?>
 				<tr>
-					<td class="nowrap" colspan="4"><i class="glyphicon glyphicon-folder-open"></i>&nbsp;<a href="index.php?option=com_food&dir=<?= $value; ?>"><?= $value; ?></a></td>
-					<td style="width: 1%;" class="nowrap"><a href="/<?= $value; ?>/" target="_blank"></a></td>
+					<td class="nowrap" colspan="4"><i class="food-icon food-icon-folder-open-o"></i>&nbsp;<a href="index.php?option=com_food&dir=<?= $value; ?>"><?= $value; ?></a></td>
+					<td style="width: 1%;" class="nowrap"><a href="/<?= $value; ?>/" target="_blank"><i class="food-icon food-icon-new-window"></i></a></td>
 				</tr>
 					<?php endforeach; ?>
 				<?php endif; ?>

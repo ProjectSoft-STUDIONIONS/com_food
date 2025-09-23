@@ -25,7 +25,7 @@ $path = $this->realPath(JPATH_ROOT);
 			</div>
 			<div class="folder-title">
 				<h3><?= $this->stats["food_title"] ? JText::sprintf('COM_FOOD_DIR', $this->stats["food_title"]) : JText::_('COM_FOOD_DIR_ROOT'); ?></h3>
-				<?= $this->stats["food_title"] ? '<p class="food-title-root"><i class="glyphicon glyphicon-folder-open"></i>&nbsp;<a href="index.php?option=com_food">' . JText::_('COM_FOOD_DIR_TOP') . '</a></p>' : ''; ?>
+				<?= $this->stats["food_title"] ? '<p class="food-title-root"><i class="food-icon food-icon-folder-open-o"></i>&nbsp;<a href="index.php?option=com_food">' . JText::_('COM_FOOD_DIR_TOP') . '</a></p>' : ''; ?>
 			</div>
 			<div class="food-table">
 				<div class="">
@@ -52,14 +52,14 @@ $path = $this->realPath(JPATH_ROOT);
 								$perms = substr(sprintf('%o', fileperms($tmp_file)), -4);
 							?>
 							<tr>
-								<td><i class="glyphicon glyphicon-file"></i>&nbsp;<a href="/<?= $this->stats["dir"] . "/" . $value; ?>" target="_blank"><?= $value; ?></a></td>
+								<td><i class="food-icon food-icon-file"></i>&nbsp;<a href="/<?= $this->stats["dir"] . "/" . $value; ?>" target="_blank"><?= $value; ?></a></td>
 								<td><?= $perms; ?></td>
 								<td><?= $ltime; ?></td>
 								<td><?= $size; ?></td>
 								<td><!-- Переименовать, Удалить -->
 									<div class="flex">
-										<i class="btn btn-default glyphicon glyphicon-edit" data-mode="rename" data-file="<?= $value; ?>" title="<?= \JText::sprintf('COM_FOOD_RENAME', $value);?>" onclick="modeFile(this);"></i>
-										<i class="btn btn-danger glyphicon glyphicon-trash" data-mode="delete" data-file="<?= $value; ?>" title="<?= \JText::sprintf('COM_FOOD_DELETE', $value);?>" onclick="modeFile(this);"></i>
+										<i class="btn btn-default food-icon food-icon-edit" data-mode="rename" data-file="<?= $value; ?>" title="<?= \JText::sprintf('COM_FOOD_RENAME', $value);?>" onclick="modeFile(this);"></i>
+										<i class="btn btn-danger food-icon food-icon-trash" data-mode="delete" data-file="<?= $value; ?>" title="<?= \JText::sprintf('COM_FOOD_DELETE', $value);?>" onclick="modeFile(this);"></i>
 										<span>-</span>
 									</div>
 								</td>
@@ -69,8 +69,8 @@ $path = $this->realPath(JPATH_ROOT);
 							<?php if(!$this->stats["dir"]):?>
 								<?php foreach($this->stats["com_food_params"] as $key => $value): ?>
 							<tr>
-								<td class="nowrap" colspan="4"><i class="glyphicon glyphicon-folder-open"></i>&nbsp;<a href="index.php?option=com_food&dir=<?= $value; ?>"><?= $value; ?></a></td>
-								<td style="width: 1%;" class="nowrap"><a href="/<?= $value; ?>/" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></td>
+								<td class="nowrap" colspan="4"><i class="food-icon food-icon-folder-open-o"></i>&nbsp;<a href="index.php?option=com_food&dir=<?= $value; ?>"><?= $value; ?></a></td>
+								<td style="width: 1%;" class="nowrap"><a href="/<?= $value; ?>/" target="_blank"><i class="food-icon food-icon-new-window"></i></a></td>
 							</tr>
 								<?php endforeach; ?>
 							<?php endif; ?>

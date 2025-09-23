@@ -130,9 +130,7 @@
 					);
 					// Выбор файлов
 					btn && (
-						btn.innerHTML = Translate.sprintf('COM_FOOD_FILES_UPLOAD'),
-						btn.classList.remove('glyphicon-open'),
-						btn.classList.add('glyphicon-floppy-open')
+						btn.innerHTML = Translate.sprintf('COM_FOOD_FILES_UPLOAD')
 					);
 					console.log(a);
 					alert(Translate.sprintf('COM_FOOD_ERROR_TYPE_UPLOAD', a.name, a.type));
@@ -146,17 +144,13 @@
 			let afterSufix = out.length == 1 ? Translate.sprintf('COM_FOOD_TXT_FILES_ONE') : ((out.length > 1 && out.length < 5) ? Translate.sprintf('COM_FOOD_TXT_FILES_TWO') : Translate.sprintf('COM_FOOD_TXT_FILES_THREE')),
 				afterPrefix = Translate.sprintf('COM_FFOD_TXT_FILES_SELECT');
 			btn && (
-				btn.innerHTML = Translate.sprintf('COM_FOOD_FILES_UPLOAD'),
-				btn.classList.add('glyphicon-open'),
-				btn.classList.remove('glyphicon-floppy-open')
+				btn.innerHTML = Translate.sprintf('COM_FOOD_FILES_UPLOAD')
 			);
 			btnDrag && btnDrag.setAttribute('data-title-after', `${afterPrefix} ${out.length} ${afterSufix}`);
 		}else{
 			// Выбор файлов
 			btn && (
-				btn.innerHTML = Translate.sprintf('COM_FOOD_SELECT_FILES'),
-				btn.classList.add('glyphicon-file-add'),
-				btn.classList.remove('glyphicon-open')
+				btn.innerHTML = Translate.sprintf('COM_FOOD_SELECT_FILES')
 			);
 			btnDrag && btnDrag.removeAttribute('data-title-after');
 		}
@@ -319,7 +313,7 @@
 						// Видимость столбцов
 						{
 							extend: 'colvis',
-							className: 'button-colvis btn-default glyphicon-tasks text-uppercase',
+							className: 'button-colvis btn-default food-icon food-icon-tasks text-uppercase',
 							// Колонки, которые можно скрыть. permission, date, size, actions
 							columns: [1,2,3,4],
 							select: true,
@@ -328,7 +322,7 @@
 						// Вывод на печать
 						{
 							extend: 'print',
-							className: 'button-print btn-success glyphicon-print text-uppercase',
+							className: 'button-print btn-success food-icon food-icon-print text-uppercase',
 							exportOptions: {
 								columns: ':visible'
 							},
@@ -341,7 +335,7 @@
 						},
 						{
 							extend: 'pageLength',
-							className: 'button-page-length dt-button-page-length btn-default btn-block glyphicon-list text-uppercase',
+							className: 'button-page-length dt-button-page-length btn-default food-icon food-icon-lists btn-block text-uppercase',
 							dropIcon: false,
 							attr: {
 								style: "width: 100%"
@@ -360,7 +354,7 @@
 						// Кнопка выбора файлов
 						{
 							text: Translate.sprintf('COM_FOOD_SELECT_FILES'),
-							className: 'button-upload btn-success glyphicon-floppy-open text-uppercase',
+							className: 'button-upload btn-success food-icon food-icon-flopy-save text-uppercase',
 							action: function (e, dt, node, config) {
 								let uploader, input;
 								if( uploader = document.querySelector('[name="upload"]')){
@@ -377,7 +371,7 @@
 						// Кнопка экспорта XLSX
 						{
 							extend: 'excel',
-							className: 'btn-default text-uppercase',
+							className: 'btn-default text-uppercase food-icon food-icon-download',
 							text: Translate.sprintf('COM_FOOD_EXPORT_XLSX'),
 							download: '',
 							filename: Translate.sprintf('COM_FOOD_EXPORT_TO_XLSX', searchAPI.dir),
@@ -472,7 +466,7 @@
 						// Кнопка экспорта PDF
 						{
 							extend: 'pdf',
-							className: 'btn-default text-uppercase',
+							className: 'btn-default text-uppercase food-icon food-icon-download',
 							text: Translate.sprintf('COM_FOOD_EXPORT_PDF'),
 							download: '',
 							filename: Translate.sprintf('COM_FOOD_EXPORT_TO_PDF', searchAPI.dir),

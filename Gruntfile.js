@@ -674,6 +674,7 @@ module.exports = function(grunt) {
 			// Fonts
 			main: {
 				files: [
+					/*
 					// 3.x
 					{
 						expand: true,
@@ -700,6 +701,36 @@ module.exports = function(grunt) {
 						expand: true,
 						cwd: 'bower_components/bootstrap/dist/fonts',
 						src: '**',
+						dest: 'component-6x/com_food/admin/assets/fonts/',
+					},
+					*/
+					// Fonts
+					// 3.x
+					{
+						expand: true,
+						cwd: 'bower_components/webfont-food/dest/fonts',
+						src: ['*.*'],
+						dest: 'component-3x/com_food/admin/assets/fonts/',
+					},
+					// 4.x
+					{
+						expand: true,
+						cwd: 'bower_components/webfont-food/dest/fonts',
+						src: ['*.*'],
+						dest: 'component-4x/com_food/admin/assets/fonts/',
+					},
+					// 5.x
+					{
+						expand: true,
+						cwd: 'bower_components/webfont-food/dest/fonts',
+						src: ['*.*'],
+						dest: 'component-5x/com_food/admin/assets/fonts/',
+					},
+					// 6.x
+					{
+						expand: true,
+						cwd: 'bower_components/webfont-food/dest/fonts',
+						src: ['*.*'],
 						dest: 'component-6x/com_food/admin/assets/fonts/',
 					},
 				]
