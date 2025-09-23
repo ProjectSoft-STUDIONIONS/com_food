@@ -25,7 +25,7 @@ jobs:
       run: |
         npm run build
 
-    - name: Загрузка реализа com_food для Joomla CMS 3.x - 5.x
+    - name: Загрузка реализа com_food для Joomla CMS 3.x - 6.x
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}

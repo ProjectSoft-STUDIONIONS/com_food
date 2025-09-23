@@ -80,6 +80,7 @@ module.exports = function(grunt) {
 			"pug:update3",
 			"pug:update4",
 			"pug:update5",
+			"pug:update6",
 			// docs
 			"pug:docs"
 		],
