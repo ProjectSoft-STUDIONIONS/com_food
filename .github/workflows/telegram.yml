@@ -2,7 +2,59 @@ name: telegram message
 on:
   release:
     types: [published]
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 jobs:
+  build:
+    name: Сборка проекта
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [20]
+    steps:
+    - uses: actions/checkout@v3
+    - name: Установка Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: NPM установка пакетов
+      run: |
+        npm run inst
+
+    - name: Сборка компонента
+      run: |
+        npm run build
+
+    - name: Загрузка реализа com_food для Joomla CMS 3.x - 6.x
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: com_food-*.zip
+        tag: ${{ github.ref }}
+        overwrite: true
+        file_glob: true
+
+    - name: Старт страницы
+      uses: actions/configure-pages@v5
+
+    - name: Загрузка артифактов
+      uses: actions/upload-pages-artifact@v3
+      with:
+        # Upload entire repository
+        path: './docs/'
+
+    - name: Развертывание на странице GitHub - https://projectsoft-studionions.github.io/com_food/
+      id: deployment
+      uses: actions/deploy-pages@v4
   notify:
     name: Notify
     runs-on: ubuntu-latest
