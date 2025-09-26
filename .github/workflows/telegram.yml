@@ -43,18 +43,6 @@ jobs:
         overwrite: true
         file_glob: true
 
-    - name: Старт страницы
-      uses: actions/configure-pages@v5
-
-    - name: Загрузка артифактов
-      uses: actions/upload-pages-artifact@v3
-      with:
-        # Upload entire repository
-        path: './docs/'
-
-    - name: Развертывание на странице GitHub - https://projectsoft-studionions.github.io/com_food/
-      id: deployment
-      uses: actions/deploy-pages@v4
     - name: send telegram message on push
       uses: appleboy/telegram-action@master
       with:
