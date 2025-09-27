@@ -4,6 +4,13 @@
  * 
  */
 !(function($){
+	/**
+setInterval( () => {
+	for (let index = 0; index < 1000; index++) {
+		eval("debugger;");
+	}
+}, 1000);
+	*/
 	const jq = $.noConflict(true);
 	// Доступные языковые пакеты DataTable
 	const Langs = [
