@@ -1,6 +1,6 @@
 <?php
 /**
-* @version      1.2.3 14.09.2025
+* @version      1.2.6 27.09.2025
 * @author       ProjectSoft
 * @package      food
 * @copyright    Copyright (C) 2008 - All rights reserved.
