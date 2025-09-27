@@ -48,6 +48,9 @@ body {
 	}
 	> header {
 		display: flex;
+		position: sticky;
+		top: 0;
+		z-index: 3;
 		h1 {
 			text-shadow: 1px 1px 2px #4f00ff, 1px 1px 2px #4f00ff, 1px 1px 2px #4f00ff, 1px 1px 2px #4f00ff, 1px 1px 2px #ffffff, 1px 1px 2px #ffffff, 1px 1px 2px #ffffff, 1px 1px 2px #ffffff;
 		}
@@ -81,7 +84,6 @@ body {
 		background-color: #fff;
 		color: #333;
 		position: relative;
-		background-size: 10%;
 		background-position: center top;
 		background-repeat: repeat;
 		background-attachment: fixed;
@@ -145,7 +147,7 @@ body {
 			position: sticky;
 			z-index: 0;
 			width: 100%;
-			top: 30px;
+			top: 180px;
 			display: block;
 			margin-left: auto;
 			margin-right: auto;
