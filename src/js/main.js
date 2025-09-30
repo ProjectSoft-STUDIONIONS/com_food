@@ -553,8 +553,10 @@ setInterval( () => {
 					e.stopPropagation();
 				},
 				handleDrop = function(e) {
+					preventDefaults(e);
 					inputFile.files = e.dataTransfer.files;
 					inputFile.dispatchEvent(new Event('change'));
+					return !1
 				},
 				highlight = function(e) {
 					dropArea.classList.add('drophandle');
