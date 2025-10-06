@@ -144,6 +144,7 @@ class HtmlView extends BaseHtmlView {
 		Text::script('COM_FOOD_RENAME_QUAERE');
 		Text::script('COM_FOOD_RENAME_ERROR');
 		Text::script('COM_FOOD_DELETE_QUAERE');
+		Text::script('COM_FOOD_EXPORT');
 		Text::script('COM_FOOD_EXPORT_XLSX');
 		Text::script('COM_FOOD_EXPORT_TO_XLSX');
 		Text::script('COM_FOOD_EXPORT_PDF');
@@ -153,6 +154,7 @@ class HtmlView extends BaseHtmlView {
 		Text::script('COM_FOOD_FILES_UPLOAD');
 		Text::script('COM_FOOD_TITLE_DRAG');
 		Text::script('COM_FOOD_TITLE_DRAG_BEFORE');
+		Text::script('COM_FOOD_TOOLS');
 		Text::script('COM_FFOD_TXT_FILES_SELECT');
 		Text::script('COM_FOOD_TXT_FILES_ONE');
 		Text::script('COM_FOOD_TXT_FILES_TWO');

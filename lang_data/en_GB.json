@@ -8,12 +8,6 @@
 	"loadingRecords": "Загрузка записей...",
 	"zeroRecords": "Записи отсутствуют.",
 	"emptyTable": "В таблице отсутствуют данные",
-	"paginate": {
-		"first": "<i class=\"food-icon food-icon-first\"></i>",
-		"previous": "<i class=\"food-icon food-icon-prev\"></i>",
-		"next": "<i class=\"food-icon food-icon-next\"></i>",
-		"last": "<i class=\"food-icon food-icon-last\"></i>"
-	},
 	"aria": {
 		"sortAscending": ": активировать для сортировки столбца по возрастанию",
 		"sortDescending": ": активировать для сортировки столбца по убыванию"
@@ -29,12 +23,12 @@
 		"csv": "Экспорт в CSV",
 		"excel": "Экспорт в Excel",
 		"pageLength": {
-			"-1": "Показать все строки <span class=\"caret\"></span>",
-			"1": "Показать 1 строку <span class=\"caret\"></span>",
-			"2": "Показать 2 строки <span class=\"caret\"></span>",
-			"3": "Показать 3 строки <span class=\"caret\"></span>",
-			"4": "Показать 4 строки <span class=\"caret\"></span>",
-			"_": "Показать %d строк <span class=\"caret\"></span>"
+			"-1": "Показать все строки",
+			"1": "Показать 1 строку",
+			"2": "Показать 2 строки",
+			"3": "Показать 3 строки",
+			"4": "Показать 4 строки",
+			"_": "Показать %d строк"
 		}
 	},
 	"decimal": ".",

@@ -131,11 +131,12 @@ div.dt-button-collection {
 		.btn {
 			position: relative;
 			width: 100% !important;
-			justify-content: space-between !important;
+			justify-content: flex-start !important;
 			border-radius: 0px;
 			background-color: transparent;
 			border-color: transparent;
 			appearance: none;
+			box-shadow: unset;
 			&:hover {
 				background-color: #e0e0e0;
 			}
@@ -278,7 +279,7 @@ div.dt-container {
 			justify-content: space-between;
 			&:first-child {
 				margin-bottom: 10px !important;
-				align-items: flex-end !important;
+				align-items: flex-start !important;
 			}
 			&:nth-child(1),
 			&:nth-child(3) {
@@ -327,6 +328,8 @@ div.dt-container {
 				input {
 					margin-left: inherit;
 					width: 100%;
+					height: auto !important;
+					font-size: 1.1em;
 				}
 			}
 			.dt-length,
@@ -525,4 +528,30 @@ div.dt-container {
 			}
 		}
 	}
+}
+
+div.dt-buttons {
+	button.button-collection-export {
+		~ div.dt-button-collection {
+			left: auto !important;
+			right: 15px !important;
+			min-width: auto;
+			div[role=menu] {
+				button.btn {
+					text-align: left;
+					justify-content: flex-start !important;
+				}
+			}
+		}
+	}
+}
+
+.button-collection-tools {
+	flex: 1 0 auto !important;
+	justify-content: flex-start !important;
+}
+
+span.dt-button-down-arrow {
+	flex: 1 0 auto;
+	text-align: right;
 }

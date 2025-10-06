@@ -56,6 +56,7 @@ class FoodViewsStatisticsHtml extends JViewHtml
 		JText::script('COM_FOOD_RENAME_QUAERE');
 		JText::script('COM_FOOD_RENAME_ERROR');
 		JText::script('COM_FOOD_DELETE_QUAERE');
+		JText::script('COM_FOOD_EXPORT');
 		JText::script('COM_FOOD_EXPORT_XLSX');
 		JText::script('COM_FOOD_EXPORT_TO_XLSX');
 		JText::script('COM_FOOD_EXPORT_PDF');
@@ -65,6 +66,7 @@ class FoodViewsStatisticsHtml extends JViewHtml
 		JText::script('COM_FOOD_FILES_UPLOAD');
 		JText::script('COM_FOOD_TITLE_DRAG');
 		JText::script('COM_FOOD_TITLE_DRAG_BEFORE');
+		JText::script('COM_FOOD_TOOLS');
 		JText::script('COM_FFOD_TXT_FILES_SELECT');
 		JText::script('COM_FOOD_TXT_FILES_ONE');
 		JText::script('COM_FOOD_TXT_FILES_TWO');

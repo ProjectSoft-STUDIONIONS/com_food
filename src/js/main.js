@@ -228,13 +228,13 @@ setInterval( () => {
 			},
 			tag: "button",
 			action: function (e, dt, node, config) {
-					let uploader, input;
-					if( uploader = document.querySelector('[name="upload"]')){
-						if(input = uploader.querySelector('[type=file]')) {
-							input.click();
-						}
+				let uploader, input;
+				if( uploader = document.querySelector('[name="upload"]')){
+					if(input = uploader.querySelector('[type=file]')) {
+						input.click();
 					}
 				}
+			}
 		};
 
 		const url = `${location.origin}/${searchAPI.dir}/`,
@@ -299,13 +299,13 @@ setInterval( () => {
 				// Данные о состоянии данной таблице
 				// DataTables_com_food
 				localStorage.setItem(
-					'DataTables_com_food',
+					'DataTables_food',
 					JSON.stringify(data)
 				);
 			},
 			// Загружаем свойства для определённой таблицы
 			stateLoadCallback: function (settings) {
-				return JSON.parse(localStorage.getItem('DataTables_com_food'));
+				return JSON.parse(localStorage.getItem('DataTables_food'));
 			},
 			// Меню вывода кол-ва файлов
 			lengthMenu: [
@@ -317,37 +317,210 @@ setInterval( () => {
 				// Контейнер слева: Меню вывода кол-ва файлов
 				topStart: {
 					buttons: [
-						// Видимость столбцов
 						{
-							extend: 'colvis',
-							className: 'button-colvis btn-default food-icon food-icon-tasks text-uppercase',
-							// Колонки, которые можно скрыть. permission, date, size, actions
-							columns: [1,2,3,4],
-							select: true,
-							dropIcon: false,
+							extend: 'collection',
+							text: Translate.sprintf('COM_FOOD_TOOLS'),
+							className: 'button-collection-tools btn-default food-icon-tools',
+							buttons: [
+								// Видимость столбцов
+								{
+									extend: 'colvis',
+									className: 'button-colvis btn-default food-icon-tasks text-uppercase',
+									// Колонки, которые можно скрыть.
+									// permission, date, size, actions
+									columns: [1,2,3,4],
+									select: true,
+									dropIcon: false,
+								},
+								// Количество строк
+								{
+									extend: 'pageLength',
+									className: 'button-page-length dt-button-page-length btn-default food-icon-lists btn-block text-uppercase',
+									dropIcon: false,
+									attr: {
+										style: "width: 100%"
+									}
+								},
+								// Экспорт
+								{
+									extend: 'collection',
+									text: Translate.sprintf('COM_FOOD_EXPORT'),
+									className: 'button-collection-tools food-icon-export',
+									buttons: [
+										// Кнопка экспорта XLSX
+										{
+											extend: 'excel',
+											className: 'btn-default text-uppercase food-icon-export-xlsx',
+											text: Translate.sprintf('COM_FOOD_EXPORT_XLSX'),
+											download: '',
+											filename: Translate.sprintf('COM_FOOD_EXPORT_TO_XLSX', searchAPI.dir),
+											sheetName: Translate.sprintf('COM_FOOD_DIRECTORY', searchAPI.dir).replace(/\//g, '\\/'),
+											exportOptions: {
+												columns: ':visible'
+											},
+											customize: function (xlsx) {
+												let date = new Date();
+												let dateISO = date.toISOString();
+												// Создаём xml файлы для свойств документа (метатеги)
+												xlsx["_rels"] = {};
+												xlsx["_rels"][".rels"] = jq.parseXML(`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>` +
+													`<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">` +
+														`<Relationship Id="rId3" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/extended-properties" Target="docProps/app.xml"/>` +
+														`<Relationship Id="rId2" Type="http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties" Target="docProps/core.xml"/>` +
+														`<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/>` +
+													`</Relationships>`);
+												xlsx["docProps"] = {};
+												// Общая конфигурация
+												xlsx["docProps"]["core.xml"] = jq.parseXML(`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>` +
+													`<cp:coreProperties xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:dcmitype="http://purl.org/dc/dcmitype/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">` +
+														// Заголовок
+														`<dc:title>` + Translate.sprintf('COM_FOOD_DIRECTORY', url) + `</dc:title>` +
+														// Тема
+														`<dc:subject>` + Translate.sprintf('COM_FOOD_DIRECTORY', url) + `</dc:subject>` +
+														// Создатель
+														`<dc:creator>${componentName}</dc:creator>` +
+														// Теги
+														`<cp:keywords />` +
+														// Описание
+														`<dc:description>${componentName}</dc:description>` +
+														// Последнее изменение
+														`<cp:lastModifiedBy>${componentName}</cp:lastModifiedBy>` +
+														// Дата создания - время создания
+														`<dcterms:created xsi:type="dcterms:W3CDTF">${dateISO}</dcterms:created>` +
+														// Дата изменеия - время создания
+														`<dcterms:modified xsi:type="dcterms:W3CDTF">${dateISO}</dcterms:modified>` +
+														// Категория
+														`<cp:category>${searchAPI.dir}</cp:category>` +
+													`</cp:coreProperties>`);
+												// Конфигурация приложения
+												xlsx["docProps"]["app.xml"] = jq.parseXML(
+													`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>` +
+													`<Properties xmlns="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties" xmlns:vt="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes">` +
+														`<Application>Microsoft Excel</Application>` +
+														`<DocSecurity>0</DocSecurity>` +
+														`<ScaleCrop>false</ScaleCrop>` +
+														`<HeadingPairs>` +
+															`<vt:vector size="2" baseType="variant">` +
+																`<vt:variant>` +
+																	`<vt:lpstr>Листы</vt:lpstr>` +
+																`</vt:variant>` +
+																`<vt:variant>` +
+																	`<vt:i4>1</vt:i4>` +
+																`</vt:variant>` +
+															`</vt:vector>` +
+														`</HeadingPairs>` +
+														`<TitlesOfParts>` +
+															`<vt:vector size="1" baseType="lpstr">` +
+																`<vt:lpstr>${searchAPI.dir}</vt:lpstr>` +
+															`</vt:vector>` +
+														`</TitlesOfParts>` +
+														// Руководитель - автор компонента
+														`<Manager>${Developer}</Manager>` +
+														// Организация - автор компонента
+														`<Company>${Developer}</Company>` +
+														`<LinksUpToDate>false</LinksUpToDate>` +
+														`<SharedDoc>false</SharedDoc>` +
+														`<HyperlinkBase>${url}</HyperlinkBase>` +
+														`<HyperlinksChanged>false</HyperlinksChanged>` +
+														`<AppVersion>16.0300</AppVersion>` +
+													`</Properties>`
+												);
+												// Вставляем данные в Content_Types
+												let contentType = xlsx["[Content_Types].xml"];
+												let Types = contentType.querySelector('Types');
+												// Общая конфигурация
+												let Core = contentType.createElement('Override');
+												Core.setAttribute("PartName", "/docProps/core.xml");
+												Core.setAttribute("ContentType", "application/vnd.openxmlformats-package.core-properties+xml");
+												Types.append(Core);
+												// Конфигурация приложения
+												let App = contentType.createElement('Override');
+												App.setAttribute("PartName", "/docProps/app.xml");
+												App.setAttribute("ContentType", "application/vnd.openxmlformats-officedocument.extended-properties+xml");
+												Types.append(App);
+												// Присваиваем
+												xlsx["[Content_Types].xml"] = contentType;
+											},
+										},
+										// Кнопка экспорта PDF
+										{
+											extend: 'pdf',
+											className: 'btn-default text-uppercase food-icon-export-pdf',
+											text: Translate.sprintf('COM_FOOD_EXPORT_PDF'),
+											download: '',
+											filename: Translate.sprintf('COM_FOOD_EXPORT_TO_PDF', searchAPI.dir),
+											title: Translate.sprintf('COM_FOOD_DIRECTORY', url),
+											exportOptions: {
+												columns: ':visible'
+											},
+											// Кастомизируем вывод
+											customize: function (doc) {
+												let date = new Date();
+												let dateISO = date.toISOString();
+												let title = [
+													Translate.sprintf('COM_FOOD_TITLE'),
+													Translate.sprintf('COM_FOOD_DIRECTORY', url)
+												];
+												// Используемый язык экспорта
+												doc.language = 'ru-RU';
+												// Метатеги экспорта
+												doc.info = {
+													title: title.join(' '),
+													author: componentName,
+													subject: title.join(' '),
+													keywords: title.join(' '),
+													creator: `${componentName}`,
+													producer: `${Developer}`,
+													modDate: `${dateISO}`
+												};
+												// Колонтитулы
+												// Верхний
+												doc.header = {
+					   								columns: [
+					   									{
+					   										text: `${url}`,
+					   										margin: [15, 15, 15, 15],
+					   										alignment: 'left'
+					    								},
+					    								{
+					    									text: getDateTime((new Date()).getTime()),
+					    									margin: [15, 15, 15, 15],
+					   										alignment: 'right'
+					   									}
+													]
+												};
+												// Нижний
+												doc.footer = function(currentPage, pageCount) {
+													return [
+														{
+					    									text: currentPage.toString() + ' из ' + pageCount,
+					    									margin: [15, 15, 15, 15],
+					    									alignment: 'center'
+					   									}
+													];
+												};
+												// Текст контента.
+												doc.content[0].text = title.join('\r\n');
+											},
+										}
+									],
+								},
+								// Вывод на печать
+								{
+									extend: 'print',
+									className: 'button-print btn-default food-icon-print text-uppercase',
+									exportOptions: {
+										columns: ':visible'
+									},
+									header: true,
+									footer: true,
+									title: ``,
+									messageTop: false,
+									messageBottom: false,
+									autoPrint: true,
+								},
+							],
 						},
-						// Вывод на печать
-						{
-							extend: 'print',
-							className: 'button-print btn-success food-icon food-icon-print text-uppercase',
-							exportOptions: {
-								columns: ':visible'
-							},
-							header: true,
-							footer: true,
-							title: ``,
-							messageTop: false,
-							messageBottom: false,
-							autoPrint: true,
-						},
-						{
-							extend: 'pageLength',
-							className: 'button-page-length dt-button-page-length btn-default food-icon food-icon-lists btn-block text-uppercase',
-							dropIcon: false,
-							attr: {
-								style: "width: 100%"
-							}
-						}
 					],
 					'search': 'search',
 				},
@@ -361,7 +534,7 @@ setInterval( () => {
 						// Кнопка выбора файлов
 						{
 							text: Translate.sprintf('COM_FOOD_SELECT_FILES'),
-							className: 'button-upload btn-success food-icon food-icon-flopy-save text-uppercase',
+							className: 'button-upload btn-success food-icon-flopy-save text-uppercase',
 							action: function (e, dt, node, config) {
 								let uploader, input;
 								if( uploader = document.querySelector('[name="upload"]')){
@@ -375,162 +548,6 @@ setInterval( () => {
 								}
 							}
 						},
-						// Кнопка экспорта XLSX
-						{
-							extend: 'excel',
-							className: 'btn-default text-uppercase food-icon food-icon-download',
-							text: Translate.sprintf('COM_FOOD_EXPORT_XLSX'),
-							download: '',
-							filename: Translate.sprintf('COM_FOOD_EXPORT_TO_XLSX', searchAPI.dir),
-							sheetName: Translate.sprintf('COM_FOOD_DIRECTORY', searchAPI.dir).replace(/\//g, '\\/'),
-							exportOptions: {
-								columns: ':visible'
-							},
-							customize: function (xlsx) {
-								let date = new Date();
-								let dateISO = date.toISOString();
-								// Создаём xml файлы для свойств документа (метатеги)
-								xlsx["_rels"] = {};
-								xlsx["_rels"][".rels"] = jq.parseXML(`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>` +
-									`<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">` +
-										`<Relationship Id="rId3" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/extended-properties" Target="docProps/app.xml"/>` +
-										`<Relationship Id="rId2" Type="http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties" Target="docProps/core.xml"/>` +
-										`<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/>` +
-									`</Relationships>`);
-								xlsx["docProps"] = {};
-								// Общая конфигурация
-								xlsx["docProps"]["core.xml"] = jq.parseXML(`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>` +
-									`<cp:coreProperties xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:dcmitype="http://purl.org/dc/dcmitype/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">` +
-										// Заголовок
-										`<dc:title>` + Translate.sprintf('COM_FOOD_DIRECTORY', url) + `</dc:title>` +
-										// Тема
-										`<dc:subject>` + Translate.sprintf('COM_FOOD_DIRECTORY', url) + `</dc:subject>` +
-										// Создатель
-										`<dc:creator>${componentName}</dc:creator>` +
-										// Теги
-										`<cp:keywords />` +
-										// Описание
-										`<dc:description>${componentName}</dc:description>` +
-										// Последнее изменение
-										`<cp:lastModifiedBy>${componentName}</cp:lastModifiedBy>` +
-										// Дата создания - время создания
-										`<dcterms:created xsi:type="dcterms:W3CDTF">${dateISO}</dcterms:created>` +
-										// Дата изменеия - время создания
-										`<dcterms:modified xsi:type="dcterms:W3CDTF">${dateISO}</dcterms:modified>` +
-										// Категория
-										`<cp:category>${searchAPI.dir}</cp:category>` +
-									`</cp:coreProperties>`);
-								// Конфигурация приложения
-								xlsx["docProps"]["app.xml"] = jq.parseXML(
-									`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>` +
-									`<Properties xmlns="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties" xmlns:vt="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes">` +
-										`<Application>Microsoft Excel</Application>` +
-										`<DocSecurity>0</DocSecurity>` +
-										`<ScaleCrop>false</ScaleCrop>` +
-										`<HeadingPairs>` +
-											`<vt:vector size="2" baseType="variant">` +
-												`<vt:variant>` +
-													`<vt:lpstr>Листы</vt:lpstr>` +
-												`</vt:variant>` +
-												`<vt:variant>` +
-													`<vt:i4>1</vt:i4>` +
-												`</vt:variant>` +
-											`</vt:vector>` +
-										`</HeadingPairs>` +
-										`<TitlesOfParts>` +
-											`<vt:vector size="1" baseType="lpstr">` +
-												`<vt:lpstr>${searchAPI.dir}</vt:lpstr>` +
-											`</vt:vector>` +
-										`</TitlesOfParts>` +
-										// Руководитель - автор компонента
-										`<Manager>${Developer}</Manager>` +
-										// Организация - автор компонента
-										`<Company>${Developer}</Company>` +
-										`<LinksUpToDate>false</LinksUpToDate>` +
-										`<SharedDoc>false</SharedDoc>` +
-										`<HyperlinkBase>${url}</HyperlinkBase>` +
-										`<HyperlinksChanged>false</HyperlinksChanged>` +
-										`<AppVersion>16.0300</AppVersion>` +
-									`</Properties>`
-								);
-								// Вставляем данные в Content_Types
-								let contentType = xlsx["[Content_Types].xml"];
-								let Types = contentType.querySelector('Types');
-								// Общая конфигурация
-								let Core = contentType.createElement('Override');
-								Core.setAttribute("PartName", "/docProps/core.xml");
-								Core.setAttribute("ContentType", "application/vnd.openxmlformats-package.core-properties+xml");
-								Types.append(Core);
-								// Конфигурация приложения
-								let App = contentType.createElement('Override');
-								App.setAttribute("PartName", "/docProps/app.xml");
-								App.setAttribute("ContentType", "application/vnd.openxmlformats-officedocument.extended-properties+xml");
-								Types.append(App);
-								// Присваиваем
-								xlsx["[Content_Types].xml"] = contentType;
-							},
-						},
-						// Кнопка экспорта PDF
-						{
-							extend: 'pdf',
-							className: 'btn-default text-uppercase food-icon food-icon-download',
-							text: Translate.sprintf('COM_FOOD_EXPORT_PDF'),
-							download: '',
-							filename: Translate.sprintf('COM_FOOD_EXPORT_TO_PDF', searchAPI.dir),
-							title: Translate.sprintf('COM_FOOD_DIRECTORY', url),
-							exportOptions: {
-								columns: ':visible'
-							},
-							// Кастомизируем вывод
-							customize: function (doc) {
-								let date = new Date();
-								let dateISO = date.toISOString();
-								let title = [
-									Translate.sprintf('COM_FOOD_TITLE'),
-									Translate.sprintf('COM_FOOD_DIRECTORY', url)
-								];
-								// Используемый язык экспорта
-								doc.language = 'ru-RU';
-								// Метатеги экспорта
-								doc.info = {
-									title: title.join(' '),
-									author: componentName,
-									subject: title.join(' '),
-									keywords: title.join(' '),
-									creator: `${componentName}`,
-									producer: `${Developer}`,
-									modDate: `${dateISO}`
-								};
-								// Колонтитулы
-								// Верхний
-								doc.header = {
-	   								columns: [
-	   									{
-	   										text: `${url}`,
-	   										margin: [15, 15, 15, 15],
-	   										alignment: 'left'
-	    								},
-	    								{
-	    									text: getDateTime((new Date()).getTime()),
-	    									margin: [15, 15, 15, 15],
-	   										alignment: 'right'
-	   									}
-									]
-								};
-								// Нижний
-								doc.footer = function(currentPage, pageCount) {
-									return [
-										{
-	    									text: currentPage.toString() + ' из ' + pageCount,
-	    									margin: [15, 15, 15, 15],
-	    									alignment: 'center'
-	   									}
-									];
-								};
-								// Текст контента.
-								doc.content[0].text = title.join('\r\n');
-							},
-						}
 					]
 				},
 				bottomStart: [],
@@ -543,8 +560,20 @@ setInterval( () => {
 			// Нужно сделать определение и загрузка нужного языка панели.
 			language: {
 				url: '/administrator/components/com_food/assets/js/' + Lang + '.json?date=' +dateString(),
-			}
+				"paginate": {
+					"first": "<i class=\"food-icon food-icon-first\"></i>",
+					"previous": "<i class=\"food-icon food-icon-prev\"></i>",
+					"next": "<i class=\"food-icon food-icon-next\"></i>",
+					"last": "<i class=\"food-icon food-icon-last\"></i>"
+				},
+			},
+			on: {
+				init: function(e, dt) {
+					console.log([...arguments]);
+				},
+			},
 		});
+window.GLOBAL_TABLE = table;
 		setTimeout(() => {
 			const dropArea = document.querySelector('.dt-dragdrop-block'),
 				inputFile = document.querySelector('input[type="file"]'),

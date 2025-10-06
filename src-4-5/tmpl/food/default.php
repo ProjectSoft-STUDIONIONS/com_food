@@ -43,7 +43,7 @@ $versionCSS = $valueCSS . "?" . filemtime(JPATH_ROOT . $valueCSS);
 <div class="folder-title">
 	<?php if($this->stats["dir"]): ?>
 	<h3><?= Text::sprintf('COM_FOOD_DIR', $this->stats["dir"]); ?> <a href="/<?= $this->stats["dir"]; ?>/" target="_blank"></a></h3>
-	<p class="food-title-root"><i class="food-icon food-icon-folder-open-o"></i>&nbsp;<a href="index.php?option=com_food"><?= Text::_('COM_FOOD_DIR_TOP'); ?></a></p>
+	<p class="food-title-root"><i class="food-icon food-icon-folder-open-o"></i>&nbsp;<a href="index.php?option=com_food"><?= Text::_('COM_FOOD_DIR_TOP'); ?></a><?php if($this->stats["dir"]): ?> / <a href="index.php?option=com_food&dir=<?= $this->stats["dir"];?>"><?= $this->stats["dir"];?></a><?php endif; ?></p>
 	<?php else: ?>
 	<h3><?= Text::_('COM_FOOD_DIR_ROOT'); ?></h3>
 	<?php endif; ?>

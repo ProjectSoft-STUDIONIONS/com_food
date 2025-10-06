@@ -25,7 +25,7 @@ $path = $this->realPath(JPATH_ROOT);
 			</div>
 			<div class="folder-title">
 				<h3><?= $this->stats["food_title"] ? JText::sprintf('COM_FOOD_DIR', $this->stats["food_title"]) : JText::_('COM_FOOD_DIR_ROOT'); ?></h3>
-				<?= $this->stats["food_title"] ? '<p class="food-title-root"><i class="food-icon food-icon-folder-open-o"></i>&nbsp;<a href="index.php?option=com_food">' . JText::_('COM_FOOD_DIR_TOP') . '</a></p>' : ''; ?>
+				<?= $this->stats["food_title"] ? '<p class="food-title-root"><i class="food-icon food-icon-folder-open-o"></i>&nbsp;<a href="index.php?option=com_food">' . JText::_('COM_FOOD_DIR_TOP') . '</a> / <a href="index.php?option=com_food&dir=' . $this->stats["dir"] . '">' . $this->stats["dir"] . '</a></p>' : ''; ?>
 			</div>
 			<div class="food-table">
 				<div class="">
