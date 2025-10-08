@@ -594,7 +594,11 @@ setInterval( () => {
 						switch(ext){
 							case "pdf":
 							case "xlsx":
-								dataTransfer.items.add(file);
+								if(dataTransfer.files.length < maxCountFile) {
+									dataTransfer.items.add(file);
+								}else{
+									console.log(`%cFile ${file.name} not upload!\nThe maximum number of files has been exceeded`, "background: green; color: white");
+								}
 								break;
 							default:
 								console.log(`%cFile ${file.name} not suported!`, "background: red; color: white");
