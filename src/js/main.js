@@ -89,6 +89,11 @@ setInterval( () => {
 				str = ch + str;
 			}
 			return str;
+		},
+		getExtFile = function (filename) {
+			let baseName = filename.split('/').pop();  // извлекаем имя файла
+			if(baseName.indexOf('.') === -1 || baseName.startsWith('.')) return '';  // если расширения нет, возвращаем пустую строку
+			return baseName.slice(baseName.lastIndexOf('.') + 1); // расширение файла
 		};
 
 	// Обрабатываем таски
@@ -255,7 +260,6 @@ setInterval( () => {
 		});
 		let dateFile = new Date();
 		let table = new DataTable('.food-table .table', {
-			select: 'single',
 			responsive: false,
 			// Колонки
 			columns: [
@@ -573,9 +577,9 @@ setInterval( () => {
 				},
 			},
 		});
-window.GLOBAL_TABLE = table;
+
 		setTimeout(() => {
-			const dropArea = document.querySelector('.dt-dragdrop-block'),
+			const dropArea = document.querySelector('#food_content'),
 				inputFile = document.querySelector('input[type="file"]'),
 				preventDefaults = function(e) {
 					e.preventDefault();
@@ -583,32 +587,52 @@ window.GLOBAL_TABLE = table;
 				},
 				handleDrop = function(e) {
 					preventDefaults(e);
-					inputFile.files = e.dataTransfer.files;
+					let dataTransfer = new DataTransfer();
+					// Пробежимся по переданным файлам
+					for(let file of e.dataTransfer.files) {
+						let ext = getExtFile(file.name).toLowerCase();
+						switch(ext){
+							case "pdf":
+							case "xlsx":
+								dataTransfer.items.add(file);
+								break;
+							default:
+								console.log(`%cFile ${file.name} not suported!`, "background: red; color: white");
+						}
+					}
+					inputFile.files = dataTransfer.files;
 					inputFile.dispatchEvent(new Event('change'));
 					return !1
 				},
 				highlight = function(e) {
+					//document.body.classList.add('drophandle');
 					dropArea.classList.add('drophandle');
 				},
 				unhighlight = function(e) {
+					//document.body.classList.remove('drophandle');
 					dropArea.classList.remove('drophandle');
 				};
 			['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-				dropArea.addEventListener(eventName, preventDefaults, false)
-				document.body.addEventListener(eventName, preventDefaults, false)
+				//document.body.addEventListener(eventName, preventDefaults, false);
+				dropArea.addEventListener(eventName, preventDefaults, false);
+				document.body.addEventListener(eventName, preventDefaults, false);
 			});
 
 			['dragenter', 'dragover'].forEach(eventName => {
+				//document.body.addEventListener(eventName, highlight, false);
 				dropArea.addEventListener(eventName, highlight, false);
 			});
 
 			['dragleave', 'drop'].forEach(eventName => {
+				//document.body.addEventListener(eventName, unhighlight, false);
 				dropArea.addEventListener(eventName, unhighlight, false);
 			});
 
 			// Handle dropped files
+			//document.body.addEventListener('drop', handleDrop, false);
 			dropArea.addEventListener('drop', handleDrop, false);
 		}, 1000);
+		/**
 		setTimeout(() => {
 			// 4.x - 5.x
 			[...document.querySelectorAll('.joomla-alert--close')].forEach((el)=>{
@@ -619,5 +643,6 @@ window.GLOBAL_TABLE = table;
 				el.click();
 			});
 		}, 5000);
+		*/
 	}
 }(jQuery));

@@ -174,8 +174,15 @@ form[name="upload"] {
 			color: inherit;
 			background-color: transparent;
 		}
+		&::before {
+			content: attr(data-before-title);
+			font-weight: 700;
+		}
 		&:empty {
-			display: none;
+			&,
+			&::before {
+				display: none;
+			}
 		}
 	}
 }
@@ -554,4 +561,42 @@ div.dt-buttons {
 span.dt-button-down-arrow {
 	flex: 1 0 auto;
 	text-align: right;
+}
+
+#food_content {
+	position: relative;
+	&::before {
+		background-color: rgba(0, 0, 0, .3);
+		border-radius: 15px;
+		content: "";
+		display: block;
+		opacity: 0;
+		outline: rgba(255, 255, 255, .5) dashed 2px;
+		outline-offset: -10px;
+		position: absolute;
+		transition: all .3s ease;
+		z-index: -200;
+	}
+	&.joomla_4-6 {
+		&::before {
+			bottom: -2em;
+			left: -2em;
+			right: -2em;
+			top: -2em;
+		}
+	}
+	&.joomla3{
+		&::before {
+			bottom: -1em;
+			left: -1em;
+			right: -1em;
+			top: -1em;
+		}
+	}
+	&.drophandle {
+		&::before {
+			opacity: 1;
+			z-index: 1000;
+		}
+	}
 }

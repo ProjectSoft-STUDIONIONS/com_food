@@ -5,7 +5,7 @@ $path = $this->realPath(JPATH_ROOT);
 	window.MAX_COUNT_FILE = <?= ini_get("max_file_uploads");?>;
 	window.J_LANG = "<?= $this->stats['lang']?>";
 </script>
-<div id="food_content" class="clearfix">
+<div id="food_content" class="clearfix joomla3">
 	<div id="joomla3" class="row clearfix">
 		<div class="container-fluid clearfix">
 			<h1 class="com-food-title"><?= JText::_('COM_FOOD_TITLE'); ?></h1>
@@ -14,7 +14,7 @@ $path = $this->realPath(JPATH_ROOT);
 				<form class="text-right" name="upload" method="post" action="index.php?option=com_food&dir=<?= $this->stats["dir"];?>" enctype="multipart/form-data">
 					<input type="hidden" name="mode" value="upload">
 					<input type="file" name="userfiles[]" onchange="uploadFiles(this);" multiple accept=".xlsx,.pdf" max="<?= ini_get("max_file_uploads");?>">
-					<p id="p_uploads" class="alert alert-info"></p>
+					<p id="p_uploads" class="alert alert-info" data-before-title="<?= JText::_('COM_FOOD_SELECT_UPLOAD'); ?>"></p>
 				</form>
 				<form class="hidden" name="form_mode" method="post" action="index.php?option=com_food&dir=<?= $this->stats["dir"];?>" enctype="multipart/form-data">
 					<input type="hidden" name="mode">
