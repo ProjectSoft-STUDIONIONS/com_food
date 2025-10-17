@@ -1,3 +1,4 @@
+@maxWith: 755px;
 :root {
 	--pd: 15px;
 	--mg: -15px;
@@ -71,11 +72,16 @@ body {
 		position: sticky;
 		top: 0;
 		z-index: 3;
+		min-height: 154px;
 		code {
 			background-color: rgba(255, 255, 255, 0.3);
 		}
 		h1 {
 			text-shadow: 1px 1px 2px #4f00ff, 1px 1px 2px #4f00ff, 1px 1px 2px #4f00ff, 1px 1px 2px #4f00ff, 1px 1px 2px #ffffff, 1px 1px 2px #ffffff, 1px 1px 2px #ffffff, 1px 1px 2px #ffffff;
+			transition: font-size .3s ease;
+			@media(max-width: @maxWith) {
+				font-size: 1.5em;
+			}
 		}
 		> div {
 			flex: 0 0 auto;
@@ -100,6 +106,7 @@ body {
 			}
 			&:nth-child(2) {
 				flex: 1 0 auto;
+				max-width: ~'calc(100% - (4em + var(--pd) + var(--pd)))';
 			}
 			&:last-child {
 				a {
@@ -217,11 +224,14 @@ body {
 			position: sticky;
 			z-index: 0;
 			width: 100%;
-			top: 180px;
+			top: 185px;
 			display: block;
 			margin-left: auto;
 			margin-right: auto;
 			max-width: 1590px;
+			//@media(max-width: @maxWith) {
+			//	top: 170px;
+			//}
 		}
 	}
 }
