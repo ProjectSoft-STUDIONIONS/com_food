@@ -573,11 +573,14 @@ setInterval( () => {
 			},
 			on: {
 				init: function(e, dt) {
-					console.log([...arguments]);
+					//console.log([...arguments]);
 				},
 			},
 		});
-
+		// Close overlay in collections
+		$(document).on('click', '.btn.buttons-columnVisibility, .food-icon-export-xlsx, .food-icon-export-pdf, .food-icon-print', function(){
+			$(document.body).trigger('click');
+		});
 		setTimeout(() => {
 			const dropArea = document.querySelector('#food_content'),
 				inputFile = document.querySelector('input[type="file"]'),
@@ -636,17 +639,5 @@ setInterval( () => {
 			//document.body.addEventListener('drop', handleDrop, false);
 			dropArea.addEventListener('drop', handleDrop, false);
 		}, 1000);
-		/**
-		setTimeout(() => {
-			// 4.x - 5.x
-			[...document.querySelectorAll('.joomla-alert--close')].forEach((el)=>{
-				el.click();
-			});
-			// 3.x
-			[...document.querySelectorAll('.alert .close')].forEach((el)=>{
-				el.click();
-			});
-		}, 5000);
-		*/
 	}
 }(jQuery));
