@@ -1,6 +1,7 @@
 :root {
 	--pd: 15px;
 	--mg: -15px;
+	--pdth: 1.8em;
 }
 
 *, *::before, *::after {
@@ -34,6 +35,15 @@ code {
 	text-align: right;
 }
 
+code {
+	padding: 0 0.2em;
+	border-radius: .2em;
+}
+
+strong, b, h2, h3, h4, h5, h6 {
+	font-weight: 900;
+}
+
 body {
 	display: flex;
 	flex-direction: column;
@@ -61,6 +71,9 @@ body {
 		position: sticky;
 		top: 0;
 		z-index: 3;
+		code {
+			background-color: rgba(255, 255, 255, 0.3);
+		}
 		h1 {
 			text-shadow: 1px 1px 2px #4f00ff, 1px 1px 2px #4f00ff, 1px 1px 2px #4f00ff, 1px 1px 2px #4f00ff, 1px 1px 2px #ffffff, 1px 1px 2px #ffffff, 1px 1px 2px #ffffff, 1px 1px 2px #ffffff;
 		}
@@ -70,7 +83,7 @@ body {
 				&::before {
 					display: inline-block;
 					vertical-align: middle;
-					margin-top: 1.4em;
+					margin-top: var(--pdth);
 					margin-right: var(--pd);
 					width: 2em;
 					height: 2em;
@@ -89,9 +102,17 @@ body {
 				flex: 1 0 auto;
 			}
 			&:last-child {
-				padding-top: 1.4em;
-				padding-bottom: 1.4em;
-				padding-left: var(--pd);
+				a {
+					display: inline-block;
+					vertical-align: middle;
+					margin-top: var(--pdth);
+					margin-left: var(--pd);
+					width: 2em;
+					height: 2em;
+					border-radius: 50%;
+					overflow: hidden;
+					aspect-ratio: ~'1 / 1';
+				}
 			}
 		}
 	}
@@ -143,7 +164,6 @@ body {
 			code {
 				background-color: #e1e1e1;
 				color: #cf1cf1;
-				padding: 0 .3em;
 			}
 		}
 		.articles {
