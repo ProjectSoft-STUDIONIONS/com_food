@@ -83,7 +83,7 @@ class FoodViewsStatisticsHtml extends JViewHtml
 
 	public function getSize($file) {
 
-		$sizes = array('Tb' => 1099511627776, 'Gb' => 1073741824, 'Mb' => 1048576, 'Kb' => 1024, 'b' => 1);
+		$sizes = array('TB' => 1099511627776, 'GB' => 1073741824, 'MB' => 1048576, 'KB' => 1024, 'B' => 1);
 		$precisions = count($sizes) - 1;
 		$size = filesize($file);
 		foreach ($sizes as $unit => $bytes) {

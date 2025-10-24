@@ -112,7 +112,8 @@ module.exports = function(grunt) {
 		clean: {
 			docs: [
 				`docs/${gc.version}/*.zip`,
-				`docs/${gc.version}/*.json`
+				`docs/${gc.version}/*.json`,
+				`*.zip`,
 			]
 		},
 		less: {

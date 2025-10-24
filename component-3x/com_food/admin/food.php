@@ -2,6 +2,8 @@
 // No direct access
 defined( '_JEXEC' ) or die( 'Restricted access' );
 //load classes
+//JLoader::registerPrefix('SchoolFood', JPATH_COMPONENT_ADMINISTRATOR . "/lib");
+JLoader::register('SchoolHotFood\SchoolFood', JPATH_COMPONENT_ADMINISTRATOR . '/lib/SchoolFood.php');
 JLoader::registerPrefix('Food', JPATH_COMPONENT_ADMINISTRATOR);
 //application
 $app = JFactory::getApplication();
