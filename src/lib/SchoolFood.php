@@ -1,5 +1,6 @@
 <?php
-namespace SchoolHotFood;
+namespace %namespace%;
+
 /**
  * Класс для чтения папок питания.
  * Разрабатывается под:
@@ -116,8 +117,6 @@ class SchoolFood {
 			$this->access_path[] = $path;
 		endforeach;
 		$this->path = in_array((string) $params["path"], $this->access_path) ? (string) $params["path"] : "";
-		//
-		//$this->output["access_path"] = $this->access_path;
 		$this->output["path"] = $this->path;
 	}
 
@@ -375,7 +374,7 @@ class SchoolFood {
 	 * Получаем имя директории
 	 */
 	private function getDirName(string $path) {
-		$path = is_string($path) ? trim($path) : "";
+		$path = is_string($path) ? str_replace('\\', '/', trim($path)) : "";
 		$path = rtrim($path, '/');
 		$path = str_replace($this->base_path, '', $path);
 		return $path;
@@ -385,7 +384,7 @@ class SchoolFood {
 	 * Соответствует ли директория к правилам просмотра
 	 */
 	private function checkedPath(string $path) {
-		$path = is_string($path) ? trim($path) : "";
+		$path = is_string($path) ? str_replace('\\', '/', trim($path)) : "";
 		if($path == $this->base_path):
 			return true;
 		endif;

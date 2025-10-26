@@ -66,6 +66,8 @@ module.exports = function(grunt) {
 			"less",
 			"autoprefixer",
 			"cssmin",
+			// Перезапись
+			"replace",
 			// Копирование
 			"copy",
 			// Компиляция XML
@@ -671,6 +673,60 @@ module.exports = function(grunt) {
 					},
 				]
 			}
+		},
+		replace: {
+			rplc3: {
+				options: {
+					patterns: [
+						{
+							match: /%namespace%/g,
+							replacement: 'SchoolHotFood'
+						}
+					]
+				},
+				files: [
+					// 3.x
+					{
+						expand: true,
+						flatten: true,
+						src: ['src/lib/SchoolFood.php'],
+						dest: 'component-3x/com_food/admin/lib/'
+					},
+				]
+			},
+			rplc6: {
+				options: {
+					patterns: [
+						{
+							match: /%namespace%/g,
+							replacement: 'ProjectSoft\\Component\\Food\\Administrator\\Lib'
+						}
+					]
+				},
+				files: [
+					// 4.x
+					{
+						expand: true,
+						flatten: true,
+						src: ['src/lib/SchoolFood.php'],
+						dest: 'component-4x/com_food/admin/src/Lib/'
+					},
+					// 5.x
+					{
+						expand: true,
+						flatten: true,
+						src: ['src/lib/SchoolFood.php'],
+						dest: 'component-5x/com_food/admin/src/Lib/'
+					},
+					// 6.x
+					{
+						expand: true,
+						flatten: true,
+						src: ['src/lib/SchoolFood.php'],
+						dest: 'component-6x/com_food/admin/src/Lib/'
+					},
+				]
+			},
 		},
 		copy: {
 			// Fonts

@@ -16,7 +16,7 @@ class FoodViewsStatisticsHtml extends JViewHtml
 	protected function addToolbar()
 	{
 		$app = JFactory::getApplication();
-		$app->input->set('hidemainmenu', true);
+		//$app->input->set('hidemainmenu', true);
 		$canDo  = FoodHelpersFood::getActions();
 		$toolbar = JToolBar::getInstance('toolbar');
 		JToolbarHelper::title(JText::_('COM_FOOD_TITLE'), 'folder-open food');
@@ -79,30 +79,6 @@ class FoodViewsStatisticsHtml extends JViewHtml
 				$doc->addStyleSheet($value, array('version' => $version));
 			endif;
 		endforeach;
-	}
-
-	public function getSize($file) {
-
-		$sizes = array('TB' => 1099511627776, 'GB' => 1073741824, 'MB' => 1048576, 'KB' => 1024, 'B' => 1);
-		$precisions = count($sizes) - 1;
-		$size = filesize($file);
-		foreach ($sizes as $unit => $bytes) {
-			if ($size >= $bytes) {
-				return number_format($size / $bytes, $precisions) . ' ' . $unit;
-			}
-			$precisions--;
-		}
-		return '0 b';
-	}
-
-	/**
-	 * Вывод времени в определённом формате
-	 */
-	public function toDateFormat( $timestamp = 0 )
-	{
-		$dateFormat = 'd-m-Y H:i:s';
-		$strTime = date($dateFormat, $timestamp);
-		return $strTime;
 	}
 
 	/**

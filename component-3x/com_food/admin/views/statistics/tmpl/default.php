@@ -24,7 +24,7 @@ $path = $this->realPath(JPATH_ROOT);
 				<?php endif;?>
 			</div>
 			<div class="folder-title">
-				<h3><?= $this->stats["food_title"] ? JText::sprintf('COM_FOOD_DIR', $this->stats["food_title"]) : JText::_('COM_FOOD_DIR_ROOT'); ?></h3>
+				<h3><?= $this->stats["food_title"] ? JText::sprintf('COM_FOOD_DIR', $this->stats["food_title"]) : JText::_('COM_FOOD_DIR_ROOT'); ?><?= $this->stats["data"]["path"] ? ' <a href="/' . $this->stats["data"]["path"] . '/" class="food-icon food-icon-new-window" target="_blank"></a>' : "";?></h3>
 				<?= $this->stats["food_title"] ? '<p class="food-title-root"><i class="food-icon food-icon-folder-open-o"></i>&nbsp;<a href="index.php?option=com_food">' . JText::_('COM_FOOD_DIR_TOP') . '</a> / <a href="index.php?option=com_food&dir=' . $this->stats["data"]["path"] . '">' . $this->stats["data"]["path"] . '</a></p>' : ''; ?>
 			</div>
 			<div class="food-table">
@@ -82,7 +82,6 @@ $path = $this->realPath(JPATH_ROOT);
 					</table>
 				</div>
 			</div>
-			<!-- div><pre><code><?= print_r($this->stats["data"]["directory"], true);?></code></pre></div -->
 			<p class="text-left developer">Если возникнут проблемы или вопросы, то обращайтесь в Telegram к <a href="https://t.me/ProjectSoft" target="_blank">ProjectSoft</a> (Чернышёв Андрей)<br>GitHub репозиторий компонента <a href="https://github.com/ProjectSoft-STUDIONIONS/com_food" target="_blank">https://github.com/ProjectSoft-STUDIONIONS/com_food</a></p>
 		</div>
 	</div>

@@ -73,32 +73,37 @@ class FoodModelsStatistics extends JModelBase
 				"access_path"       => $stats["com_food_params"]
 			),
 			array(
-				"delete"               => "Файл удалён",
-				"not_delete"           => "Файл не удалён",
-				"not_file_delete"      => "Файл удалить нельзя",
-				"rename"               => "Файл переименован",
-				"not_rename"           => "Не удалось переименовать файл",
-				"access_rename"        => "Файл переименовать нельзя",
-				"access_rename_ext"    => "Нельзя использовать данное расширение",
-				"access_path"          => "Доступ к данной директории запрещён",
-				"access_file"          => "Файл не поддерживается",
-				"upload"               => "Файл загружен",
-				"not_upload"           => "Файл не загружен",
-				"file_exists"          => "Файл существует",
-				"not_found"            => "Файл не существует",
-				"same_name"            => "Имена файлов одинаковые"
+				"delete"               => \JText::_('COM_FOOD_FOOD_DELETE'),
+				"not_delete"           => \JText::_('COM_FOOD_FOOD_NOT_DELETE'),
+				"not_file_delete"      => \JText::_('COM_FOOD_FOOD_NOT_FILE_DELETE'),
+				"rename"               => \JText::_('COM_FOOD_FOOD_RENAME'),
+				"not_rename"           => \JText::_('COM_FOOD_FOOD_NOT_RENAME'),
+				"access_rename"        => \JText::_('COM_FOOD_FOOD_ACCESS_RENAME'),
+				"access_rename_ext"    => \JText::_('COM_FOOD_FOOD_ACCESS_RENAME_EXT'),
+				"access_path"          => \JText::_('COM_FOOD_FOOD_ACCESS_PATH'),
+				"access_file"          => \JText::_('COM_FOOD_FOOD_ACCESS_FILE'),
+				"upload"               => \JText::_('COM_FOOD_FOOD_UPLOAD'),
+				"not_upload"           => \JText::_('COM_FOOD_FOOD_NOT_UPLOAD'),
+				"file_exists"          => \JText::_('COM_FOOD_FOOD_FILE_EXISTS'),
+				"not_found"            => \JText::_('COM_FOOD_FOOD_NOT_FOUND'),
+				"same_name"            => \JText::_('COM_FOOD_FOOD_SAME_NAME'),
 			)
 		);
 
 		// Директории созданы в SchoolFood классе. Удалены старые файлы.
 		// Запись .htaccess
 		foreach ($array as $key => $value):
-			$path = $glob_path . $value;
-			// Записываем .htaccess
-			$htaccess = "";
-			include($this->realPath(__DIR__) . "/.htaccess.old.php");
-			@file_put_contents($path . "/.htaccess", $htaccess);
-			@chmod($path . "/.htaccess", 0644);
+			try {
+				$path = $glob_path . $value;
+				// Записываем .htaccess
+				$htaccess = "";
+				include($this->realPath(__DIR__) . "/.htaccess.old.php");
+				@file_put_contents($path . "/.htaccess", $htaccess);
+				@chmod($path . "/.htaccess", 0644);
+			} catch (\Exception $e) {
+				$application->redirect('index.php?option=' . $option, \JText::_('COM_FOOD_ERROR'), 'error');
+			}
+
 		endforeach;
 
 		// Определяем методы (загрузка, переименование, удаление)
@@ -107,58 +112,48 @@ class FoodModelsStatistics extends JModelBase
 				// Загрузка
 				$data = $foodSchool->uploadFiles()->getData()->output;
 				$stats["data"] = $data;
-				if($data["message"]["success"]):
-					$application->enqueueMessage("<div>" . implode("</div><div>", $data["message"]["success"]) . "</div>", 'message');
-				endif;
-				if($data["message"]["error"]):
-					$application->enqueueMessage("<div>" . implode("</div><div>", $data["message"]["error"]) . "</div>", 'error');
-				endif;
-				// При загрузке - редирект
+				$this->setEnqueueMessage($application, $data);
 				$application->redirect('index.php?option=' . $stats["option"] . "&dir=" . $dir);
 				break;
 			case 'rename':
 				// Переименование
 				$data = $foodSchool->renameFile($file, $new_file)->getData()->output;
 				$stats["data"] = $data;
-				if($data["message"]["success"]):
-					$application->enqueueMessage("<div>" . implode("</div><div>", $data["message"]["success"]) . "</div>", 'message');
-				endif;
-				if($data["message"]["error"]):
-					$application->enqueueMessage("<div>" . implode("</div><div>", $data["message"]["error"]) . "</div>", 'error');
-				endif;
+				$this->setEnqueueMessage($application, $data);
+				$application->redirect('index.php?option=' . $stats["option"] . "&dir=" . $dir);
 				break;
 			case 'delete':
 				// Удаление
 				$data = $foodSchool->deleteFile($file)->getData()->output;
 				$stats["data"] = $data;
-				if($data["message"]["success"]):
-					$application->enqueueMessage("<div>" . implode("</div><div>", $data["message"]["success"]) . "</div>", 'message');
-				endif;
-				if($data["message"]["error"]):
-					$application->enqueueMessage("<div>" . implode("</div><div>", $data["message"]["error"]) . "</div>", 'error');
-				endif;
+				$this->setEnqueueMessage($application, $data);
+				$application->redirect('index.php?option=' . $stats["option"] . "&dir=" . $dir);
 				break;
 			default:
 				// Обычный
 				$data = $foodSchool->getData()->output;
 				$stats["data"] = $data;
-				if($data["message"]["success"]):
-					$application->enqueueMessage("<div>" . implode("</div><div>", $data["message"]["success"]) . "</div>", 'message');
-				endif;
-				if($data["message"]["error"]):
-					$application->enqueueMessage("<div>" . implode("</div><div>", $data["message"]["error"]) . "</div>", 'error');
-				endif;
+				$this->setEnqueueMessage($application, $data);
 				break;
 				break;
 		}
 
 		$stats["update"] = $this->getUpdate();
-		$lang = JFactory::getLanguage();
+		$lang = \JFactory::getLanguage();
 		$re = '/-/';
 		$str = $lang->get('tag');
 		$subst = "_";
 		$stats['lang'] = preg_replace($re, $subst, $str);
 		return $stats;
+	}
+
+	private function setEnqueueMessage($application, $data) {
+		if($data["message"]["success"]):
+			$application->enqueueMessage("<div>" . implode("</div><div>", $data["message"]["success"]) . "</div>", 'message');
+		endif;
+		if($data["message"]["error"]):
+			$application->enqueueMessage("<div>" . implode("</div><div>", $data["message"]["error"]) . "</div>", 'error');
+		endif;
 	}
 
 	private function getUpdate() {
