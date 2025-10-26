@@ -1,5 +1,4 @@
 <?php
-
 namespace ProjectSoft\Component\Food\Administrator\View\Food;
 
 defined('_JEXEC') or die;
@@ -18,6 +17,8 @@ use Joomla\CMS\Toolbar\Button\DropdownButton;
 use Joomla\CMS\Toolbar\Toolbar;
 use Joomla\CMS\Toolbar\ToolbarHelper;
 
+use ProjectSoft\Component\Food\Administrator\Lib\SchoolFood;
+
 /**
  * @package     Joomla.Administrator
  * @subpackage  com_food
@@ -32,31 +33,136 @@ use Joomla\CMS\Toolbar\ToolbarHelper;
 class HtmlView extends BaseHtmlView {
 	
 	public $stats = array();
+	private $application = null;
+	private $input = null;
+	private $params = null;
 
 	/**
-	 * Разрещённые расширения
-	 */
-	public $exts = array("xlsx", "pdf");
-	/**
-	 * Отображение основного вида "Food" 
+	 * Отображение основного вида "Food"
 	 *
 	 * @param   string  $tpl  Имя файла шаблона для анализа; автоматический поиск путей к шаблону.
 	 * @return  void
 	 */
-
-	private $dateTime;
-
-	private $timezone = 0;
-
 	public function display($tpl = null) {
-		$this->timezone = Factory::getUser()->getTimezone();
-		$this->dateTime = new \DateTime('now', $this->timezone);
-		// Всё, что нужно
-		$this->stats = $this->getStats();
+		$this->application = Factory::getApplication();
+		$this->input = $this->application->getInput();
+		// Параметры директорий
+		$this->params   = ComponentHelper::getParams('com_food');
+		// Получаем параметры
+		$option   = $this->input->get('option',   'com_food');
+		$dir      = $this->input->get('dir',      '');
+		$mode     = $this->input->get('mode',     '');
+		$file     = $this->input->get('file',     '');
+		$new_file = $this->input->get('new_file', '');
+
+		$autodelete  = intval($this->params->get('food_auto_delete', '0'));
+		$autodelete_year  = intval($this->params->get('food_auto_year', '5'));
+
+		$folders  = $this->params->get('food_folders', 'food');
+		$folders  = preg_split('/[\s,;]+/', $folders);
+		$food     = array("food");
+		$folders  = array_filter(array_unique(array_merge($food, $folders)));
+
+		$folders  = array_map('ProjectSoft\\Component\\Food\\Administrator\\Lib\\SchoolFood::TranslitFile', $folders);
+
+		sort($folders);
+
+		$data = array(array("message" => array("success" => array(),"error" => array())));
+
+		if($dir && !in_array($dir, $folders)):
+			// Редирект на верхний уровень
+			$data["message"]["error"][] = Text::sprintf('COM_FOOD_DIR_ERROR', $dir);
+			$this->setEnqueueMessage($data);
+			$this->application->redirect("index.php?option=" . $option);
+		endif;
+
+		$this->food = new SchoolFood(
+			JPATH_ROOT,
+			array(
+				// Просматриваемая директория
+				"path"              => $dir,
+				// Автоудаление
+				"autodelete"        => $autodelete,
+				// Сколько лет
+				"year"              => $autodelete_year,
+				// Разрешённые директории
+				"access_path"       => $folders
+			),
+			array(
+				"delete"               => Text::_('COM_FOOD_FOOD_DELETE'),
+				"not_delete"           => Text::_('COM_FOOD_FOOD_NOT_DELETE'),
+				"not_file_delete"      => Text::_('COM_FOOD_FOOD_NOT_FILE_DELETE'),
+				"rename"               => Text::_('COM_FOOD_FOOD_RENAME'),
+				"not_rename"           => Text::_('COM_FOOD_FOOD_NOT_RENAME'),
+				"access_rename"        => Text::_('COM_FOOD_FOOD_ACCESS_RENAME'),
+				"access_rename_ext"    => Text::_('COM_FOOD_FOOD_ACCESS_RENAME_EXT'),
+				"access_path"          => Text::_('COM_FOOD_FOOD_ACCESS_PATH'),
+				"access_file"          => Text::_('COM_FOOD_FOOD_ACCESS_FILE'),
+				"upload"               => Text::_('COM_FOOD_FOOD_UPLOAD'),
+				"not_upload"           => Text::_('COM_FOOD_FOOD_NOT_UPLOAD'),
+				"file_exists"          => Text::_('COM_FOOD_FOOD_FILE_EXISTS'),
+				"not_found"            => Text::_('COM_FOOD_FOOD_NOT_FOUND'),
+				"same_name"            => Text::_('COM_FOOD_FOOD_SAME_NAME'),
+			)
+		);
+
+		// Директории созданы в SchoolFood классе. Удалены старые файлы.
+		// Запись .htaccess
+		$admin = $this->realPath(JPATH_COMPONENT_ADMINISTRATOR);
+		foreach ($folders as $key => $value):
+			try {
+				$path = $this->realPath(JPATH_ROOT) . "/" . $value . "/" . ".htaccess";;
+				// Записываем .htaccess
+				$htaccess = "";
+				include($admin . "/htaccess/.htaccess.old.php");
+				@file_put_contents($path, $htaccess);
+				@chmod($path, 0644);
+			}catch(\Exception $e) {
+				// Редирект на верхний уровень
+				$data["message"]["error"][] = Text::_('COM_FOOD_ERROR');
+				$this->setEnqueueMessage($data);
+				$this->application->redirect("index.php?option=" . $option);
+			}
+		endforeach;
+		// Определение mode
+		switch ($mode) {
+			case 'upload':
+				$data = $this->food->uploadFiles()->getData()->output;
+				$this->setEnqueueMessage($data);
+				$this->application->redirect("index.php?option=" . $option . "&dir=" . $dir);
+				break;
+			case 'rename':
+				$data = $this->food->renameFile($file, $new_file)->getData()->output;
+				$this->setEnqueueMessage($data);
+				$this->application->redirect("index.php?option=" . $option . "&dir=" . $dir);
+				break;
+			case 'delete':
+				$data = $this->food->deleteFile($file)->getData()->output;
+				$this->setEnqueueMessage($data);
+				$this->application->redirect("index.php?option=" . $option . "&dir=" . $dir);
+				break;
+			default:
+				$data = $this->food->getData()->output;
+				$this->setEnqueueMessage($data);
+				break;
+		}
+
+		// Определяем язык
+		$lang = Factory::getLanguage();
+		$re = '/-/';
+		$str = $lang->get('tag');
+		$subst = "_";
+		$strLang = preg_replace($re, $subst, $str);
+
+		$this->stats = $data;
+		$this->stats["lang"] = $strLang;
+		$this->stats["update"] = $this->getUpdate();
+
 		// Кнопки
 		$this->addToolbar();
-		$doc = Factory::getDocument();
+
 		// Стили
+		$doc = Factory::getDocument();
 		$styles = array(
 			"/viewer/app.min.css",
 			"/administrator/components/com_food/assets/css/main.min.css"
@@ -73,29 +179,6 @@ class HtmlView extends BaseHtmlView {
 		parent::display($tpl);
 	}
 
-	public function getSize($file) {
-
-		$sizes      = array('Tb' => 1099511627776, 'Gb' => 1073741824, 'Mb' => 1048576, 'Kb' => 1024, 'b' => 1);
-		$precisions = count($sizes) - 1;
-		$size       = filesize($file);
-		foreach ($sizes as $unit => $bytes) {
-			if ($size >= $bytes) {
-				return number_format($size / $bytes, $precisions) . ' ' . $unit;
-			}
-			$precisions--;
-		}
-		return '0 b';
-	}
-
-	/**
-	 * Вывод времени в определённом формате
-	 */
-	public function toDateFormat( $timestamp = 0 )
-	{
-		$this->dateTime->setTimestamp($timestamp);
-		return $this->dateTime->format('d-m-Y H:i:s');
-	}
-
 	/**
 	 * Получение пути файла в правильном формате
 	 */
@@ -108,7 +191,7 @@ class HtmlView extends BaseHtmlView {
 	 * Кнопка настройки компонента
 	 */
 	protected function addToolbar() {
-		Factory::getApplication()->getInput()->set('hidemainmenu', true);
+		//Factory::getApplication()->getInput()->set('hidemainmenu', true);
 		$ch      = ContentHelper::getActions('com_food');
 		$toolbar = Toolbar::getInstance();
 		if ($ch->get('core.admin') || $ch->get('core.options')) {
@@ -135,9 +218,17 @@ class HtmlView extends BaseHtmlView {
 		}
 	}
 
+	private function setEnqueueMessage($data) {
+		if($data["message"]["success"]):
+			$this->application->enqueueMessage("<div>" . implode("</div><div>", $data["message"]["success"]) . "</div>", 'message');
+		endif;
+		if($data["message"]["error"]):
+			$this->application->enqueueMessage("<div>" . implode("</div><div>", $data["message"]["error"]) . "</div>", 'error');
+		endif;
+	}
+
 	// Добавляем свои переменные языка для JS
 	private function addScripts(){
-		//Factory::getLanguage();
 		Text::script('COM_FOOD_TITLE');
 		Text::script('COM_FOOD_ERROR_MAX_UPLOAD');
 		Text::script('COM_FOOD_ERROR_TYPE_UPLOAD');
@@ -159,101 +250,6 @@ class HtmlView extends BaseHtmlView {
 		Text::script('COM_FOOD_TXT_FILES_ONE');
 		Text::script('COM_FOOD_TXT_FILES_TWO');
 		Text::script('COM_FOOD_TXT_FILES_THREE');
-	}
-
-	// Объединение директорий
-	private function path_join() {
-		$paths = array();
-		foreach (func_get_args() as $arg) {
-			if ($arg !== '') { $paths[] = $arg; }
-		}
-		return preg_replace('#/+#','/', join('/', $paths));
-	}
-
-	/**
-	 * Настройки
-	 */
-	private function getStats() {
-		$application = Factory::getApplication();
-		$input = $application->getInput();
-		// Получаем параметры
-		$option   = $input->get('option',   'com_food');
-		$dir      = $input->get('dir',      '');
-		$mode     = $input->get('mode',     '');
-		$file     = $input->get('file',     '');
-		$new_file = $input->get('new_file', '');
-		// Параметры директорий
-		$params   = ComponentHelper::getParams('com_food');
-
-		$autodelete  = intval($params->get('food_auto_delete', '0'));
-		$autodelete_year  = intval($params->get('food_auto_year', '5'));
-
-		$folders  = $params->get('food_folders', 'food');
-		$folders  = preg_split('/[\s,;]+/', $folders);
-		$food     = array("food");
-		$folders  = array_filter(array_unique(array_merge($food, $folders)));
-		sort($folders);
-		// Language
-		$lang = Factory::getLanguage();
-		$re = '/-/';
-		$str = $lang->get('tag');
-		$subst = "_";
-		// Tabs
-		$stats    = array(
-			"option" => $option,
-			"dir" => $dir,
-			"mode" => $mode,
-			"file" => $file,
-			"new_file" => $new_file,
-			"folders" => $folders,
-			"files" => array(),
-			"update" => $this->getUpdate(),
-			"lang" => preg_replace($re, $subst, $str)
-		);
-
-		if($dir):
-			// Поиск файлов в директории
-			$files_path = join("/", array(
-				$this->realPath(JPATH_ROOT),
-				$dir
-			));
-			$iterators = new \DirectoryIterator($files_path);
-			foreach ($iterators as $fileinfo):
-				// Если это файл
-				if($fileinfo->isFile()):
-					$ext = strtolower($fileinfo->getExtension());
-					if(in_array($ext, $this->exts)):
-						// Проверить дату (год) в имени файла
-						$name = $fileinfo->getFilename();
-						$re = '/^(?:[\w]+)?(\d{4})/';
-						preg_match($re, $name, $matches);
-						// Если есть 4 цифры в имени файла и включено автоудаление
-						if($matches && $autodelete == 1):
-							// Год сейчас
-							$year = intval(date("Y", time()));
-							// Год в имени файла
-							$file_year = intval($matches[1]);
-							// Если разница лет больше autodelete_year.
-							if($year - $file_year > $autodelete_year):
-								// Удаляем файл
-								$file_absolute = $this->path_join($files_path, $name);
-								@unlink($file_absolute);
-								$application->enqueueMessage(Text::sprintf('COM_FOOD_AUTODELETE_FILE', $name), 'message');
-							else:
-								// Добавляем файл в отображение
-								$stats["files"][] = $name;
-							endif;
-						else:
-							// Добавляем файл в отображение
-							$stats["files"][] = $name;
-						endif;
-					endif;
-				endif;
-			endforeach;
-			natsort($stats["files"]);
-			$stats["files"] = array_reverse($stats["files"], false);
-		endif;
-		return $stats;
 	}
 
 	private function getUpdate() {

@@ -38,6 +38,7 @@ docs/*.xml
 **/**/admin/assets/*.*
 **/**/admin/services/*.*
 **/**/admin/languages
+**/**/admin/lib
 **/**/admin/src/Controller/*.*
 **/**/admin/src/View/*.*
 **/**/admin/services/*.*
