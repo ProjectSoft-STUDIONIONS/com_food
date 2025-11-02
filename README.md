@@ -42,9 +42,13 @@
 
 Установить через административную панель. `Система` -> `Установка` -> `Расширения`
 
-### Скриншот Joomla! 6.0.0-beta3
+### Скриншот Joomla! 3.x
 
-![Скриншот Joomla! 6.0.0-beta3](src/screenshots/screenshot-6.x.png)
+![Скриншот Joomla! 6.x](src/screenshots/screenshot-3.x.png)
+
+### Скриншот Joomla! 6.x
+
+![Скриншот Joomla! 6.x](src/screenshots/screenshot-6.x.png)
 
 ### Постскриптум
 
