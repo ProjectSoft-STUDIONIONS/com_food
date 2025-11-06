@@ -1,15 +1,17 @@
 <?php
+
 /**
  * @package     Joomla.Administrator
  * @subpackage  com_food
  *
  * @copyright   Copyright (C) 2008 ProjectSoft. All rights reserved.
- * @license     MIT Lecense; see LICENSE
+ * @license     GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
  */
 
+defined('_JEXEC') or die();
+
 use Joomla\CMS\Language\Text;
-// Нет прямого доступа к этому файлу
-defined('_JEXEC') or die('Нет доступа');
+
 $max_count_files = ini_get("max_file_uploads");
 $valueCSS = "/administrator/components/com_food/assets/css/main.min.css";
 $versionCSS = $valueCSS . "?" . filemtime(JPATH_ROOT . $valueCSS);

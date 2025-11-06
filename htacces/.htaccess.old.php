@@ -1,5 +1,5 @@
 <?php
-
+defined('_JEXEC') or die();
 $htaccess = 'AddDefaultCharset UTF-8
 <IfModule mod_rewrite.c>
 	RewriteEngine On

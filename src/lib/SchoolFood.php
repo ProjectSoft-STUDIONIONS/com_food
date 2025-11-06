@@ -1,4 +1,15 @@
 <?php
+
+/**
+ * @package     Joomla.Administrator
+ * @subpackage  com_food
+ *
+ * @copyright   Copyright (C) 2008 ProjectSoft. All rights reserved.
+ * @license     GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
+ */
+
+defined('_JEXEC') or die();
+
 namespace %namespace%;
 
 /**
@@ -9,6 +20,9 @@ namespace %namespace%;
  * 		WordPress CMS
  * 		возможно и другие...
  */
+
+use Joomla\CMS\Filesystem\File;
+
 class SchoolFood {
 	/**
 	 * $base_path должен вести к корню сайта.

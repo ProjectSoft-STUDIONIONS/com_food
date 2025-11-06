@@ -1,11 +1,13 @@
 <?php
+
 /**
-* @version      1.2.6 2025-09-27
-* @author       ProjectSoft
-* @package      food
-* @copyright    Copyright (C) 2008 - All rights reserved.
-* @license      MIT
-*/
+ * @package     Joomla.Administrator
+ * @subpackage  com_food
+ *
+ * @copyright   Copyright (C) 2008 ProjectSoft. All rights reserved.
+ * @license     GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
+ */
+
 defined('_JEXEC') or die();
 
 class com_foodInstallerScript {

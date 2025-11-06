@@ -1,18 +1,19 @@
 <?php
 
-namespace ProjectSoft\Component\Food\Administrator\Controller;
-
-defined('_JEXEC') or die;
-
-use Joomla\CMS\MVC\Controller\BaseController;
-
 /**
  * @package     Joomla.Administrator
  * @subpackage  com_food
  *
  * @copyright   Copyright (C) 2008 ProjectSoft. All rights reserved.
- * @license     MIT Lecense; see LICENSE
+ * @license     GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
  */
+
+defined('_JEXEC') or die;
+
+namespace ProjectSoft\Component\Food\Administrator\Controller;
+
+use Joomla\CMS\MVC\Controller\BaseController;
+
 class DisplayController extends BaseController {
 	/**
 	 * Представление по умолчанию для метода отображения.

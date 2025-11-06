@@ -10,7 +10,7 @@
 		"type": "git",
 		"url": "git+https://github.com/ProjectSoft-STUDIONIONS/com_food.git"
 	},
-	"license": "MIT",
+	"license": "GPL",
 	"author": "ProjectSoft <projectsoft2009@yandex.ru>",
 	"type": "commonjs",
 	"main": "Gruntfile.js",
