@@ -8,9 +8,9 @@
  * @license     GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
  */
 
-defined('_JEXEC') or die;
-
 namespace ProjectSoft\Component\Food\Administrator\View\Food;
+
+defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Uri\Uri;
@@ -78,6 +78,7 @@ class HtmlView extends BaseHtmlView {
 		endif;
 
 		$this->food = new SchoolFood(
+			$this->application,
 			JPATH_ROOT,
 			array(
 				// Просматриваемая директория

@@ -8,17 +8,13 @@
  * @license     GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
  */
 
-defined('_JEXEC') or die();
-
 namespace %namespace%;
 
+defined('_JEXEC') or die();
+
 /**
- * Класс для чтения папок питания.
- * Разрабатывается под:
- * 		Evolution CMS
- * 		Joomla! CMS
- * 		WordPress CMS
- * 		возможно и другие...
+ * Класс для чтения директорий питания.
+ * Разрабатывается под: Joomla! CMS
  */
 
 use Joomla\CMS\Filesystem\File;
@@ -87,12 +83,15 @@ class SchoolFood {
 	// Разрешённые директории
 	// food, food-individual, etc..
 	private $access_path = [];
+	// Application
+	private $application = null;
 
 	/**
 	 * В конструкторе применяем переменные
 	 * Создаём директории
 	 */
-	public function __construct(string $base_path, array $params, array $lang) {
+	public function __construct($application, string $base_path, array $params, array $lang) {
+		$this->application = $application;
 		$base_path = rtrim(str_replace('\\', '/', $base_path), "/") . "/";
 		$this->params = array_merge($this->params, $params);
 		// Удаляем повторение. Переведём в нижний регистр значения массива
@@ -247,12 +246,13 @@ class SchoolFood {
 		endif;
 		$path = $this->pathJoin($this->base_path, $this->path);
 		// Обрабатываем
-		if(isset($_FILES['userfiles'])):
-			foreach ($_FILES['userfiles']['name'] as $i => $name):
-				if (empty($_FILES['userfiles']['tmp_name'][$i])) continue;
-				$name = strtolower($this->TranslitFile($name));
+		$files = $this->application->input->files->get('userfiles', array(), 'array');
+		if($files):
+			foreach ($files as $i => $file):
+				if (empty($file['tmp_name'])) continue;
+				$name = strtolower($this->TranslitFile($file["name"]));
 				$extension = strtolower(pathinfo($name, PATHINFO_EXTENSION));
-				$tmp_name = $_FILES['userfiles']['tmp_name'][$i];
+				$tmp_name = $file['tmp_name'];
 				if(in_array($extension, self::EXT_FILES)):
 					// Файл поддерживается
 					if(@move_uploaded_file($tmp_name, $this->pathJoin($path, $name))):

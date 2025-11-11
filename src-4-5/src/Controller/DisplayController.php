@@ -8,9 +8,9 @@
  * @license     GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
  */
 
-defined('_JEXEC') or die;
-
 namespace ProjectSoft\Component\Food\Administrator\Controller;
+
+defined('_JEXEC') or die;
 
 use Joomla\CMS\MVC\Controller\BaseController;
 

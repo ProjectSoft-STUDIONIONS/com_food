@@ -79,3 +79,11 @@ component-[^3]x/com_food/admin/htaccess
 component-[^3]x/com_food/admin/services
 component-[^3]x/com_food/admin/src
 component-[^3]x/com_food/admin/tmpl
+
+# !component-[4-6]x/com_food/admin/src
+# component-[4-6]x/com_food/admin/src/*
+# !component-[4-6]x/com_food/admin/src/Lib
+
+# !component-3x/com_food/admin
+# component-3x/com_food/admin/*
+# !component-3x/com_food/admin/lib

@@ -61,6 +61,7 @@ class FoodModelsStatistics extends JModelBase
 		$stats["com_food_params"] = $array;
 		// Новая
 		$foodSchool = new SchoolFood(
+			$application,
 			JPATH_ROOT,
 			array(
 				// Задаём просматриваемую директорию
@@ -105,7 +106,6 @@ class FoodModelsStatistics extends JModelBase
 			}
 
 		endforeach;
-
 		// Определяем методы (загрузка, переименование, удаление)
 		switch ($mode) {
 			case 'upload':

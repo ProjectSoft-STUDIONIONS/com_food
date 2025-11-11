@@ -66,10 +66,10 @@ module.exports = function(grunt) {
 			"less",
 			"autoprefixer",
 			"cssmin",
-			// Перезапись
-			"replace",
 			// Копирование
 			"copy",
+			// Перезапись
+			"replace",
 			// Компиляция XML
 			"pug:serv3",
 			"pug:serv4",
@@ -727,41 +727,131 @@ module.exports = function(grunt) {
 					},
 				]
 			},
+			foodIcons: {
+				options: {
+					patterns: [
+						{
+							match: /^<\?php\s+/,
+							replacement: `<?php\n/**\n * @license     GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html\n */\n\n`
+						}
+					]
+				},
+				files: [
+					{
+						expand: true,
+						flatten: true,
+						src: ['component-3x/com_food/icons-full/*.php'],
+						dest: 'component-3x/com_food/icons-full/'
+					},
+					{
+						expand: true,
+						flatten: true,
+						src: ['component-4x/com_food/icons-full/*.php'],
+						dest: 'component-4x/com_food/icons-full/'
+					},
+					{
+						expand: true,
+						flatten: true,
+						src: ['component-5x/com_food/icons-full/*.php'],
+						dest: 'component-5x/com_food/icons-full/'
+					},
+					{
+						expand: true,
+						flatten: true,
+						src: ['component-6x/com_food/icons-full/*.php'],
+						dest: 'component-6x/com_food/icons-full/'
+					}
+				]
+			},
+			foodViewer: {
+				options: {
+					patterns: [
+						{
+							match: /^/,
+							replacement: `<?php\n/**\n * @license     GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html\n */\n?>`
+						}
+					]
+				},
+				files: [
+					{
+						expand: true,
+						flatten: true,
+						src: ['component-3x/com_food/viewer/docx_viewer/index.php'],
+						dest: 'component-3x/com_food/viewer/docx_viewer/'
+					},
+					{
+						expand: true,
+						flatten: true,
+						src: ['component-3x/com_food/viewer/pdf_viewer/index.php'],
+						dest: 'component-3x/com_food/viewer/pdf_viewer/'
+					},
+					{
+						expand: true,
+						flatten: true,
+						src: ['component-3x/com_food/viewer/xlsx_viewer/index.php'],
+						dest: 'component-3x/com_food/viewer/xlsx_viewer/'
+					},
+					{
+						expand: true,
+						flatten: true,
+						src: ['component-4x/com_food/viewer/docx_viewer/index.php'],
+						dest: 'component-4x/com_food/viewer/docx_viewer/'
+					},
+					{
+						expand: true,
+						flatten: true,
+						src: ['component-4x/com_food/viewer/pdf_viewer/index.php'],
+						dest: 'component-4x/com_food/viewer/pdf_viewer/'
+					},
+					{
+						expand: true,
+						flatten: true,
+						src: ['component-4x/com_food/viewer/xlsx_viewer/index.php'],
+						dest: 'component-4x/com_food/viewer/xlsx_viewer/'
+					},
+					{
+						expand: true,
+						flatten: true,
+						src: ['component-5x/com_food/viewer/docx_viewer/index.php'],
+						dest: 'component-5x/com_food/viewer/docx_viewer/'
+					},
+					{
+						expand: true,
+						flatten: true,
+						src: ['component-5x/com_food/viewer/pdf_viewer/index.php'],
+						dest: 'component-5x/com_food/viewer/pdf_viewer/'
+					},
+					{
+						expand: true,
+						flatten: true,
+						src: ['component-5x/com_food/viewer/xlsx_viewer/index.php'],
+						dest: 'component-5x/com_food/viewer/xlsx_viewer/'
+					},
+					{
+						expand: true,
+						flatten: true,
+						src: ['component-6x/com_food/viewer/docx_viewer/index.php'],
+						dest: 'component-6x/com_food/viewer/docx_viewer/'
+					},
+					{
+						expand: true,
+						flatten: true,
+						src: ['component-6x/com_food/viewer/pdf_viewer/index.php'],
+						dest: 'component-6x/com_food/viewer/pdf_viewer/'
+					},
+					{
+						expand: true,
+						flatten: true,
+						src: ['component-6x/com_food/viewer/xlsx_viewer/index.php'],
+						dest: 'component-6x/com_food/viewer/xlsx_viewer/'
+					},
+				]
+			}
 		},
 		copy: {
 			// Fonts
 			main: {
 				files: [
-					/*
-					// 3.x
-					{
-						expand: true,
-						cwd: 'bower_components/bootstrap/dist/fonts',
-						src: '**',
-						dest: 'component-3x/com_food/admin/assets/fonts/',
-					},
-					// 4.x
-					{
-						expand: true,
-						cwd: 'bower_components/bootstrap/dist/fonts',
-						src: '**',
-						dest: 'component-4x/com_food/admin/assets/fonts/',
-					},
-					// 5.x
-					{
-						expand: true,
-						cwd: 'bower_components/bootstrap/dist/fonts',
-						src: '**',
-						dest: 'component-5x/com_food/admin/assets/fonts/',
-					},
-					// 6.x
-					{
-						expand: true,
-						cwd: 'bower_components/bootstrap/dist/fonts',
-						src: '**',
-						dest: 'component-6x/com_food/admin/assets/fonts/',
-					},
-					*/
 					// Fonts
 					// 3.x
 					{
