@@ -47,14 +47,14 @@ class HtmlView extends BaseHtmlView {
 	public function display($tpl = null) {
 		$this->application = Factory::getApplication();
 		$this->input = $this->application->getInput();
-		// Параметры директорий
-		$this->params   = ComponentHelper::getParams('com_food');
 		// Получаем параметры
 		$option   = $this->input->get('option',   'com_food');
 		$dir      = $this->input->get('dir',      '');
 		$mode     = $this->input->get('mode',     '');
 		$file     = $this->input->get('file',     '');
 		$new_file = $this->input->get('new_file', '');
+		// Параметры директорий
+		$this->params   = ComponentHelper::getParams($option);
 
 		$autodelete  = intval($this->params->get('food_auto_delete', '0'));
 		$autodelete_year  = intval($this->params->get('food_auto_year', '5'));
@@ -208,15 +208,15 @@ class HtmlView extends BaseHtmlView {
 			$toolbar->divider();
 			$toolbar->preferences('com_food');
 			// Если $this->stats->update не false
-			if($this->stats["update"]):
+			//if($this->stats["update"]):
 				// вывести кнопку на скачивание новой версии
 				$btn = $toolbar->standardButton('nrecords');
-				$btn->icon('fa fa-github');
-				$btn->text(Text::_('COM_FOOD_UPDATE'));
+				$btn->icon('food-icon-github');
+				$btn->text('');//Text::_('COM_FOOD_UPDATE')
 				$btn->task('');
-				$btn->onclick("window.open('" . $this->stats["update"] . "'); return false;");
+				$btn->onclick("window.open('https://projectsoft-studionions.github.io/com_food/'); return false;");
 				$btn->listCheck(false);
-			endif;
+			//endif;
 		}
 	}
 
@@ -252,6 +252,12 @@ class HtmlView extends BaseHtmlView {
 		Text::script('COM_FOOD_TXT_FILES_ONE');
 		Text::script('COM_FOOD_TXT_FILES_TWO');
 		Text::script('COM_FOOD_TXT_FILES_THREE');
+
+		Text::script('COM_FOOD_SHOW_BY_10');
+		Text::script('COM_FOOD_SHOW_BY_25');
+		Text::script('COM_FOOD_SHOW_BY_50');
+		Text::script('COM_FOOD_SHOW_BY_100');
+		Text::script('COM_FOOD_SHOW_BY_ALL');
 	}
 
 	private function getUpdate() {

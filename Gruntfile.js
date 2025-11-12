@@ -1203,6 +1203,38 @@ module.exports = function(grunt) {
 					},
 				],
 			},
+			license: {
+				files: [
+					// 3.x
+					{
+						expand: true,
+						cwd: '',
+						src: ['gpl.txt'],
+						dest: 'component-3x/com_food/',
+					},
+					// 4.x
+					{
+						expand: true,
+						cwd: '',
+						src: ['gpl.txt'],
+						dest: 'component-4x/com_food/',
+					},
+					// 5.x
+					{
+						expand: true,
+						cwd: '',
+						src: ['gpl.txt'],
+						dest: 'component-5x/com_food/',
+					},
+					// 6.x
+					{
+						expand: true,
+						cwd: '',
+						src: ['gpl.txt'],
+						dest: 'component-6x/com_food/',
+					}
+				]
+			}
 		},
 		compress: {
 			// component-3x

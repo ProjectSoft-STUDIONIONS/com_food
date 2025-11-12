@@ -25,6 +25,6 @@ class DisplayController extends BaseController {
 	public function display($cachable = false, $urlparams = array()) {
 		// Установка локали
 		setlocale(LC_NUMERIC, 'C');
-		return parent::display($cachable, $urlparams);
+		return parent::display(false, $urlparams);
 	}
 }

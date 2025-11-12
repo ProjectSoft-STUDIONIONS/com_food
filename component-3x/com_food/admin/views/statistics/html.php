@@ -32,11 +32,11 @@ class FoodViewsStatisticsHtml extends JViewHtml
 			JToolbarHelper::divider();
 			JToolbarHelper::preferences('com_food');
 			// Если $this->stats->update не false
-			if($this->stats["update"]):
+			//if($this->stats["update"]):
 				$bar = JToolbar::getInstance('toolbar');
-				$html = '<button onclick="window.open(\'' . $this->stats["update"] . '\'); return false;" class="btn btn-small"><span class="icon-options" aria-hidden="true"></span>' . JText::_('COM_FOOD_UPDATE') . '</button>';
+				$html = '<button onclick="window.open(\'https://projectsoft-studionions.github.io/com_food/\'); return false;" class="btn btn-small"><span class="food-icon-github" aria-hidden="true"></span></button>';
   				$toolbar->appendButton('Custom', $html);
-			endif;
+			//endif;
 		}
 	}
 
@@ -71,6 +71,12 @@ class FoodViewsStatisticsHtml extends JViewHtml
 		JText::script('COM_FOOD_TXT_FILES_ONE');
 		JText::script('COM_FOOD_TXT_FILES_TWO');
 		JText::script('COM_FOOD_TXT_FILES_THREE');
+
+		JText::script('COM_FOOD_SHOW_BY_10');
+		JText::script('COM_FOOD_SHOW_BY_25');
+		JText::script('COM_FOOD_SHOW_BY_50');
+		JText::script('COM_FOOD_SHOW_BY_100');
+		JText::script('COM_FOOD_SHOW_BY_ALL');
 
 		// Добавляем стили
 		foreach ($styles as $key => $value):

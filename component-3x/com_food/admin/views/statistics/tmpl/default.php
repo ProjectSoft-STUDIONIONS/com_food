@@ -82,7 +82,7 @@ $path = $this->realPath(JPATH_ROOT);
 					</table>
 				</div>
 			</div>
-			<p class="text-left developer">Если возникнут проблемы или вопросы, то обращайтесь в Telegram к <a href="https://t.me/ProjectSoft" target="_blank">ProjectSoft</a> (Чернышёв Андрей)<br>GitHub репозиторий компонента <a href="https://github.com/ProjectSoft-STUDIONIONS/com_food" target="_blank">https://github.com/ProjectSoft-STUDIONIONS/com_food</a></p>
+			<p class="text-left developer"><?= \JText::_('COM_FOOD_DEVELOP'); ?></p>
 		</div>
 	</div>
 </div>

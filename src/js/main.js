@@ -19,7 +19,7 @@ setInterval( () => {
 		"en_US"
 	];
 	// Если в массиве нет нужного языка, то ставим ru_RU
-	const Lang = Langs.includes(window.J_LANG) ? window.J_LANG : 'ru_RU';
+	const Lang = Langs.includes(window.J_LANG) ? window.J_LANG : 'en_GB';
 
 	let search = location.search.replace(/\?/g, '');
 	let search_api = search.split('&').map((item, index, array) => {
@@ -313,8 +313,20 @@ setInterval( () => {
 			},
 			// Меню вывода кол-ва файлов
 			lengthMenu: [
-				[10, 25, 50, 100, -1],
-				['по 10', 'по 25', 'по 50', 'по 100', 'Все']
+				[
+					10,
+					25,
+					50,
+					100,
+					-1
+				],
+				[
+					Translate.sprintf('COM_FOOD_SHOW_BY_10'),
+					Translate.sprintf('COM_FOOD_SHOW_BY_25'),
+					Translate.sprintf('COM_FOOD_SHOW_BY_50'),
+					Translate.sprintf('COM_FOOD_SHOW_BY_100'),
+					Translate.sprintf('COM_FOOD_SHOW_BY_ALL')
+				]
 			],
 			// Контейнеры
 			layout: {
