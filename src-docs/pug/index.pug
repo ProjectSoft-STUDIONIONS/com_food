@@ -24,6 +24,11 @@ html(lang="en")
 		meta(property="og:type" content="website")
 		meta(name="og:title" content="Компонент «ПИТАНИЕ» для Joomla")
 		meta(name="og:description" content="Компонент `com_food` для Joomla CMS. Обслуживания директории `food` сайта школы. Актуально для сайтов школ РФ.")
+		meta(name="og:video" content="https://projectsoft-studionions.github.io/com_food/assets/video/0001.mp4")
+		meta(property="og:video:secure_url" content="https://projectsoft-studionions.github.io/com_food/assets/video/0001.mp4")
+		meta(property="og:video:type" content="video/mp4")
+		meta(property="og:video:width" content="1428")
+		meta(property="og:video:height" content="720")
 		meta(name="twitter:card" content="summary_large_image")
 		link(rel="icon" type="image/png" href="/favicon.png" sizes="256x256")
 		link(rel="shortcut icon" href="/favicon.ico")
@@ -140,6 +145,16 @@ html(lang="en")
 											span.text-right
 												a.btn(href="https://github.com/ProjectSoft-STUDIONIONS/com_food/releases/download/" + version + "/com_food-" + jvers + ".x.zip" download=version+"-com_food-" + jvers + ".x.zip")
 													|Скачать
+			h2
+				|Видео
+			div.description
+				div.embed
+					.embed-16x9
+						video(src="assets/video/0001.mp4" preload="none" poster="assets/video/0001.jpg" controls)
+				p.text-center
+					|Обслуживание директории food сайта школы на Joomla CMS.
+					br
+					|Актуально для сайтов школ РФ.
 		footer
 			a(href="https://github.com/ProjectSoft-STUDIONIONS" target="_blank")
 				|ProjectSoft
