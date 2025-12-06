@@ -10,6 +10,17 @@ $htaccess = 'AddDefaultCharset UTF-8
 # Установить опции
 Options +Indexes +ExecCGI +Includes
 
+# Отключаем кеш
+<IfModule mod_headers.c>
+	ExpiresActive Off
+	Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
+	Header set Pragma "no-cache"
+	Header set Expires 0
+	Header unset ETag
+</IfModule>
+
+FileETag None
+
 # Если включён модуль mod_autoindex
 <IfModule mod_autoindex.c>
 
@@ -20,7 +31,6 @@ Options +Indexes +ExecCGI +Includes
 	IndexIgnore .htaccess *.shtml *.php *.cgi *.html *.js *.css *.ico
 
 	# Устанавливаем описания
-	# AddDescription "Microsoft Office Excel" .xls .xlsx
 
 	# Устанавливаем иконки
 	DefaultIcon /icons-full/unknown.png
@@ -94,13 +104,4 @@ Options +Indexes +ExecCGI +Includes
 	IndexOrderDefault Descending Name
 </IfModule>
 
-# Отключаем кэширование файлов *.xlsx и *.pdf
-<FilesMatch "\.(pdf|xlsx)$">
-	ExpiresActive Off
-	FileETag None
-	Header unset ETag
-	Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
-	Header set Pragma "no-cache"
-	Header set Expires "Wed, 11 Jan 1984 05:00:00 GMT"
-</FilesMatch>
 ';

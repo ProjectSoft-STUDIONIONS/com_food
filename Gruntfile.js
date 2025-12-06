@@ -58,6 +58,7 @@ module.exports = function(grunt) {
 			//'bower_components/datatables.net-buttons-bs/js/buttons.bootstrap.js'
 		],
 		default: [
+			"replace_htaccess",
 			"clean",
 			// Компиляция JS
 			"concat",
@@ -94,6 +95,7 @@ module.exports = function(grunt) {
 	require('load-grunt-tasks')(grunt);
 	require('time-grunt')(grunt);
 	require('./modules/sha.js')(grunt);
+	require('./modules/replace_htaccess.js')(grunt);
 
 	let arr = `${PACK.homepage}`.split('/'),
 		author = PACK.author.replace(/^(.*)(\s+<.*>)/, "$1"),
@@ -117,6 +119,16 @@ module.exports = function(grunt) {
 				`docs/${gc.version}/*.json`,
 				`*.zip`,
 			]
+		},
+		replace_htaccess: {
+			food: {
+				options: {
+					baner: "defined('_JEXEC') or die();"
+				},
+				files: {
+					'htacces/.htaccess.old.php': 'bower_components/food/food/.htaccess'
+				}
+			}
 		},
 		less: {
 			css: {
