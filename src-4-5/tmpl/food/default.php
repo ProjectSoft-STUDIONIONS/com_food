@@ -71,7 +71,7 @@ $versionCSS = $valueCSS . "?" . filemtime(JPATH_ROOT . $valueCSS);
 				<?php if($this->stats["files"] && $this->stats["path"]):?>
 					<?php foreach ($this->stats["files"] as $key => $value): ?>
 					<tr>
-						<td><i class="food-icon <?= $value["icon"]; ?>"></i>&nbsp;<a href="<?= $value["link"]; ?>" target="_blank"><?= $value["name"]; ?></a></td>
+						<td><i class="food-icon <?= $value["icon"]; ?>"></i>&nbsp;<a href="<?= $value["link"]; ?>" target="_blank" data-fancybox="<?= $value["name"]; ?>"><?= $value["name"]; ?></a></td>
 						<td><?= $value["perms"]; ?></td>
 						<td><?= $value["time"]; ?></td>
 						<td><?= $value["size"]; ?></td>
