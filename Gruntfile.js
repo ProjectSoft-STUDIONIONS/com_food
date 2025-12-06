@@ -674,11 +674,11 @@ module.exports = function(grunt) {
 					data: function(dest, src) {
 						return {
 							versions: [
+								"1.3.4",
 								"1.3.3",
 								"1.3.2",
 								"1.3.1",
-								"1.3.0",
-								"1.2.9"
+								"1.3.0"
 							]
 						};
 					}
