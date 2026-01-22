@@ -197,6 +197,7 @@ setInterval( () => {
 				input_mode.value = mode;
 				input_file.value = file;
 				input_new_file.value = nwfile + `.${fileExtension}`;
+				//console.log(input_file.value);
 				if(input_file.value != input_new_file.value){
 					form.submit();
 				}else{
